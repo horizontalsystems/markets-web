@@ -1,13 +1,16 @@
-import './App.css';
+import React from 'react'
+import Home from '../Home/Home'
+import Footer from '../Footer/Footer'
+
+import './App.scss'
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <p>Market</p>
-      </header>
+      <Home />
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default App

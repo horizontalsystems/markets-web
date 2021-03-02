@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+
+$utilities: (
+  "font-weight": (
+    property: font-weight,
+    class: fw,
+    responsive: true,
+    values: (
+      light: $font-weight-light,
+      lighter: $font-weight-lighter,
+      normal: $font-weight-normal,
+      500: 500,
+      600: 600,
+      bold: $font-weight-bold,
+      bolder: $font-weight-bolder
+    )
+  ),
+  "rounded-top": (
+    property: border-top-left-radius border-top-right-radius,
+    class: rounded-top,
+    values: (
+      null: $border-radius,
+      1: $border-radius-sm,
+      2: $border-radius,
+      3: $border-radius-lg,
+    )
+  ),
+  "rounded-bottom": (
+    property: border-bottom-right-radius border-bottom-left-radius,
+    class: rounded-bottom,
+    values: (
+      null: $border-radius,
+      1: $border-radius-sm,
+      2: $border-radius,
+      3: $border-radius-lg,
+    )
+  )
+);

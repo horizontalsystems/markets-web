@@ -1,0 +1,150 @@
+// Fonts
+$font-family-base: 'IBM Plex Sans', sans-serif;
+
+// Colors
+
+$ripple_white:        #ffffffb2;
+$ripple_black:        #0000001f;
+$transparent:         #00000000;
+$yellow_d:            #ffa800;
+$yellow_l:            #f58400;
+$green_d:             #05C46B;
+$green_l:             #04AD5F;
+$red_d:               #ff4820;
+$red_l:               #ed402e;
+$issyk_blue:          #1a60ff;
+$steel_dark:          #252933;
+$light_grey:          #c8c7cc;
+$steel_light:         #ebebf0;
+$white_pressed:       #e3e4e8;
+$darkest:             #0f1014;
+
+$dark_80:             #13151ACC;
+$black_50:            #00000080;
+$white_20:            #FFFFFF33;
+$white_50:            #ffffff80;
+$green_50:            #13D67080;
+$yellow_50:           #ffa80080;
+
+$grey_50:             #80808580;
+$steel_10:            #6E78991a;
+$steel_20:            #6E789933;
+$steel_dark_pressed:  #353842;
+$red_50:              #ff482080;
+$issykBlue:           #3372FF;
+
+// Overrides
+$light:     #f5f5f5;
+$dark:      #13151a;
+$white:     #ffffff;
+$black:     #000000;
+$green:     $green_d;
+$grey:      #808085;
+$yellow:    $yellow_d;
+
+// Navbar --jacob /--bran
+$navbar-dark-active-color:  $yellow;
+$navbar-light-active-color: $yellow-l;
+$navbar-dark-color: $light_grey;
+$navbar-light-color: $dark;
+
+// Navbar paddings
+$navbar-padding-y: 26px;
+$navbar-padding-x: 26px;
+
+$navbar-brand-padding-y: 0px;
+
+// Border
+$border-color:  $steel-20;
+
+$border-radius:     .5rem !default;
+$border-radius-sm:  .2rem !default;
+$border-radius-lg:   1rem !default;
+
+// $input-border-color: rgba(110, 120, 153, 0.2);
+// Table
+$table-cell-padding-y:  1rem;
+$table-cell-padding-x:  1rem;
+
+
+// Paired Colors
+
+:root {
+  --jacob:             #{$yellow_l};
+  --remus:             #{$green_l};
+  --lucian:            #{$red_l};
+  --oz:                #{$dark};
+  --tyler:             #{$light};
+  --cassandra:         #{$light_grey};
+  --bran:              #{$dark};
+  --claude:            #{$white};
+  --leah:              #{$steel_dark};
+  --lawrence:          #{$white};
+  --lawrence_pressed:  #{$steel_light};
+  --elena:             #{$light_grey};
+  --jeremy:            #{$steel_light};
+  --andy:              #{$steel_20};
+  --nina:              #{$black_50};
+  --raina:             #{$white_50};
+}
+
+body {
+  @extend .bg-light;
+}
+
+body.dark {
+  @extend .bg-dark;
+
+  --jacob:             #{$yellow_d};
+  --remus:             #{$green_d};
+  --lucian:            #{$red_d};
+  --oz:                #{$light};
+  --tyler:             #{$dark};
+  --cassandra:         #{$dark};
+  --bran:              #{$light_grey};
+  --claude:            #{$dark};
+  --leah:              #{$steel_light};
+  --lawrence:          #{$steel_dark};
+  --lawrence_pressed:  #353842;
+  --elena:             #{$steel_dark};
+  --jeremy:            #{$steel_20};
+  --andy:              #{$black_50};
+  --nina:              #{$white_50};
+  --raina:             #{$steel_10};
+}
+
+// Background colors
+
+.bg-lawrence {
+  background-color: var(--lawrence) !important;
+}
+
+.bg-jeremy {
+  background-color: var(--jeremy) !important;
+}
+
+.bg-steel-10 {
+  background-color: $steel_10 !important;
+}
+
+// Text colors
+
+.text-oz {
+  color: var(--oz) !important;
+}
+
+.text-bran {
+  color: var(--bran) !important;
+}
+
+.text-grey {
+  color: $grey;
+}
+
+// Table
+
+.table-zebra {
+  > tbody > tr:nth-of-type(odd) {
+    background-color: var(--jeremy);
+  }
+}

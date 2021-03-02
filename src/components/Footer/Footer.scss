@@ -1,0 +1,13 @@
+@import "../../styles/bootstrap";
+
+.Footer {
+  color: $gray-500;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  color: #353842; /* old IE */
+  background: rgba(110, 120, 153, 0.2); /* Modern Browsers */
+}
+

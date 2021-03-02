@@ -1,0 +1,59 @@
+@import '../../styles/bootstrap';
+
+.HeaderTabs {
+  height: 92px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.nav-tab-top {
+  position: relative;
+
+  @include media-breakpoint-up(md) {
+    margin-right: 30px;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-right: 20px;
+  }
+}
+
+.nav-link-tab {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  color: $grey;
+
+  &:hover {
+    color: lighten($grey, 10%);
+  }
+
+  &.active {
+    color: var(--oz) !important;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 0.5rem 1rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 16px 42px;
+  }
+}
+
+.nav-link-tab-svg {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* SVG eats clicks weird */
+
+  fill: var(--tyler);
+
+  @include media-breakpoint-down(md) {
+    width: 124px;
+    height: 42px;
+  }
+}
