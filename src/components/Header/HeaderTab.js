@@ -1,29 +1,38 @@
 import React from 'react'
-import './HeaderTabs.scss'
+import cn from 'classnames'
+import { Link } from 'react-router-dom'
 
 import { ReactComponent as TabBackground } from './tab-bg.svg'
+import './HeaderTabs.scss'
 
-function HeaderTabs() {
+function HeaderTabs({ active }) {
+  const tabs = [{
+    path: '/',
+    title: 'Overview'
+  }, {
+    path: '/discovery',
+    title: 'Discovery'
+  }, {
+    path: '/watchlist',
+    title: 'Watchlist'
+  }]
+
   return (
     <div className="HeaderTabs bg-steel-10">
       <div className="container">
         <ul className="nav flex-nowrap overflow-scroll">
-          <li className="nav-item nav-tab-top">
-            <a className="nav-link nav-link-tab active" href="/">
-              Overview
-            </a>
-            <TabBackground height={56} width={132} className="nav-link-tab-svg" />
-          </li>
-          <li className="nav-item nav-tab-top">
-            <a className="nav-link nav-link-tab" href="/">
-              Discovery
-            </a>
-          </li>
-          <li className="nav-item nav-tab-top">
-            <a className="nav-link nav-link-tab" href="/">
-              Watchlist
-            </a>
-          </li>
+          {tabs.map((tab) => {
+            const isActive = active === tab.path
+
+            return (
+              <li key={tab.title} className="nav-item nav-tab-top">
+                <Link to={tab.path} className={cn('nav-link nav-link-tab text-capitalize', { active: isActive })}>
+                  {tab.title}
+                </Link>
+                {isActive && <TabBackground height={56} width={132} className="nav-link-tab-svg" />}
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>

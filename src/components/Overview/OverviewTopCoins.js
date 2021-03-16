@@ -1,6 +1,5 @@
 import React from 'react'
 
-import './OverviewTopCoins.scss'
 import Icon from '../Icon/Icon'
 
 function OverviewTopCoins({ title, headIcon, seeAllRoute }) {

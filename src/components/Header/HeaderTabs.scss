@@ -37,10 +37,6 @@
   @include media-breakpoint-down(md) {
     padding: 0.5rem 1rem;
   }
-
-  @include media-breakpoint-up(lg) {
-    padding: 16px 42px;
-  }
 }
 
 .nav-link-tab-svg {

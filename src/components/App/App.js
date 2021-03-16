@@ -1,13 +1,23 @@
 import React from 'react'
-import Home from '../Home/Home'
+import { Route, Switch } from 'react-router-dom'
+
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
+import Overview from '../Overview/Overview'
+import Watchlist from '../Watchlist/Watchlist'
+import Discovery from '../Discovery/Discovery'
 
 import './App.scss'
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Header />
+      <Switch>
+        <Route path="/discovery" render={Discovery} />
+        <Route path="/watchlist" render={Watchlist} />
+        <Route path="/" render={Overview} />
+      </Switch>
       <Footer />
     </div>
   );

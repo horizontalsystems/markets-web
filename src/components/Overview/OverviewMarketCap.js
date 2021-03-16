@@ -2,14 +2,12 @@ import React from 'react'
 import { ReactComponent as PriceBackground } from './price-change-bg.svg'
 import { ReactComponent as PriceGradient } from './price-change-gradient.svg'
 
-import './OverviewMarketCap.scss'
-
 function OverviewMarketCap() {
   return (
     <div className="card bg-lawrence rounded-3 h-100 shadow-sm border-0 overflow-hidden">
       <div className="row h-100">
         <div className="col-6">
-          <div className="p-4 pe-0 d-flex flex-column justify-content-between">
+          <div className="p-4 h-100 pe-0 d-flex flex-column justify-content-between">
             <div className="text-grey fs-md-4 fs-sm-1 pb-md-5 pb-1">
               Total Market Cap
             </div>
