@@ -37,7 +37,7 @@ function Footer() {
               </div>
             </div>
             <div className="row">
-              <div className="d-flex py-1">
+              <div className="d-flex py-1 pt-2">
                 <input className="form-check-input" type="checkbox" value="1" id="flexCheckChecked" />
                 <label className="form-check-label ps-2" htmlFor="flexCheckChecked">
                   By signing up, you agree to Horizontal Systems Privacy Policy

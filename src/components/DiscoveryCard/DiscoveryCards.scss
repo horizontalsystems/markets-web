@@ -1,0 +1,23 @@
+@import "../../styles/bootstrap";
+
+.DiscoveryCard {
+  min-height: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Slider-arrow {
+  position: absolute;
+  top: 50%;
+  display: block;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.Slider-arrow-start {
+  left: -25px;
+}
+
+.Slider-arrow-end {
+  right: -25px;
+}

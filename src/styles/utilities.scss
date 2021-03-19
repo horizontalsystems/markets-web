@@ -17,6 +17,26 @@ $utilities: (
       bolder: $font-weight-bolder
     )
   ),
+  "rounded-start": (
+    property: border-bottom-left-radius border-top-left-radius,
+    class: rounded-start,
+    values: (
+      null: $border-radius,
+      1: $border-radius-sm,
+      2: $border-radius,
+      3: $border-radius-lg,
+    )
+  ),
+  "rounded-end": (
+    property: border-top-right-radius border-bottom-right-radius,
+    class: rounded-end,
+    values: (
+      null: $border-radius,
+      1: $border-radius-sm,
+      2: $border-radius,
+      3: $border-radius-lg,
+    )
+  ),
   "rounded-top": (
     property: border-top-left-radius border-top-right-radius,
     class: rounded-top,
@@ -36,5 +56,5 @@ $utilities: (
       2: $border-radius,
       3: $border-radius-lg,
     )
-  )
+  ),
 );

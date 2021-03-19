@@ -141,8 +141,18 @@ body.dark {
   color: var(--jacob) !important;
 }
 
+.text-tyler {
+  color: var(--tyler) !important;
+}
+
 .text-grey {
-  color: $grey;
+  color: $grey !important;
+}
+
+// SVG
+
+.svg-dark, .svg-dark path {
+  fill: $dark;
 }
 
 // Table
@@ -152,3 +162,4 @@ body.dark {
     background-color: var(--jeremy);
   }
 }
+

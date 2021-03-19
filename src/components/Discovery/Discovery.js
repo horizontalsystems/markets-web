@@ -1,5 +1,6 @@
 import React from 'react'
 import HeaderTabs from '../Header/HeaderTab'
+import CategoryFilter from './CategoryFilter'
 import Icon from '../Icon/Icon'
 
 const tokens = [
@@ -38,41 +39,22 @@ const tokens = [
   },
 ]
 
-const mapItem = (index, { current_price, market_cap, total_volume, price_change_24h, price_change_percentage_24h }) => {
-  return (
-    <tr key={index}>
-      <td className="text-end">{current_price}</td>
-      <td className="text-end text-success">{price_change_24h}</td>
-      <td className="text-end text-success">{price_change_percentage_24h}</td>
-      <td className="text-end text-success">{market_cap}</td>
-      <td className="text-end text-success">{total_volume}</td>
-    </tr>
-  )
-}
-
 function Discovery() {
   return (
     <div className="Discovery">
       <HeaderTabs active="/discovery" />
 
       <div className="py-5">
-        <div className="container">
-          <ul className="nav nav-pills">
-            <li className="nav-item">
-              <a className="nav-link rounded-3 bg-warning active text-oz" href="/">Categories</a>
-            </li>
-            <li className="nav-item ms-2 rounded-3 bg-lawrence">
-              <a className="nav-link text-jacob" href="/">Filter</a>
-            </li>
-          </ul>
+        <CategoryFilter />
 
-          <div className="card bg-lawrence p-3 h-100 w-100 mt-4">
+        <div className="container">
+          <div className="card border-0 shadow-sm bg-lawrence p-3 h-100 w-100 mt-4">
             <div className="pb-3 border-bottom fw-500">
               <div className="dropdown">
-                <button className="btn dropdown-toggle text-oz" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn dropdown-toggle text-oz" type="button" id="filter" data-bs-toggle="dropdown" aria-expanded="false">
                   Highest Cap
                 </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul className="dropdown-menu" aria-labelledby="filter">
                   <li><span className="dropdown-item">Price</span></li>
                   <li><span className="dropdown-item">Volume</span></li>
                   <li><span className="dropdown-item">Change</span></li>
@@ -132,7 +114,15 @@ function Discovery() {
                   </tr>
                   </thead>
                   <tbody>
-                  {tokens.map((token, index) => mapItem(index, token))}
+                  {tokens.map(({ current_price, market_cap, total_volume, price_change_24h, price_change_percentage_24h }, index) => (
+                    <tr key={index}>
+                      <td className="text-end">{current_price}</td>
+                      <td className="text-end text-success">{price_change_24h}</td>
+                      <td className="text-end text-success">{price_change_percentage_24h}</td>
+                      <td className="text-end text-success">{market_cap}</td>
+                      <td className="text-end text-success">{total_volume}</td>
+                    </tr>
+                  ))}
                   </tbody>
                 </table>
               </div>
