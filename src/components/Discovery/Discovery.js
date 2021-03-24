@@ -2,6 +2,7 @@ import React from 'react'
 import HeaderTabs from '../Header/HeaderTab'
 import CategoryFilter from './CategoryFilter'
 import Icon from '../Icon/Icon'
+import { Link } from 'react-router-dom'
 
 const tokens = [
   {
@@ -72,33 +73,17 @@ function Discovery() {
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td className="small pe-0">1</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">BTC</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="small pe-0">2</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">ETH</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="small pe-0">3</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">BCH</span>
-                      </div>
-                    </td>
-                  </tr>
+                  {tokens.map(({ id, name }, index) => (
+                    <tr key={index}>
+                      <td className="small pe-0">1</td>
+                      <td>
+                        <div className="d-flex">
+                          <Icon icon="utk" className="me-3" />
+                          <Link to={`/coin/${id}`} className="text-bran text-decoration-none text-uppercase">{name}</Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                   </tbody>
                 </table>
               </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Chart from '../Chart/Chart'
+import ChartSmall from '../Chart/ChartSmall'
 
 function OverviewValueChange({ title, value, change }) {
   return (
@@ -13,7 +13,7 @@ function OverviewValueChange({ title, value, change }) {
             <div className="card-text text-danger">{change}</div>
           </div>
           <div className="col-6">
-            <Chart className="d-flex h-100 align-items-end justify-content-end" />
+            <ChartSmall className="d-flex h-100 align-items-end justify-content-end" />
           </div>
         </div>
       </div>

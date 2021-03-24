@@ -1,29 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import Icon from '../Icon/Icon'
 import CardHead from '../Card/CardHead'
-import Card from '../Card/Card'
 import Table from '../Table/Table'
+import Card from '../Card/Card'
 
-function OverviewTopCoins({ title, headIcon, tokens, seeAllRoute }) {
+function CoinMarkets({ className, tokens }) {
   return (
-    <Card>
-      <CardHead
-        title={title}
-        icon={<Icon icon={headIcon} className="pe-2" />}
-        action={seeAllRoute && <div className="d-flex text-grey">
-          <span>See All</span><Icon icon="arrow-right" className="ps-1" />
-        </div>}
-      />
-
+    <Card className={className}>
+      <CardHead title="Markets" />
       <Table>
         <thead>
         <tr className="small text-grey">
           <td className="pb-2 pt-2 pe-0">#</td>
-          <td className="pb-2 pt-2">Name</td>
+          <td className="pb-2 pt-2">Source</td>
+          <td className="pb-2 pt-2">Pairs</td>
           <td className="text-end pb-2 pt-2">Price</td>
-          <td className="text-end pb-2 pt-2">24H</td>
+          <td className="text-end pb-2 pt-2">Volume</td>
         </tr>
         </thead>
         <tbody>
@@ -36,8 +28,9 @@ function OverviewTopCoins({ title, headIcon, tokens, seeAllRoute }) {
                 <Link to={`/coin/${id}`} className="text-bran text-decoration-none">{name}</Link>
               </div>
             </td>
-            <td className="text-end">{current_price}</td>
-            <td className="text-end text-success">{price_change_24h}</td>
+            <td>{name}</td>
+            <td className="text-end">{price_change_24h}</td>
+            <td className="text-end">{price_change_24h}</td>
           </tr>
         ))}
         </tbody>
@@ -46,4 +39,4 @@ function OverviewTopCoins({ title, headIcon, tokens, seeAllRoute }) {
   )
 }
 
-export default OverviewTopCoins
+export default CoinMarkets

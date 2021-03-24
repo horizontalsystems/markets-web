@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import Icon from '../Icon/Icon'
 import './Header.scss'
+import { Link } from 'react-router-dom'
 
 function Header() {
   const [isDarkMode, setTheme] = useState(false);
@@ -14,9 +15,9 @@ function Header() {
   return (
     <nav className={cn('navbar navbar-expand-md', isDarkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light')}>
       <div className="container">
-        <a className="navbar-brand pe-lg-3" href="/">
+        <Link to="/" className="navbar-brand pe-lg-3">
           <Icon icon="logo" />
-        </a>
+        </Link>
 
         <button className="navbar-toggler"
                 data-bs-toggle="collapse"
@@ -30,10 +31,10 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item pe-md-2 pe-lg-4">
-              <a className="nav-link nav-link-header active" href="/">MARKET</a>
+              <Link to="/" className="nav-link nav-link-header active">MARKET</Link>
             </li>
             <li className="nav-item pe-md-2 pe-lg-4">
-              <a className="nav-link nav-link-header" href="/">PORTFOLIO</a>
+              <Link to="/" className="nav-link nav-link-header">PORTFOLIO</Link>
             </li>
             <li className="nav-item pe-md-2 pe-lg-4">
               <a className="nav-link nav-link-header" href="/">BLOG</a>

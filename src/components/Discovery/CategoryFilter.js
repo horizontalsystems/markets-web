@@ -18,6 +18,8 @@ function CategoryFilter() {
       content = <CategorySearch />
       break
     }
+    default:
+      break
   }
 
   return (

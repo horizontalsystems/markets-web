@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer'
 import Overview from '../Overview/Overview'
 import Watchlist from '../Watchlist/Watchlist'
 import Discovery from '../Discovery/Discovery'
+import Coin from '../Coin/Coin'
 
 import './App.scss'
 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
+        <Route path="/coin/:id" render={Coin} />
         <Route path="/discovery" render={Discovery} />
         <Route path="/watchlist" render={Watchlist} />
         <Route path="/" render={Overview} />

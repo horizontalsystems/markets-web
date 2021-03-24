@@ -56,6 +56,7 @@ $navbar-brand-padding-y: 0px;
 
 // Border
 $border-color:  $steel-20;
+$list-group-border-color: $border-color;
 
 $border-radius:     .5rem !default;
 $border-radius-sm:  .2rem !default;
@@ -149,10 +150,22 @@ body.dark {
   color: $grey !important;
 }
 
+.text-grey-light {
+  color: $light_grey !important;
+}
+
 // SVG
 
 .svg-dark, .svg-dark path {
   fill: $dark;
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.object-cover {
+  object-fit: cover;
 }
 
 // Table
@@ -163,3 +176,4 @@ body.dark {
   }
 }
 
+// Helpers
