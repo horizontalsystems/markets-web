@@ -2,8 +2,8 @@ import React from 'react'
 import Card from '../Card/Card'
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
-import Icon from '../Icon/Icon'
 import Ratings from '../Ratings/Ratings'
+import { Copy } from '../Icon'
 
 const holders = [
   { address: '0x0d4987...b4ead44d1', percent: '8%' },
@@ -78,8 +78,8 @@ function CoinStats({ tokens }) {
               {holders.map(({ address, percent }, index) => (
                 <tr key={index}>
                   <td>
-                    <div className="d-flex">
-                      <Icon icon="copy" className="me-2" />
+                    <div className="d-flex align-items-center">
+                      <Copy className="me-2" />
                       {address}
                     </div>
                   </td>

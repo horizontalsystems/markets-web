@@ -1,7 +1,6 @@
 import React from 'react'
 import HeaderTabs from '../Header/HeaderTab'
 import CategoryFilter from './CategoryFilter'
-import Icon from '../Icon/Icon'
 import { Link } from 'react-router-dom'
 
 const tokens = [
@@ -73,12 +72,12 @@ function Discovery() {
                   </tr>
                   </thead>
                   <tbody>
-                  {tokens.map(({ id, name }, index) => (
+                  {tokens.map(({ id, name, image }, index) => (
                     <tr key={index}>
                       <td className="small pe-0">1</td>
                       <td>
                         <div className="d-flex">
-                          <Icon icon="utk" className="me-3" />
+                          <img src={image} alt={name} className="me-3" width="24" height="24" />
                           <Link to={`/coin/${id}`} className="text-bran text-decoration-none text-uppercase">{name}</Link>
                         </div>
                       </td>

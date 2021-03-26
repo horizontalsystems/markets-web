@@ -1,19 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import Icon from '../Icon/Icon'
+import { ArrowRight } from '../Icon'
 import CardHead from '../Card/CardHead'
 import Card from '../Card/Card'
 import Table from '../Table/Table'
 
-function OverviewTopCoins({ title, headIcon, tokens, seeAllRoute }) {
+function OverviewTopCoins({ title, headIcon: Icon, tokens, seeAllRoute }) {
   return (
     <Card>
       <CardHead
         title={title}
-        icon={<Icon icon={headIcon} className="pe-2" />}
-        action={seeAllRoute && <div className="d-flex text-grey">
-          <span>See All</span><Icon icon="arrow-right" className="ps-1" />
+        icon={<Icon className="me-2" />}
+        action={seeAllRoute && <div className="d-flex align-items-center text-grey">
+          <span>See All</span><ArrowRight className="ps-1" />
         </div>}
       />
 

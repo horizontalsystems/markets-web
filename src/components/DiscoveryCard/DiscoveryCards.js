@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Slider from 'react-slick'
-import Icon from '../Icon/Icon'
 import DiscoveryCard from '../DiscoveryCard/DiscoveryCard'
+import { ArrowLeft, ArrowRight } from '../Icon'
 
 import './DiscoveryCards.scss'
 
@@ -55,13 +55,13 @@ function DiscoveryCards({ categories }) {
 
 const SamplePrevArrow = ({ onClick }) => (
   <div className="Slider-arrow Slider-arrow-start p-2 bg-jeremy h-100 d-flex align-items-center rounded-start-3" onClick={onClick}>
-    <Icon icon="arrow-left" />
+    <ArrowLeft />
   </div>
 )
 
 const SampleNextArrow = ({ onClick }) => (
   <div className="Slider-arrow Slider-arrow-end p-2 bg-jeremy h-100 d-flex align-items-center rounded-end-3" onClick={onClick}>
-    <Icon icon="arrow-right" />
+    <ArrowRight />
   </div>
 )
 export default DiscoveryCards

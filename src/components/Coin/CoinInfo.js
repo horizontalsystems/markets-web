@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../Card/Card'
-import Icon from '../Icon/Icon'
+import { ArrowRight, Guide } from '../Icon'
 
 function CoinInfo() {
   return (
@@ -18,23 +18,24 @@ function CoinInfo() {
         <div className="col-lg-6">
           <Card className="py-2">
             <div className="fw-500 px-0 d-flex justify-content-between align-items-center">
-              <div className="d-flex text-oz">
-                <Icon icon="guide" className="me-2" />
+              <div className="d-flex align-items-center text-oz">
+                <Guide className="me-2" />
                 <span className="text-oz">Guide</span>
               </div>
 
-              <Icon icon="arrow-right" />
+              <ArrowRight />
             </div>
           </Card>
         </div>
         <div className="col-lg-6">
           <Card className="py-2">
             <div className="fw-500 px-0 d-flex justify-content-between align-items-center">
-              <div className="d-flex text-oz">
-                <Icon icon="guide" className="me-2" />
+              <div className="d-flex align-items-center text-oz">
+                <Guide className="me-2" />
                 <span className="text-oz">Whitepaper</span>
               </div>
-              <Icon icon="arrow-right" />
+
+              <ArrowRight />
             </div>
           </Card>
         </div>

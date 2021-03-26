@@ -4,6 +4,7 @@ import OverviewValueChange from './OverviewValueChange'
 import OverviewTopCoins from './OverviewTopCoins'
 import HeaderTabs from '../Header/HeaderTab'
 import News from '../News/News'
+import { Histogram, OutlinedDown, OutlinedUp } from '../Icon'
 
 const tokens = [
   {
@@ -75,13 +76,13 @@ function Overview() {
           </h3>
           <div className="row g-3">
             <div className="col-lg-4">
-              <OverviewTopCoins tokens={tokens} title="Top gainers" headIcon="outlined-up" seeAllRoute />
+              <OverviewTopCoins tokens={tokens} title="Top gainers" headIcon={OutlinedUp} seeAllRoute />
             </div>
             <div className="col-lg-4">
-              <OverviewTopCoins tokens={tokens} title="Top losers" headIcon="outlined-down" seeAllRoute />
+              <OverviewTopCoins tokens={tokens} title="Top losers" headIcon={OutlinedDown} seeAllRoute />
             </div>
             <div className="col-lg-4">
-              <OverviewTopCoins tokens={tokens} title="TVL change" headIcon="histogram" />
+              <OverviewTopCoins tokens={tokens} title="TVL change" headIcon={Histogram} />
             </div>
           </div>
 

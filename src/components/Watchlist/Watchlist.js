@@ -1,6 +1,5 @@
 import React from 'react'
 import HeaderTabs from '../Header/HeaderTab'
-import Icon from '../Icon/Icon'
 
 const tokens = [
   {
@@ -70,33 +69,17 @@ function Watchlist() {
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td className="small pe-0">1</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">BTC</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="small pe-0">2</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">ETH</span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="small pe-0">3</td>
-                    <td>
-                      <div className="d-flex">
-                        <Icon icon="utk" className="me-3" />
-                        <span className="text-uppercase">BCH</span>
-                      </div>
-                    </td>
-                  </tr>
+                  {tokens.map(({ name, image }, index) => (
+                    <tr key={index}>
+                      <td className="small pe-0">{index + 1}</td>
+                      <td>
+                        <div className="d-flex">
+                          <img src={image} alt={name} className="me-3" width="24" height="24" />
+                          <span className="text-uppercase">{name}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                   </tbody>
                 </table>
               </div>

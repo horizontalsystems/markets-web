@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-
-import Icon from '../Icon/Icon'
-import './Header.scss'
 import { Link } from 'react-router-dom'
+import { Daynight, Globe, Logo, Search } from '../Icon'
+
+import './Header.scss'
 
 function Header() {
   const [isDarkMode, setTheme] = useState(false);
@@ -16,7 +16,7 @@ function Header() {
     <nav className={cn('navbar navbar-expand-md', isDarkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light')}>
       <div className="container">
         <Link to="/" className="navbar-brand pe-lg-3">
-          <Icon icon="logo" />
+          <Logo />
         </Link>
 
         <button className="navbar-toggler"
@@ -49,13 +49,13 @@ function Header() {
               <form className="input-group input-group-navbar">
                 <input type="text" className="form-control rounded-start border-end-0" placeholder="Search" id="search" />
                 <label htmlFor="search" className="input-group-text bg-white">
-                  <Icon icon="search" />
+                  <Search />
                 </label>
               </form>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link d-flex" href="/" id="dropdown-language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <Icon icon="globe" />
+                <Globe />
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-language">
                 <li><a className="dropdown-item" href="/">English</a></li>
@@ -65,7 +65,7 @@ function Header() {
             </li>
             <li className="nav-item">
               <span role="button" className="nav-link d-flex" onClick={() => toggleTheme()}>
-                <Icon icon="daynight" />
+                <Daynight />
               </span>
             </li>
           </ul>
