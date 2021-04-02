@@ -5,7 +5,9 @@ import { createChart } from 'lightweight-charts'
 
 class ChartSmall extends React.Component {
   static propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    points: PropTypes.arrayOf(PropTypes.object),
+    change: PropTypes.number
   }
 
   componentDidMount() {
@@ -34,28 +36,21 @@ class ChartSmall extends React.Component {
       }
     })
 
+    const { change, points } = this.props
+    const isPositive = change >= 0
+
+    const topColor = isPositive ? 'rgba(33, 150, 243, 0.56)' : 'rgba(175,35,111,0.29)'
+    const bottomColor = isPositive ? 'rgba(33, 150, 243, 0.04)' : 'rgba(116,19,214,0)'
+    const lineColor = isPositive ? 'rgba(33, 150, 243, 1)' : '#ED402E'
+
     const lineSeries = chart.addAreaSeries({
-      topColor: 'rgba(33, 150, 243, 0.56)',
-      bottomColor: 'rgba(33, 150, 243, 0.04)',
-      lineColor: 'rgba(33, 150, 243, 1)',
+      topColor,
+      bottomColor,
+      lineColor,
       lineWidth: 1
     })
 
-    lineSeries.setData([
-      { time: '2019-05-08', value: 42.55 },
-      { time: '2019-05-09', value: 42.92 },
-      { time: '2019-05-10', value: 43.15 },
-      { time: '2019-05-13', value: 42.28 },
-      { time: '2019-05-14', value: 42.91 },
-      { time: '2019-05-15', value: 42.49 },
-      { time: '2019-05-16', value: 43.19 },
-      { time: '2019-05-17', value: 43.54 },
-      { time: '2019-05-20', value: 42.78 },
-      { time: '2019-05-21', value: 43.29 },
-      { time: '2019-05-22', value: 43.30 },
-      { time: '2019-05-23', value: 42.73 },
-      { time: '2019-05-24', value: 42.67 }
-    ])
+    lineSeries.setData(points)
   }
 
   render() {
@@ -66,7 +61,7 @@ class ChartSmall extends React.Component {
         className={className}
         ref={r => this.ref = r}
       />
-    );
+    )
   }
 }
 

@@ -1,8 +1,12 @@
 import React from 'react'
+import numbro from 'numbro'
+import cn from 'classnames'
+
 import { ReactComponent as PriceBackground } from './price-change-bg.svg'
 import { ReactComponent as PriceGradient } from './price-change-gradient.svg'
+import { percentage, priceColor } from '../../core/helpers'
 
-function OverviewMarketCap() {
+function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
   return (
     <div className="card bg-lawrence rounded-3 h-100 shadow-sm border-0 overflow-hidden">
       <div className="row h-100">
@@ -12,11 +16,11 @@ function OverviewMarketCap() {
               Total Market Cap
             </div>
             <div>
-              <div className="display-5 text-oz fw-md-600 fw-sm-500">
-                $1,431T
+              <div className="display-5 text-oz fw-md-600 fw-sm-500 text-uppercase">
+                {numbro(marketCap).format({ average: true, totalLength: 3 })}
               </div>
-              <div className="fs-4 text-danger">
-                -2.47%
+              <div className={cn('fs-4', priceColor(marketCapDiff24h))}>
+                {percentage(marketCapDiff24h)}
               </div>
             </div>
           </div>

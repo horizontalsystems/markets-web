@@ -25,7 +25,7 @@ function CoinMarkets({ className, tokens }) {
             <td>
               <div className="d-flex">
                 <img src={image} alt={name} className="me-3" width="24" height="24" />
-                <Link to={`/coin/${id}`} className="text-bran text-decoration-none">{name}</Link>
+                <Link to={`/coins/${id}`} className="text-bran text-decoration-none">{name}</Link>
               </div>
             </td>
             <td>{name}</td>

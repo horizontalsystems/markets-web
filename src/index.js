@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 
 import 'bootstrap/js/dist/collapse'
 import 'bootstrap/js/dist/dropdown'
 import './index.scss';
 
+import store from './core/store'
 import Routes from './components/Routes'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routes />
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
