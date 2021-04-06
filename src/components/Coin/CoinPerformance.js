@@ -1,19 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import cn from 'classnames'
+import { currencyFullValue, percentageFormat, priceColor } from '../../core/helpers'
+
 import Card from '../Card/Card'
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
 
-function CoinPerformance({ className, tokens }) {
+function CoinPerformance({ performance, priceRanges }) {
   return (
-    <div className={className}>
+    <div className="row g-3">
       <div className="col-lg-6">
         <Card className="h-100">
           <CardHead title="Price Range" />
           <div className="d-flex flex-column justify-content-between h-100 pt-3">
-            <PerformanceChange className="mt-1" type="24h Range" value="75" min="$19,837.65" max="$19,837.65" />
-            <PerformanceChange className="mt-3" type="52w Range" value="35" min="$19,837.65" max="$19,837.65" />
-            <PerformanceChange className="mt-3" type="All Time" value="95" min="$19,837.65" max="$19,837.65" />
+            {priceRanges.map(item => (
+              <PerformanceChange
+                className="mt-1"
+                key={item.type}
+                range={item}
+                type={item.type}
+              />
+            ))}
           </div>
         </Card>
       </div>
@@ -31,17 +38,18 @@ function CoinPerformance({ className, tokens }) {
             </tr>
             </thead>
             <tbody>
-            {tokens.map(({ id, name, current_price, price_change_24h, image }, index) => (
+            {performance.map((data, index) => (
               <tr key={index}>
                 <td className="small pe-0">{index + 1}</td>
-                <td>
-                  <div className="d-flex">
-                    <img src={image} alt={name} className="me-3" width="24" height="24" />
-                    <Link to={`/coins/${id}`} className="text-bran text-decoration-none">{name}</Link>
-                  </div>
+                <td className="text-bran text-uppercase">
+                  {data.code}
                 </td>
-                <td className="text-end">{current_price}</td>
-                <td className="text-end text-success">{price_change_24h}</td>
+                <td className={cn('text-end', priceColor(data['1w']))}>
+                  {percentageFormat(data['1w'], null, 0)}
+                </td>
+                <td className={cn('text-end', priceColor(data['1m']))}>
+                  {percentageFormat(data['1m'], null, 0)}
+                </td>
               </tr>
             ))}
             </tbody>
@@ -52,21 +60,25 @@ function CoinPerformance({ className, tokens }) {
   )
 }
 
-function PerformanceChange({ className, value, min, max, type }) {
+function PerformanceChange({ className, range, type }) {
   return (
     <div className={className}>
       <div className="progress" style={{ height: '4px' }}>
-        <div style={{ width: `${value}%` }}
+        <div style={{ width: `${range.value}%` }}
              className="progress-bar bg-warning"
              role="progressbar"
-             aria-valuenow={value}
+             aria-valuenow={range.value}
              aria-valuemin="0"
              aria-valuemax="100" />
       </div>
       <div className="d-flex justify-content-between mt-2">
-        <small className="text-bran">{min}</small>
+        <small className="text-bran">
+          {currencyFullValue(range.min, { thousandSeparated: true, mantissa: 4, optionalMantissa: true })}
+        </small>
         <small className="text-muted">{type}</small>
-        <small className="text-bran">{max}</small>
+        <small className="text-bran">
+          {currencyFullValue(range.max, { thousandSeparated: true, mantissa: 4, optionalMantissa: true })}
+        </small>
       </div>
     </div>
   )

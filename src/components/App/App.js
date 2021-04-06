@@ -16,7 +16,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/coins/:id" component={Coin} />
-        <Route path="/discovery" component={Discovery} />
+        <Route path="/discovery/:category?" component={Discovery} />
         <Route path="/watchlist" component={Watchlist} />
         <Route path="/" component={Overview} />
       </Switch>

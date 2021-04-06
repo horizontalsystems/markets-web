@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { percentage, priceColor } from '../../core/helpers'
+import { percentageFormat, priceColor } from '../../core/helpers'
 
 import ChartSmall from '../Chart/ChartSmall'
 
@@ -16,7 +16,7 @@ function OverviewValueChange({ title, value, change, points }) {
               {value}
             </div>
             <div className={cn('card-text', priceColor(change))}>
-              {percentage(change)}
+              {percentageFormat(change)}
             </div>
           </div>
           <div className="col-6">

@@ -5,7 +5,7 @@ import { Histogram, OutlinedDown, OutlinedUp } from '../Icon'
 import OverviewTopCoins from './OverviewTopCoins'
 import OverviewTvlChange from './OverviewTvlChange'
 
-function OverviewSpotlight({ coins, gainers, losers, gainersTvl }) {
+function OverviewSpotlight({ gainers, losers, gainersTvl }) {
   return (
     <div className="row g-3">
       <div className="col-lg-4">
@@ -22,7 +22,6 @@ function OverviewSpotlight({ coins, gainers, losers, gainersTvl }) {
 }
 
 const mapStateToProps = ({ markets }) => ({
-  coins: markets.coins,
   gainers: markets.gainers,
   losers: markets.losers,
   gainersTvl: markets.gainersTvl

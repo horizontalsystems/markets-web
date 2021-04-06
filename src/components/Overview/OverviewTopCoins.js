@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 
 import { Link } from 'react-router-dom'
-import { currency, percentage, priceColor } from '../../core/helpers'
+import { currencyFormat, percentageFormat, priceColor } from '../../core/helpers'
 import { ArrowRight } from '../Icon'
 
 import CardHead from '../Card/CardHead'
@@ -30,26 +30,23 @@ function OverviewTopCoins({ title, headIcon: Icon, tokens }) {
         </tr>
         </thead>
         <tbody>
-        {tokens.map(({ id, symbol, current_price, price_change_percentage_24h, image }, index) => {
-            return (
-              <tr key={index}>
-                <td className="small pe-0">{index + 1}</td>
-                <td>
-                  <div className="d-flex">
-                    <img src={image} alt={symbol} className="me-3" width="24" height="24" />
-                    <Link to={`/coins/${id}`} className="text-bran text-decoration-none text-uppercase">{symbol}</Link>
-                  </div>
-                </td>
-                <td className="text-end">
-                  {currency(current_price)}
-                </td>
-                <td className={cn('text-end', priceColor(price_change_percentage_24h))}>
-                  {percentage(price_change_percentage_24h)}
-                </td>
-              </tr>
-            )
-          }
-        )}
+        {tokens.map(({ id, image, symbol, price, priceChange24h }, index) => (
+          <tr key={index}>
+            <td className="small pe-0">{index + 1}</td>
+            <td>
+              <div className="d-flex">
+                <img src={image} alt={symbol} className="me-3" width="24" height="24" />
+                <Link to={`/coins/${id}`} className="text-bran text-decoration-none text-uppercase">{symbol}</Link>
+              </div>
+            </td>
+            <td className="text-end text-nowrap">
+              {currencyFormat(price)}
+            </td>
+            <td className={cn('text-end', priceColor(priceChange24h))}>
+              {percentageFormat(priceChange24h)}
+            </td>
+          </tr>
+        ))}
         </tbody>
       </Table>
     </Card>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { currency, percentage } from '../../core/helpers'
+import { currencyFormat, percentageFormat } from '../../core/helpers'
 
 import OverviewMarketCap from './OverviewMarketCap'
 import OverviewValueChange from './OverviewValueChange'
@@ -30,7 +30,7 @@ function OverviewGlobalMarkets(props) {
           <div className="col">
             <OverviewValueChange
               title="Volume 24H"
-              value={currency(volume24h)}
+              value={currencyFormat(volume24h)}
               change={volume24hDiff}
               points={points.volume}
             />
@@ -38,7 +38,7 @@ function OverviewGlobalMarkets(props) {
           <div className="col">
             <OverviewValueChange
               title="BTC Dominance"
-              value={percentage(dominanceBTC, { forceSign: false })}
+              value={percentageFormat(dominanceBTC, { forceSign: false })}
               change={dominanceBTCDiff24h}
               points={points.dominance}
             />
@@ -46,7 +46,7 @@ function OverviewGlobalMarkets(props) {
           <div className="col">
             <OverviewValueChange
               title="DeFi Market Cap"
-              value={currency(marketCapDefi)}
+              value={currencyFormat(marketCapDefi)}
               change={marketCapDefiDiff24h}
               points={points.defiMarket}
             />
@@ -54,7 +54,7 @@ function OverviewGlobalMarkets(props) {
           <div className="col">
             <OverviewValueChange
               title="TVL in DeFi"
-              value={currency(totalValueLocked)}
+              value={currencyFormat(totalValueLocked)}
               change={totalValueLockedDiff24h}
               points={points.tvl}
             />

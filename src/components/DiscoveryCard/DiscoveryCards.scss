@@ -4,12 +4,15 @@
   min-height: 120px;
   display: flex;
   justify-content: space-between;
+  border: none;
+  text-decoration: none;
 }
 
 .Slider-arrow {
   position: absolute;
   top: 50%;
-  display: block;
+  display: flex;
+  align-items: center;
   transform: translate(0, -50%);
   cursor: pointer;
 }

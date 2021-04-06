@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import cn from 'classnames'
 import DiscoveryCards from '../DiscoveryCard/DiscoveryCards'
 import CategorySearch from './CategorySearch'
-import coins from './coins.json'
+import coins from '../../core/coins-store'
 
-function CategoryFilter() {
+function CategoryFilter({ category }) {
   const [activeTabIndex, setActiveTab] = useState(0)
   const tabs = [{ title: 'Categories' }, { title: 'Advanced Search' }]
   let content
 
   switch (activeTabIndex) {
     case 0: {
-      content = <DiscoveryCards categories={coins.categories} />
+      content = <DiscoveryCards categories={coins.categories} current={category} />
       break
     }
     case 1: {

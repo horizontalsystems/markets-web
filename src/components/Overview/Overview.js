@@ -29,13 +29,13 @@ function Overview() {
 
           <div className="row g-3">
             <div className="col-lg-4">
-              <News title="Unfolded" />
+              <News title="CoinTelegraph" />
             </div>
             <div className="col-lg-4">
-              <News title="Decrypt" />
+              <News title="CoinDesk" />
             </div>
             <div className="col-lg-4">
-              <News title="Coindesk" />
+              <News title="Unstoppable News" />
             </div>
           </div>
         </div>

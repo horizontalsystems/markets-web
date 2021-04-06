@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { ReactComponent as PriceBackground } from './price-change-bg.svg'
 import { ReactComponent as PriceGradient } from './price-change-gradient.svg'
-import { percentage, priceColor } from '../../core/helpers'
+import { percentageFormat, priceColor } from '../../core/helpers'
 
 function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
   return (
@@ -20,7 +20,7 @@ function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
                 {numbro(marketCap).format({ average: true, totalLength: 3 })}
               </div>
               <div className={cn('fs-4', priceColor(marketCapDiff24h))}>
-                {percentage(marketCapDiff24h)}
+                {percentageFormat(marketCapDiff24h)}
               </div>
             </div>
           </div>

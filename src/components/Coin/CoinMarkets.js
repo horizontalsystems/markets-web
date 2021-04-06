@@ -1,13 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { currencyFullValue } from '../../core/helpers'
+
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
 import Card from '../Card/Card'
+import { ArrowRight } from '../Icon'
 
-function CoinMarkets({ className, tokens }) {
+function CoinMarkets({ className, tickers }) {
   return (
     <Card className={className}>
-      <CardHead title="Markets" />
+      <CardHead title="Markets" action={
+        <div className="d-flex align-items-center text-grey" role="button">
+          <span>See All</span><ArrowRight className="ps-1" />
+        </div>}
+      />
       <Table>
         <thead>
         <tr className="small text-grey">
@@ -19,18 +25,17 @@ function CoinMarkets({ className, tokens }) {
         </tr>
         </thead>
         <tbody>
-        {tokens.map(({ id, name, current_price, price_change_24h, image }, index) => (
+        {tickers.map((data, index) => (
           <tr key={index}>
             <td className="small pe-0">{index + 1}</td>
             <td>
               <div className="d-flex">
-                <img src={image} alt={name} className="me-3" width="24" height="24" />
-                <Link to={`/coins/${id}`} className="text-bran text-decoration-none">{name}</Link>
+                {data.name}
               </div>
             </td>
-            <td>{name}</td>
-            <td className="text-end">{price_change_24h}</td>
-            <td className="text-end">{price_change_24h}</td>
+            <td>{data.pair}</td>
+            <td className="text-end">{currencyFullValue(data.price)}</td>
+            <td className="text-end">{currencyFullValue(data.volume)}</td>
           </tr>
         ))}
         </tbody>

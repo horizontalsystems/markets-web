@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 
 import { Link } from 'react-router-dom'
-import { currency, percentage, priceColor } from '../../core/helpers'
+import { currencyFormat, percentageFormat, priceColor } from '../../core/helpers'
 import { ArrowRight } from '../Icon'
 
 import CardHead from '../Card/CardHead'
@@ -30,23 +30,23 @@ function OverviewTvlChange({ title, headIcon: Icon, tokens }) {
         </tr>
         </thead>
         <tbody>
-        {tokens.map(({ id, tvl, change_1d, symbol, name, logo }, index) => {
-            const title = symbol === '-' ? name : symbol
-
+        {tokens.map(({ id, symbol, logo, tvl, change1d }, index) => {
             return (
               <tr key={index}>
                 <td className="small pe-0">{index + 1}</td>
                 <td>
                   <div className="d-flex">
                     {logo && <img src={logo} alt={symbol} className="me-3" width="24" height="24" />}
-                    <Link to={`/coins/${id}`} className="text-bran text-decoration-none text-uppercase">{title}</Link>
+                    <Link to={id ? `/coins/${id}` : '/'} className="text-bran text-decoration-none text-uppercase">
+                      {symbol}
+                    </Link>
                   </div>
                 </td>
-                <td className="text-end">
-                  {currency(tvl)}
+                <td className="text-end text-nowrap">
+                  {currencyFormat(tvl)}
                 </td>
-                <td className={cn('text-end', priceColor(change_1d))}>
-                  {percentage(change_1d)}
+                <td className={cn('text-end', priceColor(change1d))}>
+                  {percentageFormat(change1d)}
                 </td>
               </tr>
             )

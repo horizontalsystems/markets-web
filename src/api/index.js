@@ -8,6 +8,10 @@ export function getMarkets() {
   return axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d')
 }
 
+export function getCoinInfo(id) {
+  return axios.get(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=true&&sparkline=true`)
+}
+
 export function getDefiMarkets() {
   return axios.get('https://api.defillama.com/protocols')
 }
