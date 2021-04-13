@@ -721,7 +721,8 @@
             "funds": [
                 "multicoin_capital",
                 "divergence_ventures"
-            ]
+            ],
+            "coingeckoId": "alpha-finance"
         },
         {
             "code": "AMPL",

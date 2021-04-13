@@ -27,8 +27,8 @@ const mappedCategoryCoins = () => {
 
   for (let i = 0; i < data.categories.length; i++) {
     const category = data.categories[i]
-    map[category] = data.coins.filter(coin =>
-      coin.categories.indexOf('governance') > -1
+    map[category.id] = data.coins.filter(coin =>
+      coin.categories.indexOf(category.id) > -1
     )
   }
 

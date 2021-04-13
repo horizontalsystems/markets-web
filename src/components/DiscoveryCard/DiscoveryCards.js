@@ -1,17 +1,20 @@
 import React from 'react'
 import Slider from 'react-slick'
-import DiscoveryCard from '../DiscoveryCard/DiscoveryCard'
+import coinsStore from '../../core/coins-store'
+
 import { ArrowLeft, ArrowRight } from '../Icon'
+import DiscoveryCard from '../DiscoveryCard/DiscoveryCard'
 
 import './DiscoveryCards.scss'
 
-function DiscoveryCards({ categories, current }) {
+function DiscoveryCards({ current }) {
 
   const settings = {
     dots: false,
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: false,
+    infinite: true,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
     responsive: [{
@@ -38,7 +41,7 @@ function DiscoveryCards({ categories, current }) {
   return (
     <div className="bg-steel-10 rounded-3">
       <Slider {...settings} className="mt-3 m-4 p-3">
-        {categories.map(({ id, name, description }) =>
+        {coinsStore.categories.map(({ id, name, description }) =>
           <DiscoveryCard id={id} key={id} title={name} description={description} active={current === id} />
         )}
       </Slider>
@@ -57,4 +60,5 @@ const SampleNextArrow = ({ onClick }) => (
     <ArrowRight />
   </div>
 )
+
 export default DiscoveryCards

@@ -1,6 +1,5 @@
 import React from 'react'
 import cn from 'classnames'
-
 import { Link } from 'react-router-dom'
 import { currencyFullValue, percentageFormat, priceColor, volume } from '../../core/helpers'
 
