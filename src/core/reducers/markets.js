@@ -1,5 +1,5 @@
-import { getAllMarkets } from '../../api'
 import { createSelector } from 'reselect'
+import { getAllMarkets } from '../../api'
 
 export const MARKETS_FETCHED = 'MARKETS_FETCHED'
 
@@ -19,38 +19,16 @@ export const fetchMarkets = () => (dispatch, getState) => {
 
 const initialState = {
   coins: [],
-  losers: [],
-  gainers: [],
-  gainersTvl: []
+  coinsDefi: []
 }
 
 export default function reducer(state = initialState, action) {
 
   switch (action.type) {
     case MARKETS_FETCHED: {
-      const coins = action.markets.slice()
-      const coinsDefi = action.marketsDefi
-
-      const sorted = coins.sort((a, b) =>
-        b.priceChange24h - a.priceChange24h
-      )
-
-      const gainers = sorted.slice(0, 5)
-      const losers = sorted.slice(sorted.length - 5)
-        .sort((a, b) =>
-          a.priceChange24h - b.priceChange24h
-        )
-
-      const gainersTvl = coinsDefi.sort((a, b) =>
-        b.change1d - a.change1d
-      ).slice(0, 5)
-
       return {
         coins: action.markets,
-        losers,
-        gainers,
-        gainersTvl,
-        fetching: false
+        coinsDefi: action.marketsDefi
       }
     }
 
@@ -69,6 +47,39 @@ export const selectMarketsCoins = createSelector(
 
     return coins
   }
+)
+
+export const selectTopGainers = createSelector(
+  state => state.markets.coins,
+  coins => {
+    return coins.slice().sort((a, b) => b.priceChange24h - a.priceChange24h)
+  }
+)
+
+export const selectTopLosers = createSelector(
+  state => state.markets.coins,
+  coins => {
+    return coins.slice().sort((a, b) => a.priceChange24h - b.priceChange24h)
+  }
+)
+
+export const selectTvlGainers = createSelector(
+  state => state.markets.coinsDefi,
+  coins => {
+    return coins.slice().sort((a, b) => b.change1d - a.change1d)
+  }
+)
+
+export const selectTopGainers5 = createSelector(
+  selectTopGainers, coins => coins.slice(0, 5)
+)
+
+export const selectTopLosers5 = createSelector(
+  selectTopLosers, coins => coins.slice(0, 5)
+)
+
+export const selectTvlGainers5 = createSelector(
+  selectTvlGainers, coins => coins.slice(0, 5)
 )
 
 // Normalizer
@@ -94,10 +105,10 @@ export function normalizeCoins(markets) {
 
 function normalizeDeFi(markets) {
   return markets.map(item => ({
-    symbol: item.symbol === '-' ? item.name : item.symbol,
-    id: item.gecko_id,
+    symbol: item.code,
+    id: item.coingecko_id,
     tvl: item.tvl,
-    logo: item.logo,
-    change1d: item.change_1d
+    logo: item.image_url,
+    change1d: item.tvl_diff_24h
   }))
 }

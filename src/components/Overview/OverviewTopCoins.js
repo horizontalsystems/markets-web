@@ -9,15 +9,16 @@ import CardHead from '../Card/CardHead'
 import Card from '../Card/Card'
 import Table from '../Table/Table'
 
-function OverviewTopCoins({ title, headIcon: Icon, tokens }) {
+function OverviewTopCoins({ title, headIcon: Icon, tokens, seeMorePath }) {
   return (
     <Card className="h-100">
       <CardHead
         title={title}
         icon={<Icon className="me-2" />}
-        action={<div className="d-flex align-items-center text-grey" role="button">
-          <span>See All</span><ArrowRight className="ps-1" />
-        </div>}
+        action={
+          <Link to={seeMorePath} className="d-flex align-items-center text-grey text-decoration-none">
+            <span>See All</span><ArrowRight className="ps-1" />
+          </Link>}
       />
 
       <Table>

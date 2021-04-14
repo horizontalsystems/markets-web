@@ -15,7 +15,7 @@ export function getMarketsByIds(ids) {
 }
 
 export function getDefiMarkets() {
-  return axios.get('https://api.defillama.com/protocols')
+  return axios.get('https://markets.horizontalsystems.xyz/api/v1/markets/defi')
 }
 
 export function getCoinInfo(id) {

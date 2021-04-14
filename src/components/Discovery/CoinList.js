@@ -69,10 +69,8 @@ function CoinList({ coins }) {
                   </div>
                 </td>
                 <td className="text-end">{currencyFullValue(price)}</td>
-                <td
-                  className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
-                <td
-                  className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
+                <td className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
+                <td className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
                 <td className="text-end">${volume(marketCap)}</td>
                 <td className="text-end">${volume(totalVolume)}</td>
               </tr>

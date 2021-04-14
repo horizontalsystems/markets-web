@@ -1,30 +1,29 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { selectTopGainers5, selectTopLosers5, selectTvlGainers5 } from '../../core/reducers/markets'
 import { Histogram, OutlinedDown, OutlinedUp } from '../Icon'
 
 import OverviewTopCoins from './OverviewTopCoins'
 import OverviewTvlChange from './OverviewTvlChange'
 
-function OverviewSpotlight({ gainers, losers, gainersTvl }) {
+function OverviewSpotlight() {
+  const topGainers = useSelector(state => selectTopGainers5(state))
+  const topLosers = useSelector(state => selectTopLosers5(state))
+  const tvlGainers = useSelector(state => selectTvlGainers5(state))
+
   return (
     <div className="row g-3">
       <div className="col-lg-4">
-        <OverviewTopCoins tokens={gainers} title="Top gainers" headIcon={OutlinedUp} />
+        <OverviewTopCoins tokens={topGainers} title="Top gainers" headIcon={OutlinedUp} seeMorePath="/top-gainers" />
       </div>
       <div className="col-lg-4">
-        <OverviewTopCoins tokens={losers} title="Top losers" headIcon={OutlinedDown} />
+        <OverviewTopCoins tokens={topLosers} title="Top losers" headIcon={OutlinedDown} seeMorePath="/top-losers" />
       </div>
       <div className="col-lg-4">
-        <OverviewTvlChange tokens={gainersTvl} title="TVL change" headIcon={Histogram} />
+        <OverviewTvlChange tokens={tvlGainers} title="TVL change" headIcon={Histogram} seeMorePath="/top-gainers" />
       </div>
     </div>
   )
 }
 
-const mapStateToProps = ({ markets }) => ({
-  gainers: markets.gainers,
-  losers: markets.losers,
-  gainersTvl: markets.gainersTvl
-})
-
-export default connect(mapStateToProps)(OverviewSpotlight)
+export default OverviewSpotlight

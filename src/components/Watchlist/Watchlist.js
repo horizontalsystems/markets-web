@@ -45,7 +45,7 @@ function Watchlist() {
       <div className="py-5">
 
         <div className="container">
-          <div className="card border-0 shadow-sm bg-lawrence p-3 h-100 w-100 mt-4">
+          <div className="card border-0 shadow-sm bg-lawrence p-3 h-100 w-100">
             <div className="pb-3 border-bottom fw-500">
               <div className="dropdown">
                 <button className="btn dropdown-toggle text-oz" type="button" id="filter" data-bs-toggle="dropdown" aria-expanded="false">

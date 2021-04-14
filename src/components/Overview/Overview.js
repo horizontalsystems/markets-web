@@ -1,14 +1,21 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { fetchMarkets } from '../../core/reducers/markets'
 import { fetchMarketsGlobal } from '../../core/reducers/marketsGlobal'
 
-import HeaderTabs from '../Header/HeaderTab'
 import News from '../News/News'
+import HeaderTabs from '../Header/HeaderTab'
 import OverviewSpotlight from './OverviewSpotlight'
 import OverviewGlobalMarkets from './OverviewGlobalMarkets'
 
 function Overview() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchMarketsGlobal())
+    dispatch(fetchMarkets())
+  }, [dispatch])
+
   return (
     <div className="Overview">
       <HeaderTabs active="/" />
@@ -44,15 +51,4 @@ function Overview() {
   )
 }
 
-class OverviewContainer extends React.Component {
-  componentDidMount() {
-    this.props.fetchMarketsGlobal()
-    this.props.fetchMarkets()
-  }
-
-  render() {
-    return <Overview />
-  }
-}
-
-export default connect(null, { fetchMarkets, fetchMarketsGlobal })(OverviewContainer)
+export default Overview
