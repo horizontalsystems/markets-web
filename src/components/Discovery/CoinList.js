@@ -1,26 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { currencyFullValue, percentageFormat, priceColor, volume } from '../../core/helpers'
+import Pagination from '../Pagination/Pagination'
 
 function CoinList({ coins }) {
+  const [sort, setSort] = useState(null)
+  const [page, setPage] = useState(1)
+
+  const sortedCoins = sortCoins(sort, coins)
+
+  const perPage = 50
+  const indexOfLastCoin = page * perPage;
+  const indexOfFirstCoin = indexOfLastCoin - perPage;
+  const currentCoins = sortedCoins.slice(indexOfFirstCoin, indexOfLastCoin);
+
   return (
     <div className="container">
-      <div className="card border-0 shadow-sm bg-lawrence p-3 h-100 w-100 mt-4">
-        <div className="pb-3 border-bottom fw-500">
-          <div className="dropdown">
-            <button className="btn dropdown-toggle text-oz" id="filter" data-bs-toggle="dropdown" aria-expanded="false">
-              Highest Cap
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="filter">
-              <li><span className="dropdown-item">Price</span></li>
-              <li><span className="dropdown-item">Volume</span></li>
-              <li><span className="dropdown-item">Change</span></li>
-            </ul>
+      <div className="card border-0 shadow-sm bg-lawrence p-3 pt-0 h-100 w-100 mt-4">
+        <div className="row">
+          <div className="col-md-3">
+            <Select
+              className="mt-3"
+              placeholder="Highest Cap"
+              value={sort}
+              onChange={value => {
+                setSort(value)
+                setPage(1)
+              }}
+              isSearchable={false}
+              options={[
+                { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' },
+                { field: 'marketCap', value: 'l_cap', label: 'Lowest Cap' },
+                { field: 'totalVolume', value: 'h_volume', label: 'Highest Volume' },
+                { field: 'totalVolume', value: 'l_volume', label: 'Lowest Volume' },
+                { field: 'price', value: 'h_price', label: 'Highest Price' },
+                { field: 'price', value: 'l_price', label: 'Lowest Price' },
+                { field: 'priceChange24h', value: 't_gainers', label: 'Top Gainers' },
+                { field: 'priceChange24h', value: 't_losers', label: 'Top Losers' }
+              ]}
+            />
           </div>
         </div>
-
-        <div className="table-responsive">
+        <div className="table-responsive mt-3 border-top border-bottom">
           <table className="table table-borderless mb-0 table-zebra text-bran">
             <thead>
             <tr className="small text-grey">
@@ -34,7 +57,7 @@ function CoinList({ coins }) {
             </tr>
             </thead>
             <tbody>
-            {coins.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }) => (
+            {currentCoins.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }) => (
               <tr key={id}>
                 <td className="small pe-0">{rank}</td>
                 <td>
@@ -57,9 +80,36 @@ function CoinList({ coins }) {
             </tbody>
           </table>
         </div>
+        <nav className="mt-3">
+          <Pagination totalCount={coins.length} perPage={perPage} page={page} onClick={setPage} />
+        </nav>
       </div>
     </div>
   )
+}
+
+function sortCoins(filter, list) {
+  if (!filter) {
+    return list
+  }
+
+  const { value, field } = filter
+  switch (value) {
+    case 'h_cap':
+    case 'h_volume':
+    case 'h_price':
+    case 't_gainers': {
+      return list.sort((a, b) => b[field] - a[field])
+    }
+    case 'l_cap':
+    case 'l_volume':
+    case 'l_price':
+    case 't_losers': {
+      return list.sort((a, b) => a[field] - b[field])
+    }
+    default:
+      return list
+  }
 }
 
 export default CoinList

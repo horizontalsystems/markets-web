@@ -18,10 +18,11 @@ function DiscoverySearch() {
       <div className="row g-3">
         <div className="col-lg-3 col-sm-12 col-md-6">
           <Select
-            isSearchable={false}
             value={filters.top}
             options={filtersOptions.top}
             onChange={value => dispatch(setFilters({ top: value }))}
+            isSearchable={false}
+            isDisabled={loading}
           />
 
           <Select
@@ -30,6 +31,7 @@ function DiscoverySearch() {
             options={filtersOptions.marketCap}
             onChange={value => dispatch(setFilters({ marketCap: value }))}
             isSearchable={false}
+            isDisabled={loading}
           />
         </div>
         <div className="col-lg-3 col-sm-12 col-md-6">
@@ -39,12 +41,14 @@ function DiscoverySearch() {
             options={filtersOptions.volumes}
             onChange={value => dispatch(setFilters({ volumes: value }))}
             isSearchable={false}
+            isDisabled={loading}
           />
 
           <Select
             className="mt-3"
             placeholder="Liquidity"
             isSearchable={false}
+            isDisabled={loading}
           />
         </div>
         <div className="col-lg-3 col-sm-12 col-md-6">
@@ -54,6 +58,7 @@ function DiscoverySearch() {
             options={filtersOptions.pricePeriod}
             onChange={value => dispatch(setFilters({ pricePeriod: value }))}
             isSearchable={false}
+            isDisabled={loading}
           />
 
           <Select
@@ -63,6 +68,7 @@ function DiscoverySearch() {
             options={filtersOptions.priceChange}
             onChange={value => dispatch(setFilters({ priceChange: value }))}
             isSearchable={false}
+            isDisabled={loading}
           />
         </div>
         <div className="col-lg-3 col-sm-12 col-md-6 d-flex align-items-end justify-content-end">
