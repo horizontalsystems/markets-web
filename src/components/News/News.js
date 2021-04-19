@@ -1,37 +1,36 @@
 import React from 'react'
+import moment from 'moment'
+import cn from 'classnames'
 
-function News({ title }) {
+function News({ title, news }) {
   return (
     <div className="card rounded-3 bg-lawrence shadow-sm border-0">
-      <div className="card-body rounded-top-3">
-        <h5 className="card-title text-warning">
-          {title}
-        </h5>
-        <p className="card-text text-oz">
-          Ethereum Price Analysis: ETH Bulls Aim A Test of $2,000
-        </p>
-        <p className="card-text">
-          <small className="text-grey">30 min ago</small>
-        </p>
-      </div>
+      {news.map((item, index) => {
+        const isFirst = index === 0
+        const isLast = index === news.length - 1
+        const classes = {
+          'rounded-top-3': isFirst,
+          'rounded-bottom-3': isLast,
+          'border-bottom': (!isFirst && !isLast),
+          'bg-jeremy': !isFirst
+        }
 
-      <div className="card-body bg-jeremy border-bottom">
-        <p className="card-text text-bran">
-          Bitcoin and Big Caps Recover After $400 billion Market Rout
-        </p>
-        <p className="card-text">
-          <small className="text-grey">30 min ago</small>
-        </p>
-      </div>
-
-      <div className="card-body bg-jeremy rounded-bottom-3">
-        <p className="card-text text-bran">
-          Bitcoin and Big Caps Recover After $400 billion Market Rout
-        </p>
-        <p className="card-text">
-          <small className="text-grey">30 min ago</small>
-        </p>
-      </div>
+        return (
+          <div className={cn('card-body', classes)} key={index}>
+            {isFirst && <h5 className="card-title text-warning">
+              {title}
+            </h5>}
+            <a href={item.url} className="text-decoration-none" target="_blank" rel="noreferrer">
+              <p className={cn('card-text', { 'text-oz': isFirst, 'text-bran': !isFirst })}>
+                {item.title}
+              </p>
+              <p className="card-text">
+                <small className="text-grey">{moment(item.published_on * 1000).fromNow()}</small>
+              </p>
+            </a>
+          </div>
+        )
+      })}
     </div>
   )
 }

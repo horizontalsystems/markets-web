@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchMarkets } from '../../core/reducers/markets'
 import { fetchMarketsGlobal } from '../../core/reducers/marketsGlobal'
+import { fetchNews } from '../../core/reducers/news'
 
-import News from '../News/News'
+import OverviewNews from './OverviewNews'
 import HeaderTabs from '../Header/HeaderTab'
 import OverviewSpotlight from './OverviewSpotlight'
 import OverviewGlobalMarkets from './OverviewGlobalMarkets'
@@ -14,6 +15,7 @@ function Overview() {
   useEffect(() => {
     dispatch(fetchMarketsGlobal())
     dispatch(fetchMarkets())
+    dispatch(fetchNews())
   }, [dispatch])
 
   return (
@@ -34,17 +36,7 @@ function Overview() {
             News
           </h3>
 
-          <div className="row g-3">
-            <div className="col-lg-4">
-              <News title="CoinTelegraph" />
-            </div>
-            <div className="col-lg-4">
-              <News title="CoinDesk" />
-            </div>
-            <div className="col-lg-4">
-              <News title="Unstoppable News" />
-            </div>
-          </div>
+          <OverviewNews />
         </div>
       </div>
     </div>

@@ -29,6 +29,10 @@ export function getAllMarkets() {
     })
 }
 
+export function getNews() {
+  return axios.get('https://min-api.cryptocompare.com/data/v2/news/?feeds=cointelegraph,theblock,decrypt&extraParams=Blocksdecoded')
+}
+
 const getMarketsRecursive = async (page = 1, perPage = 250, count = 250) => {
   const { data } = await axios.get(`${coingeckoBaseUrl}/markets?vs_currency=USD&order=market_cap_desc&per_page=${perPage}&page=${page}&sparkline=false&price_change_percentage=24h,7d,14d,30d,200d,1y`)
 
