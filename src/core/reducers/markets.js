@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { getAllMarkets } from '../../api'
+import { getMarkets } from '../../api'
 
 export const MARKETS_FETCHED = 'MARKETS_FETCHED'
 
@@ -8,18 +8,16 @@ export const fetchMarkets = () => (dispatch, getState) => {
     return
   }
 
-  return getAllMarkets().then(([markets, marketsDefi]) => {
+  return getMarkets().then(data => {
     dispatch({
       type: MARKETS_FETCHED,
-      markets: normalizeCoins(markets),
-      marketsDefi: normalizeDeFi(marketsDefi)
+      coins: normalizeCoins(data)
     })
   })
 }
 
 const initialState = {
-  coins: [],
-  coinsDefi: []
+  coins: []
 }
 
 export default function reducer(state = initialState, action) {
@@ -27,8 +25,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case MARKETS_FETCHED: {
       return {
-        coins: action.markets,
-        coinsDefi: action.marketsDefi
+        coins: action.coins
       }
     }
 
@@ -63,23 +60,12 @@ export const selectTopLosers = createSelector(
   }
 )
 
-export const selectTvlGainers = createSelector(
-  state => state.markets.coinsDefi,
-  coins => {
-    return coins.slice().sort((a, b) => b.change1d - a.change1d)
-  }
-)
-
 export const selectTopGainers5 = createSelector(
   selectTopGainers, coins => coins.slice(0, 5)
 )
 
 export const selectTopLosers5 = createSelector(
   selectTopLosers, coins => coins.slice(0, 5)
-)
-
-export const selectTvlGainers5 = createSelector(
-  selectTvlGainers, coins => coins.slice(0, 5)
 )
 
 // Normalizer
@@ -100,15 +86,5 @@ export function normalizeCoins(markets) {
     priceChange1y: item.price_change_percentage_1y_in_currency,
     marketCap: item.market_cap,
     totalVolume: item.total_volume,
-  }))
-}
-
-function normalizeDeFi(markets) {
-  return markets.map(item => ({
-    symbol: item.code,
-    id: item.coingecko_id,
-    tvl: item.tvl,
-    logo: item.image_url,
-    change1d: item.tvl_diff_24h
   }))
 }

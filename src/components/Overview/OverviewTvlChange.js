@@ -9,15 +9,17 @@ import CardHead from '../Card/CardHead'
 import Card from '../Card/Card'
 import Table from '../Table/Table'
 
-function OverviewTvlChange({ title, headIcon: Icon, tokens }) {
+function OverviewTvlChange({ title, headIcon: Icon, tokens, seeMorePath }) {
   return (
     <Card className="h-100">
       <CardHead
         title={title}
         icon={<Icon className="me-2" />}
-        action={<div className="d-flex align-items-center text-grey" role="button">
-          <span>See All</span><ArrowRight className="ps-1" />
-        </div>}
+        action={
+          <Link to={seeMorePath} className="d-flex align-items-center text-grey text-decoration-none">
+            <span>See All</span><ArrowRight className="ps-1" />
+          </Link>
+        }
       />
 
       <Table>
@@ -30,7 +32,7 @@ function OverviewTvlChange({ title, headIcon: Icon, tokens }) {
         </tr>
         </thead>
         <tbody>
-        {tokens.map(({ id, symbol, logo, tvl, change1d }, index) => {
+        {tokens.map(({ id, symbol, logo, tvl, priceChange24h }, index) => {
             return (
               <tr key={index}>
                 <td className="small pe-0">{index + 1}</td>
@@ -45,8 +47,8 @@ function OverviewTvlChange({ title, headIcon: Icon, tokens }) {
                 <td className="text-end text-nowrap">
                   {currencyFormat(tvl)}
                 </td>
-                <td className={cn('text-end', priceColor(change1d))}>
-                  {percentageFormat(change1d)}
+                <td className={cn('text-end', priceColor(priceChange24h))}>
+                  {percentageFormat(priceChange24h)}
                 </td>
               </tr>
             )

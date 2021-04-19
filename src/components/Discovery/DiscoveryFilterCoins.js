@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFilteredCoins, selectFilteredCoins } from '../../core/reducers/discovery'
 
-import CoinList from './CoinList'
+import CoinList from '../List/CoinList'
 
 function DiscoveryFilterCoins() {
   const dispatch = useDispatch()

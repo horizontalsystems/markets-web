@@ -35,4 +35,12 @@ function Pagination({ totalCount, perPage, page, onClick }) {
   )
 }
 
+export function paginate(coins, page, perPage) {
+  const perPageNumber = coins.length <= perPage ? coins.length : perPage
+  const indexOfLastCoin = page * perPageNumber
+  const indexOfFirstCoin = indexOfLastCoin - perPageNumber
+
+  return coins.slice(indexOfFirstCoin, indexOfLastCoin)
+}
+
 export default Pagination

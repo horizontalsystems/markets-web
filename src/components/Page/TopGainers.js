@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchMarkets, selectTopGainers } from '../../core/reducers/markets'
 
 import HeaderTabs from '../Header/HeaderTab'
-import CoinList from '../Discovery/CoinList'
+import CoinList from '../List/CoinList'
 
-function OverviewTopGainers() {
+function TopGainers() {
   const dispatch = useDispatch()
   const coins = useSelector(state => selectTopGainers(state))
 
@@ -14,7 +14,7 @@ function OverviewTopGainers() {
   }, [dispatch])
 
   return (
-    <div className="OverviewTopGainers">
+    <div className="TopGainers">
       <HeaderTabs active="/" />
 
       <div className="py-5">
@@ -30,4 +30,4 @@ function OverviewTopGainers() {
   )
 }
 
-export default OverviewTopGainers
+export default TopGainers

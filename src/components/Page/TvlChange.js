@@ -1,33 +1,34 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchMarkets, selectTopLosers } from '../../core/reducers/markets'
+import { fetchDefiMarkets, selectDefiCoins } from '../../core/reducers/defi'
 
 import HeaderTabs from '../Header/HeaderTab'
-import CoinList from '../Discovery/CoinList'
+import DefiList from '../List/DefiList'
 
-function OverviewTopLosers() {
+function TvlChange() {
   const dispatch = useDispatch()
-  const coins = useSelector(state => selectTopLosers(state))
+  const coins = useSelector(state => selectDefiCoins(state))
+  const chains = useSelector(state => state.defi.chains)
 
   useEffect(() => {
-    dispatch(fetchMarkets())
+    dispatch(fetchDefiMarkets())
   }, [dispatch])
 
   return (
-    <div className="OverviewTopLosers">
+    <div className="TvlChange">
       <HeaderTabs active="/" />
 
       <div className="py-5">
         <div className="container">
           <h3 className="text-oz pb-3">
-            Top Losers
+            TVL Change
           </h3>
         </div>
 
-        <CoinList coins={coins} />
+        <DefiList coins={coins} chains={chains} />
       </div>
     </div>
   )
 }
 
-export default OverviewTopLosers
+export default TvlChange

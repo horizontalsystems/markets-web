@@ -37,7 +37,8 @@ export function currencyFullValue(value, options = { thousandSeparated: true }) 
 
 export function volume(value) {
   return numbro(value).format({
-    thousandSeparated: true
+    thousandSeparated: true,
+    mantissa: 0
   })
 }
 

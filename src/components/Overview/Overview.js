@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchMarkets } from '../../core/reducers/markets'
+import { fetchDefiMarkets } from '../../core/reducers/defi'
 import { fetchMarketsGlobal } from '../../core/reducers/marketsGlobal'
 import { fetchNews } from '../../core/reducers/news'
 
@@ -15,6 +16,7 @@ function Overview() {
   useEffect(() => {
     dispatch(fetchMarketsGlobal())
     dispatch(fetchMarkets())
+    dispatch(fetchDefiMarkets())
     dispatch(fetchNews())
   }, [dispatch])
 

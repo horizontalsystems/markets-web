@@ -4,8 +4,9 @@ import { Route, Switch } from 'react-router-dom'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import Overview from '../Overview/Overview'
-import OverviewTopGainers from '../Overview/OverviewTopGainers'
-import OverviewTopLosers from '../Overview/OverviewTopLosers'
+import TopGainers from '../Page/TopGainers'
+import TopLosers from '../Page/TopLosers'
+import TvlChange from '../Page/TvlChange'
 import Discovery from '../Discovery/Discovery'
 import DiscoveryFilter from '../Discovery/DiscoveryFilter'
 import Watchlist from '../Watchlist/Watchlist'
@@ -22,8 +23,9 @@ function App() {
         <Route path="/discovery/filter" component={DiscoveryFilter} />
         <Route path="/discovery/:category?" component={Discovery} />
         <Route path="/watchlist" component={Watchlist} />
-        <Route path="/top-gainers" component={OverviewTopGainers} />
-        <Route path="/top-losers" component={OverviewTopLosers} />
+        <Route path="/top-gainers" component={TopGainers} />
+        <Route path="/top-losers" component={TopLosers} />
+        <Route path="/tvl-change" component={TvlChange} />
         <Route path="/" component={Overview} />
       </Switch>
       <Footer />

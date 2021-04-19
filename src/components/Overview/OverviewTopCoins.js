@@ -18,7 +18,8 @@ function OverviewTopCoins({ title, headIcon: Icon, tokens, seeMorePath }) {
         action={
           <Link to={seeMorePath} className="d-flex align-items-center text-grey text-decoration-none">
             <span>See All</span><ArrowRight className="ps-1" />
-          </Link>}
+          </Link>
+        }
       />
 
       <Table>

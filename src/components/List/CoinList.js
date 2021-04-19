@@ -3,7 +3,7 @@ import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { currencyFullValue, percentageFormat, priceColor, volume } from '../../core/helpers'
-import Pagination from '../Pagination/Pagination'
+import Pagination, { paginate } from '../Pagination/Pagination'
 
 function CoinList({ coins }) {
   const [sort, setSort] = useState(null)
@@ -12,9 +12,7 @@ function CoinList({ coins }) {
   const sortedCoins = sortCoins(sort, coins)
 
   const perPage = 50
-  const indexOfLastCoin = page * perPage;
-  const indexOfFirstCoin = indexOfLastCoin - perPage;
-  const currentCoins = sortedCoins.slice(indexOfFirstCoin, indexOfLastCoin);
+  const currentCoins = paginate(sortedCoins, page, perPage);
 
   return (
     <div className="container">
@@ -57,8 +55,8 @@ function CoinList({ coins }) {
             </tr>
             </thead>
             <tbody>
-            {currentCoins.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }) => (
-              <tr key={id}>
+            {currentCoins.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }, index) => (
+              <tr key={index}>
                 <td className="small pe-0">{rank}</td>
                 <td>
                   <div className="d-flex">
@@ -79,7 +77,7 @@ function CoinList({ coins }) {
           </table>
         </div>
         <nav className="mt-3">
-          <Pagination totalCount={coins.length} perPage={perPage} page={page} onClick={setPage} />
+          <Pagination totalCount={sortedCoins.length} perPage={perPage} page={page} onClick={setPage} />
         </nav>
       </div>
     </div>

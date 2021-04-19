@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchMarkets, selectMarketsCoins } from '../../core/reducers/markets'
 import { fetchDiscoveryMarkets, selectCategoryCoins } from '../../core/reducers/discovery'
 
-import CoinList from './CoinList'
+import CoinList from '../List/CoinList'
 
 function DiscoveryCoins({ category }) {
   const dispatch = useDispatch()

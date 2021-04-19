@@ -14,8 +14,12 @@ export function getMarketsByIds(ids) {
   return axios.get(`${coingeckoBaseUrl}/markets?vs_currency=USD&order=market_cap_desc&sparkline=false&price_change_percentage=24h,7d&&ids=${ids}`)
 }
 
-export function getDefiMarkets() {
+export function getDefi() {
   return axios.get('https://markets.horizontalsystems.xyz/api/v1/markets/defi')
+}
+
+export function getDefiMarkets() {
+  return axios.get('https://api.llama.fi/protocols')
 }
 
 export function getCoinInfo(id) {
@@ -23,7 +27,7 @@ export function getCoinInfo(id) {
 }
 
 export function getAllMarkets() {
-  return Promise.all([getMarkets(), getDefiMarkets()])
+  return Promise.all([getMarkets(), getDefi()])
     .then(([markets, { data: defiMarkets }]) => {
       return [markets, defiMarkets]
     })
