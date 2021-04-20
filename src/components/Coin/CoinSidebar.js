@@ -1,15 +1,16 @@
 import React from 'react'
-import { Copy, Github, Globe, Star, Reddit, Telegram, Twitter } from '../Icon'
+import { Copy, Github, Globe, Reddit, Telegram, Twitter } from '../Icon'
 import List from '../List/List'
 import ListItem from '../List/ListItem'
+import WatchStar from '../Watchlist/WatchStar'
 
-function CoinSidebar({ links = {}, platform = {} }) {
+function CoinSidebar({ coin, links = {}, platform = {} }) {
   return (
     <>
       <div className="card py-2 px-3 mb-3 bg-lawrence rounded-3 border-0">
-        <div className="fw-500 d-flex justify-content-between align-items-center">
+        <div className="fw-500">
           <div className="d-flex text-oz" role="button">
-            <Star className="me-2" /> Add to Watchlist
+            <WatchStar size="20" className="me-2" coin={coin} /> Add to Watchlist
           </div>
         </div>
       </div>

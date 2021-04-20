@@ -46,6 +46,7 @@ export default function reducer(state = initialState, action) {
 function normalize(coin, storedCoin) {
   const marketData = coin.market_data
   const mergedCoin = {
+    id: coin.id,
     name: coin.name,
     symbol: coin.symbol,
     image: coin.image.large,

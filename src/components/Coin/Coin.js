@@ -112,7 +112,7 @@ function Coin({ coin }) {
           </div>
 
           <div className="col-12 col-lg-3">
-            <CoinSidebar links={coin.links} platform={coin.platform} />
+            <CoinSidebar coin={coin.id} links={coin.links} platform={coin.platform} />
           </div>
         </div>
       </div>

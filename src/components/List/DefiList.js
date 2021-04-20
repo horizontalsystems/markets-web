@@ -4,8 +4,9 @@ import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { percentageFormat, priceColor, volume } from '../../core/helpers'
 import Pagination, { paginate } from '../Pagination/Pagination'
+import WatchStar from '../Watchlist/WatchStar'
 
-function DefiList({ coins, chains }) {
+function DefiList({ coins, selectOptions }) {
   const [sort, setSort] = useState(null)
   const [page, setPage] = useState(1)
 
@@ -28,7 +29,7 @@ function DefiList({ coins, chains }) {
                 setPage(1)
               }}
               isSearchable={false}
-              options={chains.map(item => ({ value: item, label: item }))}
+              options={selectOptions}
             />
           </div>
         </div>
@@ -36,6 +37,7 @@ function DefiList({ coins, chains }) {
           <table className="table table-borderless mb-0 table-zebra text-bran">
             <thead>
             <tr className="small text-grey">
+              <td className="p-0 m-0" />
               <td className="pb-2 pt-2 pe-0">#</td>
               <td className="pb-2 pt-2">Name</td>
               <td className="pb-2 pt-2">Chain</td>
@@ -47,6 +49,9 @@ function DefiList({ coins, chains }) {
             <tbody>
             {currentCoins.map(({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) => (
               <tr key={index}>
+                <td className="small pe-0">
+                  <WatchStar size="16" coin={id} />
+                </td>
                 <td className="small pe-0">{rank}</td>
                 <td>
                   <div className="d-flex">

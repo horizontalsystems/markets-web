@@ -3,7 +3,9 @@ import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { currencyFullValue, percentageFormat, priceColor, volume } from '../../core/helpers'
+
 import Pagination, { paginate } from '../Pagination/Pagination'
+import WatchStar from '../Watchlist/WatchStar'
 
 function CoinList({ coins }) {
   const [sort, setSort] = useState(null)
@@ -45,6 +47,7 @@ function CoinList({ coins }) {
           <table className="table table-borderless mb-0 table-zebra text-bran">
             <thead>
             <tr className="small text-grey">
+              <td className="p-0 m-0" />
               <td className="pb-2 pt-2 pe-0">#</td>
               <td className="pb-2 pt-2">Name</td>
               <td className="text-end pb-2 pt-2">Price</td>
@@ -57,7 +60,12 @@ function CoinList({ coins }) {
             <tbody>
             {currentCoins.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }, index) => (
               <tr key={index}>
-                <td className="small pe-0">{rank}</td>
+                <td className="small pe-0">
+                  <WatchStar size="16" coin={id} />
+                </td>
+                <td className="small pe-0">
+                  {rank}
+                </td>
                 <td>
                   <div className="d-flex">
                     <img src={image} alt={name} className="me-3" width="24" height="24" />

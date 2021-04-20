@@ -6,6 +6,7 @@ import defiReducer from './reducers/defi'
 import discoveryReducer from './reducers/discovery'
 import marketsGlobalReducer from './reducers/marketsGlobal'
 import newsReducer from './reducers/news'
+import watchlistReducer from './reducers/watchlist'
 
 export default configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export default configureStore({
     markets: marketsReducer,
     defi: defiReducer,
     marketsGlobal: marketsGlobalReducer,
-    news: newsReducer
+    news: newsReducer,
+    watchlist: watchlistReducer,
   }
 })

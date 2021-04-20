@@ -9,6 +9,7 @@ function TvlChange() {
   const dispatch = useDispatch()
   const coins = useSelector(state => selectDefiCoins(state))
   const chains = useSelector(state => state.defi.chains)
+  const selectOptions = chains.map(item => ({ value: item, label: item }))
 
   useEffect(() => {
     dispatch(fetchDefiMarkets())
@@ -25,7 +26,7 @@ function TvlChange() {
           </h3>
         </div>
 
-        <DefiList coins={coins} chains={chains} />
+        <DefiList coins={coins} selectOptions={selectOptions} />
       </div>
     </div>
   )
