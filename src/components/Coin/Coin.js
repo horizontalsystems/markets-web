@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCoinInfo } from '../../core/reducers/coinInfo'
+import { fetchCoinInfo, selectCoin } from '../../core/reducers/coinInfo'
 import { currencyFullValue, percentageFormat } from '../../core/helpers'
 import { Info } from '../Icon'
 
@@ -17,16 +17,12 @@ import ListItem from '../List/ListItem'
 
 function Coin({ match }) {
   const coinId = match.params.id
-  const coin = useSelector(state => state.coinInfo.map[coinId])
+  const coin = useSelector(state => selectCoin(state, coinId))
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchCoinInfo(coinId))
   }, [dispatch, coinId])
-
-  if (!coin) {
-    return null
-  }
 
   return (
     <div className="Coin">
@@ -64,7 +60,7 @@ function Coin({ match }) {
               </div>
 
               <div className="my-3">
-                <Chart coin={coin.symbol} coinId={coin.id} />
+                <Chart coin={coin.symbol} coinId={coinId} />
               </div>
 
               <div className="mb-3">
@@ -85,27 +81,27 @@ function Coin({ match }) {
                 <div className="col-lg-6">
                   <List>
                     <ListItem className="py-3">
-                      <div>Privacy</div>
-                      <div>
+                      <div className="text-grey">Privacy</div>
+                      <div className="text-oz">
                         <span className="badge bg-remus text-oz">High</span>
                         <Info className="ms-2" role="bottom" />
                       </div>
                     </ListItem>
                     <ListItem className="py-3">
-                      <div>Issuance</div>
-                      <small>N/A</small>
+                      <div className="text-grey">Issuance</div>
+                      <small className="text-oz">N/A</small>
                     </ListItem>
                     <ListItem className="py-3">
-                      <div>Confiscation-resistance</div>
-                      <small>N/A</small>
+                      <div className="text-grey">Confiscation-resistance</div>
+                      <small className="text-oz">N/A</small>
                     </ListItem>
                     <ListItem className="py-3">
-                      <div>Censorship-resistance</div>
-                      <small>N/A</small>
+                      <div className="text-grey">Censorship-resistance</div>
+                      <small className="text-oz">N/A</small>
                     </ListItem>
                     <ListItem className="py-3">
-                      <div>Audited</div>
-                      <small>N/A</small>
+                      <div className="text-grey">Audited</div>
+                      <small className="text-oz">N/A</small>
                     </ListItem>
                   </List>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createElement, useState } from 'react'
 import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
@@ -56,9 +56,10 @@ function DefiList({ coins, selectOptions }) {
                 <td>
                   <div className="d-flex">
                     <img src={image} alt={name} className="me-3" width="24" height="24" />
-                    <Link to={id ? `/coins/${id}` : '/'} className="text-bran text-decoration-none">
-                      {name}
-                    </Link>
+                    {createElement(id ? Link : 'span', {
+                      to: id ? `/coins/${id}` : undefined,
+                      className: 'text-bran text-decoration-none'
+                    }, name)}
                   </div>
                 </td>
                 <td className="">{chain}</td>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createElement } from 'react'
 import cn from 'classnames'
 
 import { Link } from 'react-router-dom'
@@ -38,7 +38,10 @@ function OverviewTopCoins({ title, headIcon: Icon, tokens, seeMorePath }) {
             <td>
               <div className="d-flex">
                 <img src={image} alt={symbol} className="me-3" width="24" height="24" />
-                <Link to={`/coins/${id}`} className="text-bran text-decoration-none text-uppercase">{symbol}</Link>
+                {createElement(id ? Link : 'span', {
+                  to: id ? `/coins/${id}` : undefined,
+                  className: 'text-bran text-decoration-none text-uppercase'
+                }, symbol)}
               </div>
             </td>
             <td className="text-end text-nowrap">

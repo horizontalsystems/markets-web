@@ -7,7 +7,6 @@ const cryptocompare = {
   history: history,
 
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
-    console.log('cryptocompare')
     const splitSymbol = symbolInfo.name.split(/[:/]/)
     const url = (resolution === '1D' || resolution === 'D') ? '/data/histoday' : resolution >= 60 ? '/data/histohour' : '/data/histominute'
 

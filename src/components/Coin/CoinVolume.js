@@ -6,26 +6,26 @@ function CoinVolume({ totalVolume, totalSupply, circulatingSupply, marketCap, di
   return (
     <List>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div>Volume 24h</div>
-        <div>{currencyFullValue(totalVolume)}</div>
+        <div className="text-grey">Volume 24h</div>
+        <div className="text-oz">{currencyFullValue(totalVolume)}</div>
       </li>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div>Market Cap</div>
-        <span>{currencyFullValue(marketCap)}</span>
+        <div className="text-grey">Market Cap</div>
+        <span className="text-oz">{currencyFullValue(marketCap)}</span>
       </li>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div>In Circulation</div>
-        <div>
+        <div className="text-grey">In Circulation</div>
+        <div className="text-oz">
           {currencyFullValue(circulatingSupply, { thousandSeparated: true, mantissa: 0 })}
         </div>
       </li>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div>Total Supply</div>
-        <div>{currencyFullValue(totalSupply)}</div>
+        <div className="text-grey">Total Supply</div>
+        <div className="text-oz">{currencyFullValue(totalSupply)}</div>
       </li>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div>Diluted MCap</div>
-        <div>{currencyFullValue(dilutedValuation)}</div>
+        <div className="text-grey">Diluted MCap</div>
+        <div className="text-oz">{currencyFullValue(dilutedValuation)}</div>
       </li>
     </List>
   )

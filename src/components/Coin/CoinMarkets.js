@@ -13,11 +13,11 @@ function CoinMarkets({ className, markets }) {
   return (
     <Card className={className}>
       <CardHead title="Markets" action={
-        <div className="d-flex align-items-center text-grey" role="button" onClick={() => showFull(!isFull)}>
+        markets.length > 5 && <div className="d-flex align-items-center text-grey" role="button" onClick={() => showFull(!isFull)}>
           <span>{isFull ? 'Show top 5' : 'Show all'}</span>
           <ArrowRight className="ps-1" />
-        </div>}
-      />
+        </div>
+      } />
       <Table>
         <thead>
         <tr className="small text-grey">

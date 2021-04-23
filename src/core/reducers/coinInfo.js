@@ -2,6 +2,7 @@ import { getCoinInfo } from '../../api'
 import { percentageBetweenRange } from '../helpers'
 
 import coinsStore from '../coins-store'
+import { createSelector } from 'reselect'
 
 export const COINS_FETCHING = 'COINS_FETCHING'
 export const COINS_FETCHED = 'COINS_FETCHED'
@@ -42,6 +43,33 @@ export default function reducer(state = initialState, action) {
       return state
   }
 }
+
+export const selectCoin = createSelector(
+  state => state.coinInfo.map,
+  state => state.markets.coins,
+  state => state.defi.coins,
+  (_, coin) => coin,
+  (map, coins, defi, coinId) => {
+    let coin = map[coinId]
+    if (coin) {
+      return coin
+    }
+
+    coin = coins.find(item => item.id === coinId)
+
+    if (!coin) {
+      coin = defi.find(item => item.id === coinId)
+    }
+
+    return {
+      ...coin,
+      markets: [],
+      performance: [],
+      priceRanges: [],
+      volumes: {}
+    }
+  }
+)
 
 // Helpers / Normalizers
 

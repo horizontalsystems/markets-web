@@ -56,14 +56,14 @@ function normalizeCoins(markets) {
   for (let i = 0; i < markets.length; i++) {
     const item = markets[i];
     coins.push({
-      id: item.gecko_id,
+      id: item.coingecko_id,
       name: item.name,
-      image: item.logo,
-      symbol: item.symbol === '-' ? item.name : item.symbol,
+      image: item.image_url,
+      symbol: item.code || item.name,
       rank: item.id,
       priceChange1h: item.change_1h,
-      priceChange24h: item.change_1d,
-      priceChange7d: item.change_7d,
+      priceChange24h: item.tvl_diff_24h,
+      priceChange7d: item.tvl_diff_7d,
       tvl: item.tvl,
       chain: item.chain
     })

@@ -15,7 +15,7 @@ export function getMarketsByIds(ids) {
 }
 
 export function getDefiMarkets() {
-  return axios.get('https://api.llama.fi/protocols')
+  return axios.get('https://markets.horizontalsystems.xyz/api/v1/markets/defi?diff_period=24h,7d,30d')
 }
 
 export function getCoinInfo(id) {
