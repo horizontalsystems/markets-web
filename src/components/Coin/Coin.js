@@ -111,7 +111,7 @@ function Coin({ match }) {
                 </div>
               </div>
 
-              <CoinMarkets className="my-3" tickers={coin.markets.slice(0, 5)} />
+              <CoinMarkets className="my-3" markets={coin.markets} />
 
               <div className="divider mt-5" />
               <CoinInfo description={coin.description} guide={coin.guide} whitepaper={coin.whitepaper} />

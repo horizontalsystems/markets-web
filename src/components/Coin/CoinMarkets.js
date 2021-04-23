@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { currencyFullValue } from '../../core/helpers'
+import { ArrowRight } from '../Icon'
 
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
 import Card from '../Card/Card'
-import { ArrowRight } from '../Icon'
 
-function CoinMarkets({ className, tickers }) {
+function CoinMarkets({ className, markets }) {
+  const [isFull, showFull] = useState(false)
+  const tickers = isFull ? markets : markets.slice(0, 5)
+
   return (
     <Card className={className}>
       <CardHead title="Markets" action={
-        <div className="d-flex align-items-center text-grey" role="button">
-          <span>See All</span><ArrowRight className="ps-1" />
+        <div className="d-flex align-items-center text-grey" role="button" onClick={() => showFull(!isFull)}>
+          <span>{isFull ? 'Show top 5' : 'Show all'}</span>
+          <ArrowRight className="ps-1" />
         </div>}
       />
       <Table>

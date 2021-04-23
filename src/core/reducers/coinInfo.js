@@ -93,6 +93,8 @@ function normalizeMarkets(tickers) {
       price: item.converted_last.usd,
       volume: item.converted_volume.usd
     })
+  ).sort((a, b) =>
+    b.volume - a.volume
   )
 }
 
