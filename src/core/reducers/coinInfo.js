@@ -19,7 +19,7 @@ export const fetchCoinInfo = id => (dispatch, getState) => {
 }
 
 const initialState = {
-  coins: {}
+  map: {}
 }
 
 export default function reducer(state = initialState, action) {
@@ -30,10 +30,12 @@ export default function reducer(state = initialState, action) {
     }
 
     case COINS_FETCHED: {
-      return {
-        ...state,
+      const map = {
+        ...state.map,
         [action.id]: action.data
       }
+
+      return { ...state, map }
     }
 
     default:

@@ -1,5 +1,5 @@
-import React, { createElement } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchCoinInfo } from '../../core/reducers/coinInfo'
 import { currencyFullValue, percentageFormat } from '../../core/helpers'
 import { Info } from '../Icon'
@@ -15,7 +15,15 @@ import CoinCategories from './CoinCategories'
 import List from '../List/List'
 import ListItem from '../List/ListItem'
 
-function Coin({ coin }) {
+function Coin({ match }) {
+  const coinId = match.params.id
+  const coin = useSelector(state => state.coinInfo.map[coinId])
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCoinInfo(coinId))
+  }, [dispatch, coinId])
+
   if (!coin) {
     return null
   }
@@ -56,7 +64,7 @@ function Coin({ coin }) {
               </div>
 
               <div className="my-3">
-                <Chart />
+                <Chart coin={coin.symbol} coinId={coin.id} />
               </div>
 
               <div className="mb-3">
@@ -120,23 +128,4 @@ function Coin({ coin }) {
   )
 }
 
-class CoinContainer extends React.Component {
-  componentDidMount() {
-    this.props.fetchCoinInfo(this.props.id)
-  }
-
-  render() {
-    return createElement(Coin, { coin: this.props.coin })
-  }
-}
-
-const mapStateToProps = (state, { match }) => {
-  const id = match.params.id
-
-  return {
-    id,
-    coin: state.coinInfo[id]
-  }
-}
-
-export default connect(mapStateToProps, { fetchCoinInfo })(CoinContainer)
+export default Coin

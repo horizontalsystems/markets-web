@@ -59,7 +59,7 @@ function normalizeCoins(markets) {
       id: item.gecko_id,
       name: item.name,
       image: item.logo,
-      symbol: item.symbol,
+      symbol: item.symbol === '-' ? item.name : item.symbol,
       rank: item.id,
       priceChange1h: item.change_1h,
       priceChange24h: item.change_1d,
