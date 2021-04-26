@@ -1,9 +1,10 @@
 import React from 'react'
 import numbro from 'numbro'
 import cn from 'classnames'
+import Gradient from 'react-avatar-editor'
 
-import { ReactComponent as PriceBackground } from './price-change-bg.svg'
-import { ReactComponent as PriceGradient } from './price-change-gradient.svg'
+import PriceBackground from './price-change-bg.svg'
+import PriceGradient from './price-change-gradient.svg'
 import { percentageFormat, priceColor } from '../../core/helpers'
 
 function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
@@ -28,14 +29,36 @@ function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
         <div className="col-6">
           <div className="d-flex h-100 p-4 ps-0">
             <div className="d-flex w-100 h-100 position-relative">
-              <PriceBackground className="position-absolute h-100 start-0" />
-              <PriceGradient className="position-absolute h-100 end-0" />
+              <img src={PriceBackground} className="position-absolute h-100 start-0" alt="" />
+              <Gradient
+                className="position-absolute h-100 end-0 rounded-circle"
+                style={{ width: 'unset' }}
+                position={{ x: changeX(marketCapDiff24h), y: 0 }}
+                image={PriceGradient}
+                border={0}
+                borderRadius={100}
+                scale={1}
+                rotate={0}
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+function changeX(value) {
+  const middle = 0.5
+
+  if (!value) {
+    return middle
+  }
+
+  const multiplier = 3
+  const number = Math.min(Math.max(value * multiplier, -100), 100)
+
+  return middle + (-number / 100 * middle)
 }
 
 export default OverviewMarketCap
