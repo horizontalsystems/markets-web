@@ -43,4 +43,21 @@ export function paginate(coins, page, perPage) {
   return coins.slice(indexOfFirstCoin, indexOfLastCoin)
 }
 
+export function paginateSort(coins, { desc, field, fieldString }) {
+  if (!field) {
+    return coins
+  }
+
+  return coins.sort((a, b) => {
+    const itemA = a[field]
+    const itemB = b[field]
+
+    if (fieldString) {
+      return desc ? `${itemA}`.localeCompare(itemB) : `${itemB}`.localeCompare(itemA)
+    }
+
+    return desc ? itemB - itemA : itemA - itemB
+  })
+}
+
 export default Pagination

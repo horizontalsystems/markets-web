@@ -3,17 +3,20 @@ import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { percentageFormat, priceColor, volume } from '../../core/helpers'
-import Pagination, { paginate } from '../Pagination/Pagination'
+import Pagination, { paginate, paginateSort } from '../Pagination/Pagination'
 import WatchStar from '../Watchlist/WatchStar'
+import ListSortHead from './ListSortHead'
 
 function DefiList({ coins, selectOptions }) {
-  const [sort, setSort] = useState(null)
   const [page, setPage] = useState(1)
+  const [sort, setSort] = useState(null)
+  const [sortPage, setSortPage] = useState({ field: '', desc: true })
 
   const sortedCoins = filterCoins(sort, coins)
 
   const perPage = 50
-  const currentCoins = paginate(sortedCoins, page, perPage);
+  const paginatedCoins = paginate(sortedCoins, page, perPage);
+  const paginatedCoinsSort = paginateSort(paginatedCoins, sortPage)
 
   return (
     <div className="container">
@@ -38,16 +41,28 @@ function DefiList({ coins, selectOptions }) {
             <thead>
             <tr className="small text-grey">
               <td className="p-0 m-0" />
-              <td className="pb-2 pt-2 pe-0">#</td>
-              <td className="pb-2 pt-2">Name</td>
-              <td className="pb-2 pt-2">Chain</td>
-              <td className="text-end pb-2 pt-2">24H</td>
-              <td className="text-end pb-2 pt-2">7D</td>
-              <td className="text-end pb-2 pt-2">TVL</td>
+              <ListSortHead className="pb-2 pt-2 pe-0" field="rank" sort={sortPage} setSort={setSortPage}>
+                #
+              </ListSortHead>
+              <ListSortHead className="pb-2 pt-2" field="name" sort={sortPage} setSort={setSortPage} fieldString>
+                Name
+              </ListSortHead>
+              <ListSortHead className="pb-2 pt-2" field="chain" sort={sortPage} setSort={setSortPage} fieldString>
+                Chain
+              </ListSortHead>
+              <ListSortHead className="text-end pb-2 pt-2" field="priceChange24h" sort={sortPage} setSort={setSortPage}>
+                24H
+              </ListSortHead>
+              <ListSortHead className="text-end pb-2 pt-2" field="priceChange7d" sort={sortPage} setSort={setSortPage}>
+                7D
+              </ListSortHead>
+              <ListSortHead className="text-end pb-2 pt-2" field="tvl" sort={sortPage} setSort={setSortPage}>
+                TVL
+              </ListSortHead>
             </tr>
             </thead>
             <tbody>
-            {currentCoins.map(({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) => (
+            {paginatedCoinsSort.map(({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) => (
               <tr key={index}>
                 <td className="small pe-0">
                   <WatchStar size="16" coin={id} />
