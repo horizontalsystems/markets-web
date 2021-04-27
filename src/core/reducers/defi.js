@@ -122,7 +122,7 @@ function normalizeCoins(markets) {
       id: item.coingecko_id,
       name: item.name,
       image: item.image_url,
-      symbol: item.code || item.name,
+      symbol: normalizeSymbol(item),
       rank: item.id,
       priceChange1h: item.change_1h,
       priceChange24h: item.tvl_diff_24h,
@@ -144,4 +144,12 @@ function normalizeCoins(markets) {
     coins,
     chains: Object.keys(chains)
   }
+}
+
+function normalizeSymbol(item) {
+  if (item.code === '-') {
+    return item.name
+  }
+
+  return item.code || item.name || item.coingecko_id
 }
