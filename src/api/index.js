@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 const coingeckoBaseUrl = `https://api.coingecko.com/api/v3/coins`
+const marketsBaseUrl = 'https://markets.horizontalsystems.xyz/api/v1'
 
 export function getMarketsGlobal() {
-  return axios.get('https://markets.horizontalsystems.xyz/api/v1/markets/global/24h')
+  return axios.get(`${marketsBaseUrl}/markets/global/24h`)
 }
 
 export function getMarkets(count = 100) {
@@ -15,7 +16,7 @@ export function getMarketsByIds(ids) {
 }
 
 export function getDefiCoins() {
-  return axios.get('https://markets.horizontalsystems.xyz/api/v1/markets/defi?diff_period=24h,7d,30d')
+  return axios.get(`${marketsBaseUrl}/markets/defi?diff_period=24h,7d,30d`)
 }
 
 export function getDefiMarkets() {
@@ -27,7 +28,7 @@ export function getCoinInfo(id) {
 }
 
 export function getNews() {
-  return axios.get('https://min-api.cryptocompare.com/data/v2/news/?feeds=cointelegraph,theblock,decrypt&extraParams=Blocksdecoded')
+  return axios.get('https://min-api.cryptocompare.com/data/v2/news/?feeds=cointelegraph,theblock,decrypt&extraParams=Blocksdecoded&excludeCategories=Sponsored')
 }
 
 const getMarketsRecursive = async (page = 1, perPage = 250, count = 250) => {
