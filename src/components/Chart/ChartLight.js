@@ -3,36 +3,45 @@ import PropTypes from 'prop-types'
 
 import { createChart } from 'lightweight-charts'
 
-class ChartSmall extends React.Component {
+class ChartLight extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     points: PropTypes.arrayOf(PropTypes.object),
-    change: PropTypes.number
+    change: PropTypes.number,
+    width: PropTypes.number,
+    height: PropTypes.number,
+
+    rightPrice: PropTypes.bool,
+    barSpacing: PropTypes.number,
+    timeVisible: PropTypes.bool
+  }
+
+  static defaultProps = {
+    rightPrice: false,
+    timeVisible: false
   }
 
   componentDidMount() {
+    const { rightPrice, timeVisible, barSpacing } = this.props
     const chart = createChart(this.ref, {
-      width: 120,
-      height: 36,
-      handleScale: false,
-      handleScroll: false,
+      width: this.props.width,
+      height: this.props.height,
+      handleScale: true,
+      handleScroll: true,
       layout: {
         backgroundColor: 'transparent'
       },
       rightPriceScale: {
-        visible: false
+        visible: rightPrice
       },
       timeScale: {
-        // barSpacing: 14,
-        visible: false
+        barSpacing,
+        timeVisible,
+        visible: timeVisible,
       },
       grid: {
-        vertLines: {
-          visible: false,
-        },
-        horzLines: {
-          visible: false,
-        }
+        vertLines: { visible: false },
+        horzLines: { visible: false }
       }
     })
 
@@ -65,4 +74,4 @@ class ChartSmall extends React.Component {
   }
 }
 
-export default ChartSmall
+export default ChartLight

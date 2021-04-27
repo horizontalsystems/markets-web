@@ -51,13 +51,14 @@ function normalize(data) {
     }
   }
 
-  const latest = data[0]
-  const data24 = data[data.length - 1]
+  const latest = data[data.length - 1]
+  const data24 = data[0]
   const sorted = data.sort((a, b) => a.timestamp - b.timestamp)
   const change = (from, to) => (from - to) * 100 / to
   const points = {
     volume: [],
     dominance: [],
+    marketCap: [],
     defiMarket: [],
     tvl: []
   }
@@ -68,6 +69,7 @@ function normalize(data) {
 
     points.volume.push({ time, value: item.volume24h })
     points.dominance.push({ time, value: item.dominance_btc })
+    points.marketCap.push({ time, value: item.market_cap })
     points.defiMarket.push({ time, value: item.market_cap_defi })
     points.tvl.push({ time, value: item.tvl })
   }

@@ -1,11 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { currencyFormat, percentageFormat } from '../../core/helpers'
 
 import OverviewMarketCap from './OverviewMarketCap'
 import OverviewValueChange from './OverviewValueChange'
 
-function OverviewGlobalMarkets(props) {
+function OverviewGlobalMarkets() {
   const {
     points,
     marketCap,
@@ -18,12 +18,15 @@ function OverviewGlobalMarkets(props) {
     dominanceBTCDiff24h,
     totalValueLocked,
     totalValueLockedDiff24h
-  } = props
+  } = useSelector(state => state.marketsGlobal)
 
   return (
     <div className="row g-3">
       <div className="col-lg-6">
-        <OverviewMarketCap marketCap={marketCap} marketCapDiff24h={marketCapDiff24h} />
+        <OverviewMarketCap
+          marketCap={marketCap}
+          marketCapDiff24h={marketCapDiff24h}
+        />
       </div>
       <div className="col-lg-6">
         <div className="row row-cols-1 row-cols-md-2 g-3">
@@ -33,6 +36,7 @@ function OverviewGlobalMarkets(props) {
               value={currencyFormat(volume24h)}
               change={volume24hDiff}
               points={points.volume}
+              seeMoreLink="/volume"
             />
           </div>
           <div className="col">
@@ -41,6 +45,7 @@ function OverviewGlobalMarkets(props) {
               value={percentageFormat(dominanceBTC, { forceSign: false })}
               change={dominanceBTCDiff24h}
               points={points.dominance}
+              seeMoreLink="/btc-dominance"
             />
           </div>
           <div className="col">
@@ -49,6 +54,7 @@ function OverviewGlobalMarkets(props) {
               value={currencyFormat(marketCapDefi)}
               change={marketCapDefiDiff24h}
               points={points.defiMarket}
+              seeMoreLink="/defi-market-cap"
             />
           </div>
           <div className="col">
@@ -57,6 +63,7 @@ function OverviewGlobalMarkets(props) {
               value={currencyFormat(totalValueLocked)}
               change={totalValueLockedDiff24h}
               points={points.tvl}
+              seeMoreLink="/defi-tvl"
             />
           </div>
         </div>
@@ -65,4 +72,4 @@ function OverviewGlobalMarkets(props) {
   )
 }
 
-export default connect(state => state.marketsGlobal)(OverviewGlobalMarkets)
+export default OverviewGlobalMarkets

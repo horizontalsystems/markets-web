@@ -21,7 +21,7 @@ function OverviewSpotlight() {
         <OverviewTopCoins tokens={topLosers} title="Top losers" headIcon={OutlinedDown} seeMorePath="/top-losers" />
       </div>
       <div className="col-lg-4">
-        <OverviewTvlChange tokens={tvlGainers} title="TVL change" headIcon={Histogram} seeMorePath="/tvl-change" />
+        <OverviewTvlChange tokens={tvlGainers} title="TVL change" headIcon={Histogram} seeMorePath="/defi-tvl" />
       </div>
     </div>
   )

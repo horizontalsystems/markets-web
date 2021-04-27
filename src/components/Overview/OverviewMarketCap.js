@@ -2,10 +2,10 @@ import React from 'react'
 import numbro from 'numbro'
 import cn from 'classnames'
 import Gradient from 'react-avatar-editor'
+import { percentageFormat, priceColor } from '../../core/helpers'
 
 import PriceBackground from './price-change-bg.svg'
 import PriceGradient from './price-change-gradient.svg'
-import { percentageFormat, priceColor } from '../../core/helpers'
 
 function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
   return (

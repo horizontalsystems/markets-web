@@ -6,10 +6,13 @@ import Footer from '../Footer/Footer'
 import Overview from '../Overview/Overview'
 import TopGainers from '../Page/TopGainers'
 import TopLosers from '../Page/TopLosers'
-import TvlChange from '../Page/TvlChange'
 import Discovery from '../Discovery/Discovery'
 import DiscoveryFilter from '../Discovery/DiscoveryFilter'
 import Watchlist from '../Watchlist/Watchlist'
+import DefiTvl from '../Page/DefiTvl'
+import Dominance from '../Page/Dominance'
+import DefiMarketCap from '../Page/DefiMarketCap'
+import Volume from '../Page/Volume'
 import Coin from '../Coin/Coin'
 
 import './App.scss'
@@ -25,7 +28,10 @@ function App() {
         <Route path="/watchlist" component={Watchlist} />
         <Route path="/top-gainers" component={TopGainers} />
         <Route path="/top-losers" component={TopLosers} />
-        <Route path="/tvl-change" component={TvlChange} />
+        <Route path="/defi-tvl" component={DefiTvl} />
+        <Route path="/defi-market-cap" component={DefiMarketCap} />
+        <Route path="/btc-dominance" component={Dominance} />
+        <Route path="/volume" component={Volume} />
         <Route path="/" component={Overview} />
       </Switch>
       <Footer />
