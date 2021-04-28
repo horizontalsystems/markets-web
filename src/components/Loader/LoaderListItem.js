@@ -7,7 +7,6 @@ function LoaderListItem() {
       height="25"
       speed={2}
       width="100%"
-      viewBox="0 0 100% 25"
       backgroundColor={'#333333'}
       foregroundColor={'#bdbdbd'}
     >

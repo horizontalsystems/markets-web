@@ -19,6 +19,7 @@ class Tradingview extends React.Component {
       client_id: 'tradingview.com',
       user_id: 'public_user_id',
       autosize: true,
+      theme: "dark",
       enabled_features: [],
       disabled_features: [
         'header_symbol_search',
@@ -32,15 +33,15 @@ class Tradingview extends React.Component {
         'use_localstorage_for_settings'
       ],
       overrides: {
-        'mainSeriesProperties.showCountdown': false,
         'mainSeriesProperties.style': 3,
-        'paneProperties.background': '#131722',
-        'paneProperties.vertGridProperties.color': '#363c4e',
-        'paneProperties.horzGridProperties.color': '#363c4e',
-        'symbolWatermarkProperties.transparency': 90,
-        'scalesProperties.textColor': '#AAA',
-        'mainSeriesProperties.candleStyle.wickUpColor': '#336854',
-        'mainSeriesProperties.candleStyle.wickDownColor': '#7f323f',
+        // 'mainSeriesProperties.showCountdown': false,
+        // 'paneProperties.background': '#131722',
+        // 'paneProperties.vertGridProperties.color': '#363c4e',
+        // 'paneProperties.horzGridProperties.color': '#363c4e',
+        // 'symbolWatermarkProperties.transparency': 90,
+        // 'scalesProperties.textColor': '#AAA',
+        // 'mainSeriesProperties.candleStyle.wickUpColor': '#336854',
+        // 'mainSeriesProperties.candleStyle.wickDownColor': '#7f323f',
       },
     });
 

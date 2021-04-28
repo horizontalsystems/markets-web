@@ -29,7 +29,8 @@ class ChartLight extends React.Component {
       handleScale: true,
       handleScroll: true,
       layout: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        textColor: '#808085',
       },
       rightPriceScale: {
         visible: rightPrice

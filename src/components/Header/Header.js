@@ -6,7 +6,7 @@ import { Daynight, Globe, Logo, Search } from '../Icon'
 import './Header.scss'
 
 function Header() {
-  const [isDarkMode, setTheme] = useState(false);
+  const [isDarkMode, setTheme] = useState(true);
   const toggleTheme = () => {
     setTheme(!isDarkMode)
     document.body.classList.toggle('dark')
@@ -64,7 +64,7 @@ function Header() {
               </ul>
             </li>
             <li className="nav-item">
-              <span role="button" className="nav-link d-flex" onClick={() => toggleTheme()}>
+              <span role="button" className="nav-link d-flex" onClick={toggleTheme}>
                 <Daynight />
               </span>
             </li>
