@@ -6,6 +6,7 @@ import { percentageFormat, priceColor } from '../../core/helpers'
 
 import PriceBackground from './price-change-bg.svg'
 import PriceGradient from './price-change-gradient.svg'
+import LoaderValue from '../Loader/LoaderValue'
 
 function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
   return (
@@ -16,12 +17,16 @@ function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
             <div className="text-grey fs-md-4 fs-sm-1 pb-md-5 pb-1">
               Total Market Cap
             </div>
-            <div>
-              <div className="display-5 text-oz fw-md-600 fw-sm-500 text-uppercase">
-                {numbro(marketCap).format({ average: true, totalLength: 3 })}
-              </div>
-              <div className={cn('fs-4', priceColor(marketCapDiff24h))}>
-                {percentageFormat(marketCapDiff24h)}
+            <div className="d-flex">
+              <div>
+                <div className="display-5 text-oz fw-md-600 fw-sm-500 text-uppercase">
+                  {marketCap
+                    ? numbro(marketCap).format({ average: true, totalLength: 3 })
+                    : <LoaderValue width="120" height="35" />}
+                </div>
+                <div className={cn('fs-4', priceColor(marketCapDiff24h))}>
+                  {marketCapDiff24h ? percentageFormat(marketCapDiff24h) : <LoaderValue width="100" height="20" />}
+                </div>
               </div>
             </div>
           </div>

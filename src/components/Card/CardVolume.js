@@ -1,5 +1,6 @@
-import cn from 'classnames'
 import React from 'react'
+import cn from 'classnames'
+import LoaderValue from '../Loader/LoaderValue'
 
 function CardVolume({ title, value, className }) {
   return (
@@ -9,7 +10,7 @@ function CardVolume({ title, value, className }) {
       </div>
       <div className="card-body pt-0">
         <div className={cn('display-5 fw-md-600 fw-sm-500 text-uppercase', className)}>
-          {value}
+          {value ? value : <LoaderValue width="200" height="50" />}
         </div>
       </div>
     </div>

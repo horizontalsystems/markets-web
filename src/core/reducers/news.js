@@ -44,6 +44,10 @@ export const selectNewsByType = createSelector(
 // Normalizer
 
 function normalizeNews(data) {
+  if (!Array.isArray(data)) {
+    return []
+  }
+
   return data.map(news => ({
     url: news.url,
     body: news.body,

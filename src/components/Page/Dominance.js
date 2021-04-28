@@ -9,6 +9,7 @@ import HeaderTabs from '../Header/HeaderTab'
 import ChartLight from '../Chart/ChartLight'
 import CardVolume from '../Card/CardVolume'
 import CoinList from '../List/CoinList'
+import LoaderValue from '../Loader/LoaderValue'
 
 function Dominance() {
   const {
@@ -71,7 +72,9 @@ function Dominance() {
                 <div className="col">
                   <CardVolume
                     title="Change 24H"
-                    value={percentageFormat(marketCapDiff24h, null, 'N/A')}
+                    value={marketCapDiff24h
+                      ? percentageFormat(marketCapDiff24h, null, 'N/A')
+                      : <LoaderValue width="150" height="50" /> }
                     className={priceColor(marketCapDiff24h)}
                   />
                 </div>

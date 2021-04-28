@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { percentageFormat, priceColor } from '../../core/helpers'
 
+import LoaderValue from '../Loader/LoaderValue'
 import ChartLight from '../Chart/ChartLight'
 
 function OverviewValueChange({ title, value, change, points, seeMoreLink }) {
@@ -17,10 +18,10 @@ function OverviewValueChange({ title, value, change, points, seeMoreLink }) {
           <div className="row">
             <div className="col-6">
               <div className="card-text fw-md-600 fw-sm-500 text-oz text-uppercase">
-                {value}
+                {value ? value : <LoaderValue width="100" height="11" />}
               </div>
               <div className={cn('card-text', priceColor(change))}>
-                {percentageFormat(change)}
+                {change ? percentageFormat(change) : <LoaderValue width="60" height="11" />}
               </div>
             </div>
             <div className="col-6">

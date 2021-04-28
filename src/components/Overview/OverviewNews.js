@@ -9,18 +9,32 @@ function OverviewNews() {
   const newsTheblock = useSelector(state => selectNewsByType(state, 'theblock'))
   const newsDecrypt = useSelector(state => selectNewsByType(state, 'decrypt'))
 
+  if (
+    !newsCointelegraph.length &&
+    !newsTheblock.length &&
+    !newsDecrypt.length
+  ) {
+    return null
+  }
+
   return (
-    <div className="row g-3">
-      <div className="col-lg-4">
-        <News title="CoinTelegraph" news={newsCointelegraph} />
+    <>
+      <h3 className="text-oz pb-3 pt-4">
+        News
+      </h3>
+
+      <div className="row g-3">
+        <div className="col-lg-4">
+          <News title="CoinTelegraph" news={newsCointelegraph} />
+        </div>
+        <div className="col-lg-4">
+          <News title="TheBlock" news={newsTheblock} />
+        </div>
+        <div className="col-lg-4">
+          <News title="Decrypt" news={newsDecrypt} />
+        </div>
       </div>
-      <div className="col-lg-4">
-        <News title="TheBlock" news={newsTheblock} />
-      </div>
-      <div className="col-lg-4">
-        <News title="Decrypt" news={newsDecrypt} />
-      </div>
-    </div>
+    </>
   )
 }
 

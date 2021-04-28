@@ -9,6 +9,7 @@ import HeaderTabs from '../Header/HeaderTab'
 import ChartLight from '../Chart/ChartLight'
 import CardVolume from '../Card/CardVolume'
 import CoinList from '../List/CoinList'
+import LoaderValue from '../Loader/LoaderValue'
 
 function Volume() {
   const {
@@ -62,7 +63,9 @@ function Volume() {
                 <div className="col">
                   <CardVolume
                     title="Change 24H"
-                    value={percentageFormat(volume24hDiff, null, 'N/A')}
+                    value={volume24hDiff
+                      ? percentageFormat(volume24hDiff, null, 'N/A')
+                      : <LoaderValue width="150" height="50" />}
                     className={priceColor(volume24hDiff)}
                   />
                 </div>

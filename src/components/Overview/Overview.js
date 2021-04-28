@@ -34,10 +34,6 @@ function Overview() {
 
           <OverviewSpotlight />
 
-          <h3 className="text-oz pb-3 pt-4">
-            News
-          </h3>
-
           <OverviewNews />
         </div>
       </div>

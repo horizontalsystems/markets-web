@@ -9,6 +9,7 @@ import HeaderTabs from '../Header/HeaderTab'
 import DefiList from '../List/DefiList'
 import ChartLight from '../Chart/ChartLight'
 import CardVolume from '../Card/CardVolume'
+import LoaderValue from '../Loader/LoaderValue'
 
 function DefiTvl() {
   const {
@@ -75,7 +76,9 @@ function DefiTvl() {
                 <div className="col">
                   <CardVolume
                     title={`${defiDominance.name} Dominance`}
-                    value={percentageFormat(defiDominance.value, null, 'N/A')}
+                    value={defiDominance.value
+                      ? percentageFormat(defiDominance.value, null, 'N/A')
+                      : <LoaderValue width="150" height="50" /> }
                     className="text-sssyk-blue"
                   />
                 </div>

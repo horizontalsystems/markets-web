@@ -9,6 +9,7 @@ import HeaderTabs from '../Header/HeaderTab'
 import ChartLight from '../Chart/ChartLight'
 import CardVolume from '../Card/CardVolume'
 import CoinList from '../List/CoinList'
+import LoaderValue from '../Loader/LoaderValue'
 
 function DefiMarketCap() {
   const {
@@ -82,7 +83,10 @@ function DefiMarketCap() {
                 <div className="col">
                   <CardVolume
                     title={`${defiDominance.name} Dominance`}
-                    value={percentageFormat(defiDominance.value, null, 'N/A')}
+                    value={defiDominance.value
+                      ? percentageFormat(defiDominance.value, null, 'N/A')
+                      : <LoaderValue width="150" height="50" />
+                    }
                     className="text-sssyk-blue"
                   />
                 </div>

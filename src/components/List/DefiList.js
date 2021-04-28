@@ -6,6 +6,7 @@ import { percentageFormat, priceColor, volume } from '../../core/helpers'
 import Pagination, { paginate, paginateSort } from '../Pagination/Pagination'
 import WatchStar from '../Watchlist/WatchStar'
 import ListSortHead from './ListSortHead'
+import LoaderTable from '../Loader/LoaderTable'
 
 function DefiList({ coins, selectOptions }) {
   const [page, setPage] = useState(1)
@@ -62,27 +63,7 @@ function DefiList({ coins, selectOptions }) {
             </tr>
             </thead>
             <tbody>
-            {paginatedCoinsSort.map(({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) => (
-              <tr key={index}>
-                <td className="small pe-0">
-                  <WatchStar size="16" coin={id} />
-                </td>
-                <td className="small pe-0">{rank}</td>
-                <td>
-                  <div className="d-flex">
-                    <img src={image} alt={name} className="me-3" width="24" height="24" />
-                    {createElement(id ? Link : 'span', {
-                      to: id ? `/coins/${id}` : undefined,
-                      className: 'text-bran text-decoration-none'
-                    }, name)}
-                  </div>
-                </td>
-                <td className="">{chain}</td>
-                <td className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
-                <td className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
-                <td className="text-end">${volume(tvl)}</td>
-              </tr>
-            ))}
+            {coins.length ? paginatedCoinsSort.map(coinMapper) : <LoaderTable rows={5} cols={7} />}
             </tbody>
           </table>
         </div>
@@ -91,6 +72,30 @@ function DefiList({ coins, selectOptions }) {
         </nav>
       </div>
     </div>
+  )
+}
+
+function coinMapper({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) {
+  return (
+    <tr key={index}>
+      <td className="small pe-0">
+        <WatchStar size="16" coin={id} />
+      </td>
+      <td className="small pe-0">{rank}</td>
+      <td>
+        <div className="d-flex">
+          <img src={image} alt={name} className="me-3" width="24" height="24" />
+          {createElement(id ? Link : 'span', {
+            to: id ? `/coins/${id}` : undefined,
+            className: 'text-bran text-decoration-none'
+          }, name)}
+        </div>
+      </td>
+      <td className="">{chain}</td>
+      <td className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
+      <td className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
+      <td className="text-end">${volume(tvl)}</td>
+    </tr>
   )
 }
 

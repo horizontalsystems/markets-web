@@ -7,6 +7,7 @@ import { currencyFullValue, percentageFormat, priceColor, volume } from '../../c
 import Pagination, { paginate, paginateSort } from '../Pagination/Pagination'
 import WatchStar from '../Watchlist/WatchStar'
 import ListSortHead from './ListSortHead'
+import LoaderTable from '../Loader/LoaderTable'
 
 function CoinList({ coins }) {
   const [page, setPage] = useState(1)
@@ -75,30 +76,7 @@ function CoinList({ coins }) {
             </tr>
             </thead>
             <tbody>
-            {paginatedCoinsSort.map(({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }, index) => (
-              <tr key={index}>
-                <td className="small pe-0">
-                  <WatchStar size="16" coin={id} />
-                </td>
-                <td className="small pe-0">
-                  {rank}
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <img src={image} alt={name} className="me-3" width="24" height="24" />
-                    {createElement(id ? Link : 'span', {
-                      to: id ? `/coins/${id}` : undefined,
-                      className: 'text-bran text-decoration-none'
-                    }, name)}
-                  </div>
-                </td>
-                <td className="text-end">{currencyFullValue(price)}</td>
-                <td className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
-                <td className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
-                <td className="text-end">${volume(marketCap)}</td>
-                <td className="text-end">${volume(totalVolume)}</td>
-              </tr>
-            ))}
+            {coins.length ? paginatedCoinsSort.map(coinMapper) : <LoaderTable rows={5} cols={8} />}
             </tbody>
           </table>
         </div>
@@ -107,6 +85,33 @@ function CoinList({ coins }) {
         </nav>
       </div>
     </div>
+  )
+}
+
+function coinMapper({ id, name, rank, image, price, marketCap, totalVolume, priceChange24h, priceChange7d }, index) {
+  return (
+    <tr key={index}>
+      <td className="small pe-0">
+        <WatchStar size="16" coin={id} />
+      </td>
+      <td className="small pe-0">
+        {rank}
+      </td>
+      <td>
+        <div className="d-flex">
+          <img src={image} alt={name} className="me-3" width="24" height="24" />
+          {createElement(id ? Link : 'span', {
+            to: id ? `/coins/${id}` : undefined,
+            className: 'text-bran text-decoration-none'
+          }, name)}
+        </div>
+      </td>
+      <td className="text-end">{currencyFullValue(price)}</td>
+      <td className={cn('text-end', priceColor(priceChange24h))}>{percentageFormat(priceChange24h)}</td>
+      <td className={cn('text-end', priceColor(priceChange7d))}>{percentageFormat(priceChange7d)}</td>
+      <td className="text-end">${volume(marketCap)}</td>
+      <td className="text-end">${volume(totalVolume)}</td>
+    </tr>
   )
 }
 

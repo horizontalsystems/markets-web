@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { currencyFormat, percentageFormat, priceColor } from '../../core/helpers'
 import { ArrowRight } from '../Icon'
 
+import LoaderTable from '../Loader/LoaderTable'
 import CardHead from '../Card/CardHead'
 import Card from '../Card/Card'
 import Table from '../Table/Table'
@@ -32,32 +33,33 @@ function OverviewTvlChange({ title, headIcon: Icon, tokens, seeMorePath }) {
         </tr>
         </thead>
         <tbody>
-        {tokens.map(({ id, symbol, logo, tvl, priceChange24h }, index) => {
-            return (
-              <tr key={index}>
-                <td className="small pe-0">{index + 1}</td>
-                <td>
-                  <div className="d-flex">
-                    {logo && <img src={logo} alt={symbol} className="me-3" width="24" height="24" />}
-                    {createElement(id ? Link : 'span', {
-                      to: id ? `/coins/${id}` : undefined,
-                      className: 'text-bran text-decoration-none text-uppercase'
-                    }, symbol)}
-                  </div>
-                </td>
-                <td className="text-end text-nowrap">
-                  {currencyFormat(tvl)}
-                </td>
-                <td className={cn('text-end', priceColor(priceChange24h))}>
-                  {percentageFormat(priceChange24h)}
-                </td>
-              </tr>
-            )
-          }
-        )}
+        {tokens.length ? tokens.map(coinMapper) : <LoaderTable cols={4} rows={5} />}
         </tbody>
       </Table>
     </Card>
+  )
+}
+
+function coinMapper({ id, symbol, logo, tvl, priceChange24h }, index) {
+  return (
+    <tr key={index}>
+      <td className="small pe-0">{index + 1}</td>
+      <td>
+        <div className="d-flex">
+          {logo && <img src={logo} alt={symbol} className="me-3" width="24" height="24" />}
+          {createElement(id ? Link : 'span', {
+            to: id ? `/coins/${id}` : undefined,
+            className: 'text-bran text-decoration-none text-uppercase'
+          }, symbol)}
+        </div>
+      </td>
+      <td className="text-end text-nowrap">
+        {currencyFormat(tvl)}
+      </td>
+      <td className={cn('text-end', priceColor(priceChange24h))}>
+        {percentageFormat(priceChange24h)}
+      </td>
+    </tr>
   )
 }
 

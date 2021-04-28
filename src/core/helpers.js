@@ -25,7 +25,7 @@ export function percentageFormat(value, options, na = '') {
 
 export function currencyFormat(value, options) {
   if (!value) {
-    return 'N/A'
+    return ''
   }
 
   return numbro(value).formatCurrency(options)
