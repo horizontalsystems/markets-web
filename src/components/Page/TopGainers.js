@@ -24,7 +24,7 @@ function TopGainers() {
           </h3>
         </div>
 
-        <CoinList coins={coins} />
+        <CoinList coins={coins} initialSort={{ field: 'priceChange24h', value: 't_gainers', label: 'Top Gainers' }} />
       </div>
     </div>
   )

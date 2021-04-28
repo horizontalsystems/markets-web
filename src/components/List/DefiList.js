@@ -11,9 +11,9 @@ import LoaderTable from '../Loader/LoaderTable'
 function DefiList({ coins, selectOptions }) {
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(null)
-  const [sortPage, setSortPage] = useState({ field: '', desc: true })
+  const [sortPage, setSortPage] = useState({ field: 'priceChange24h', desc: true })
 
-  const sortedCoins = filterCoins(sort, coins)
+  const sortedCoins = filterCoins(sort, [...coins])
 
   const perPage = 50
   const paginatedCoins = paginate(sortedCoins, page, perPage);

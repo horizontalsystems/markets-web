@@ -9,12 +9,12 @@ import WatchStar from '../Watchlist/WatchStar'
 import ListSortHead from './ListSortHead'
 import LoaderTable from '../Loader/LoaderTable'
 
-function CoinList({ coins }) {
+function CoinList({ coins, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
   const [page, setPage] = useState(1)
-  const [sort, setSort] = useState(null)
-  const [sortPage, setSortPage] = useState({ field: '', desc: true })
+  const [sort, setSort] = useState(initialSort)
+  const [sortPage, setSortPage] = useState({ field: initialSort.field.field, desc: true })
 
-  const sortedCoins = sortCoins(sort, coins)
+  const sortedCoins = sortCoins(sort, [...coins])
 
   const perPage = 50
   const paginatedCoins = paginate(sortedCoins, page, perPage);
@@ -27,7 +27,7 @@ function CoinList({ coins }) {
           <div className="col-md-3">
             <Select
               className="mt-3"
-              placeholder="Highest Cap"
+              placeholder="Select"
               value={sort}
               onChange={value => {
                 setSort(value)

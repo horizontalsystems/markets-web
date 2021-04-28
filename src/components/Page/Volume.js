@@ -74,7 +74,7 @@ function Volume() {
           </div>
         </div>
 
-        <CoinList coins={coins} />
+        <CoinList coins={coins} initialSort={{ field: 'totalVolume', value: 'h_volume', label: 'Highest Volume' }}  />
       </div>
     </div>
   )
