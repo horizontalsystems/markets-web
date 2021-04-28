@@ -8,7 +8,7 @@ export const fetchMarkets = () => (dispatch, getState) => {
     return
   }
 
-  return getMarkets().then(data => {
+  return getMarkets(250).then(data => {
     dispatch({
       type: MARKETS_FETCHED,
       coins: normalizeCoins(data)

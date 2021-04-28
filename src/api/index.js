@@ -7,7 +7,7 @@ export function getMarketsGlobal() {
   return axios.get(`${marketsBaseUrl}/markets/global/24h`)
 }
 
-export function getMarkets(count = 100) {
+export function getMarkets(count = 250) {
   return getMarketsRecursive(1, Math.min(count, 250), count)
 }
 
