@@ -10,6 +10,10 @@ function CoinMarkets({ className, markets }) {
   const [isFull, showFull] = useState(false)
   const tickers = isFull ? markets : markets.slice(0, 5)
 
+  if (!tickers.length) {
+    return null
+  }
+
   return (
     <Card className={className}>
       <CardHead title="Markets" action={

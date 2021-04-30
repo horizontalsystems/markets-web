@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
-import { Daynight, Globe, Logo, Search } from '../Icon'
-
+import { Daynight, Globe, Logo } from '../Icon'
 import './Header.scss'
+
+const HeaderSearch = React.lazy(() => import('./HeaderSearch'))
 
 function Header() {
   const [isDarkMode, setTheme] = useState(true);
@@ -46,12 +47,9 @@ function Header() {
 
           <ul className="navbar-nav ms-auto">
             <li className="nav-item pe-md-3">
-              <form className="input-group input-group-navbar">
-                <input type="text" className="form-control rounded-start border-end-0" placeholder="Search" id="search" />
-                <label htmlFor="search" className="input-group-text bg-white">
-                  <Search />
-                </label>
-              </form>
+              <Suspense fallback={null}>
+                <HeaderSearch />
+              </Suspense>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link d-flex" href="/" id="dropdown-language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
