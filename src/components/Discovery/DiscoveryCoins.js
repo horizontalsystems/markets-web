@@ -9,6 +9,7 @@ function DiscoveryCoins({ category }) {
   const dispatch = useDispatch()
   const marketsCoins = useSelector(state => selectMarketsCoins(state, category))
   const categoryCoins = useSelector(state => selectCategoryCoins(state, category))
+  const coins = category ? categoryCoins : marketsCoins
 
   useEffect(() => {
     if (category) {
@@ -18,7 +19,7 @@ function DiscoveryCoins({ category }) {
     }
   }, [dispatch, category])
 
-  return <CoinList coins={category ? categoryCoins : marketsCoins} />
+  return <CoinList coins={coins} isFetching={!coins.length} />
 }
 
 export default DiscoveryCoins

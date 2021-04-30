@@ -95,7 +95,7 @@ function DefiMarketCap() {
           </div>
         </div>
 
-        <CoinList coins={coins} />
+        <CoinList coins={coins} isFetching={!coins.length} />
       </div>
     </div>
   )

@@ -7,7 +7,10 @@ import CoinList from '../List/CoinList'
 
 function Watchlist() {
   const dispatch = useDispatch()
-  const coins = useSelector(state => selectWatchlist(state))
+  const {
+    coins,
+    isFetching
+  } = useSelector(state => selectWatchlist(state))
 
   useEffect(() => {
     dispatch(fetchWatchlist())
@@ -18,7 +21,7 @@ function Watchlist() {
       <HeaderTabs active="/watchlist" />
 
       <div className="pt-3 py-5">
-        <CoinList coins={coins} />
+        <CoinList coins={coins} isFetching={isFetching} />
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import { createSelector } from 'reselect'
 import { getMarketsByIds } from '../../api'
 import { normalizeCoins } from './markets'
 
+export const WATCHLIST_FETCHING = 'WATCHLIST_FETCHING'
 export const WATCHLIST_FETCHED = 'WATCHLIST_FETCHED'
 export const WATCHLIST_ADD = 'WATCHLIST_ADD'
 export const WATCHLIST_REMOVE = 'WATCHLIST_REMOVE'
@@ -19,6 +20,8 @@ export const fetchWatchlist = () => (dispatch, getState) => {
     return
   }
 
+  dispatch({ type: WATCHLIST_FETCHING })
+
   return getMarketsByIds(coinsIds)
     .then(({ data }) =>
       dispatch({
@@ -35,9 +38,17 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case WATCHLIST_FETCHING: {
+      return {
+        ...state,
+        fetching: true
+      }
+    }
+
     case WATCHLIST_FETCHED: {
       return {
         ...state,
+        fetching: false,
         coins: action.coins
       }
     }
@@ -102,7 +113,10 @@ export const removeFromWatchlist = coin => (dispatch, getState) => {
 }
 export const selectWatchlist = createSelector(
   state => state.watchlist,
-  ({ coins, coinsMap }) => {
-    return coins.filter(coin => coinsMap[coin.id])
+  ({ coins, fetching, coinsMap }) => {
+    return {
+      coins: coins.filter(coin => coinsMap[coin.id]),
+      isFetching: fetching
+    }
   }
 )

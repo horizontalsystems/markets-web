@@ -9,7 +9,7 @@ import WatchStar from '../Watchlist/WatchStar'
 import ListSortHead from './ListSortHead'
 import LoaderTable from '../Loader/LoaderTable'
 
-function CoinList({ coins, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
+function CoinList({ coins, isFetching, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(initialSort)
   const [sortPage, setSortPage] = useState({ field: initialSort.field.field, desc: true })
@@ -76,7 +76,9 @@ function CoinList({ coins, initialSort = { field: 'marketCap', value: 'h_cap', l
             </tr>
             </thead>
             <tbody>
-            {coins.length ? paginatedCoinsSort.map(coinMapper) : <LoaderTable rows={5} cols={8} />}
+            {isFetching
+              ? <LoaderTable rows={5} cols={8} />
+              : paginatedCoinsSort.map(coinMapper)}
             </tbody>
           </table>
         </div>

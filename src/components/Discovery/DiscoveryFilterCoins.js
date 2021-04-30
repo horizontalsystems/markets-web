@@ -12,7 +12,7 @@ function DiscoveryFilterCoins() {
     dispatch(fetchFilteredCoins())
   }, [dispatch])
 
-  return <CoinList coins={filteredCoins} />
+  return <CoinList coins={filteredCoins} isFetching={!filteredCoins.length} />
 }
 
 export default DiscoveryFilterCoins
