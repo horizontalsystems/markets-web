@@ -61,3 +61,15 @@ export function calculatePercentage(partialValue, totalValue) {
 export function percentageBetweenRange(input, min, max) {
   return ((input - min) * 100) / (max - min)
 }
+
+export function truncateMiddle(fullText, maxLen) {
+  if (fullText.length <= maxLen) return fullText
+
+  const separator = '...'
+  const sepLen = separator.length,
+    charsToShow = maxLen - sepLen,
+    frontChars = Math.ceil(charsToShow / 2),
+    backChars = Math.floor(charsToShow / 2)
+
+  return fullText.substr(0, frontChars) + separator + fullText.substr(fullText.length - backChars)
+}

@@ -1,5 +1,5 @@
 import { getCoinInfo } from '../../api'
-import { percentageBetweenRange } from '../helpers'
+import { percentageBetweenRange, truncateMiddle } from '../helpers'
 
 import coinsStore from '../coins-store'
 import { createSelector } from 'reselect'
@@ -153,12 +153,14 @@ function normalizeLinks(links) {
 
 function normalizeMarkets(tickers) {
   return tickers.map(
-    item => ({
-      name: item.market.name,
-      pair: `${item.base}/${item.target}`,
-      price: item.converted_last.usd,
-      volume: item.converted_volume.usd
-    })
+    item => {
+      return ({
+        name: item.market.name,
+        pair: `${truncateMiddle(item.base, 15)}/${item.target}`,
+        price: item.converted_last.usd,
+        volume: item.converted_volume.usd
+      })
+    }
   ).sort((a, b) =>
     b.volume - a.volume
   )
