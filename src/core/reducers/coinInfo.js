@@ -83,8 +83,10 @@ function normalize(coin, storedCoin) {
     rank: coin.coingecko_rank,
     description: coin.description.en,
     price: marketData.current_price.usd,
+    platforms: coin.platforms,
     priceChange24: marketData.price_change_percentage_24h,
 
+    links: normalizeLinks(coin.links),
     markets: normalizeMarkets(coin.tickers),
     performance: normalizePerformance(coin.market_data),
     priceRanges: normalizePriceRange(coin.market_data),
@@ -99,9 +101,15 @@ function mergeStoredData(coin, storedCoin) {
     return coin
   }
 
-  coin.links = storedCoin.links
+  // Merge only existing links
+  Object.keys(storedCoin.links).forEach(key => {
+    const link = storedCoin.links[key]
+    if (link) {
+      coin.links[key] = link
+    }
+  })
+
   coin.categories = storedCoin.categories
-  coin.platform = storedCoin.platform
   coin.guide = storedCoin.guide
   coin.whitepaper = storedCoin.whitepaper
   coin.funds = storedCoin.funds.map(fund => coinsStore.funds[fund])
@@ -111,6 +119,36 @@ function mergeStoredData(coin, storedCoin) {
   }
 
   return coin
+}
+
+function normalizeLinks(links) {
+  const map = {
+    reddit: links.subreddit_url
+  }
+
+  if (links.telegram_channel_identifier) {
+    map.telegram = `https://t.me/${links.telegram_channel_identifier}`
+  }
+
+  if (links.twitter_screen_name) {
+    map.telegram = `https://twitter.com/${links.twitter_screen_name}`
+  }
+
+  if (links.homepage && links.homepage.length) {
+    map.website = links.homepage[0]
+  }
+
+  if (links.repos_url) {
+    if (links.repos_url.github && links.repos_url.github.length) {
+      map.github = links.homepage[0]
+    }
+
+    if (links.repos_url.bitbucket && links.repos_url.bitbucket.length) {
+      map.bitbucket = links.homepage[0]
+    }
+  }
+
+  return map
 }
 
 function normalizeMarkets(tickers) {
@@ -138,7 +176,7 @@ function normalizeVolumes(marketData) {
 
 function normalizePerformance(marketData) {
   const performance = []
-  const performanceCoins = ['usd', 'eth', 'btc']
+  const performanceCoins = ['usd', 'eth', 'btc', 'bnb']
   const performancePeriods = [
     { name: '1w', key: 'price_change_percentage_7d_in_currency' },
     { name: '1m', key: 'price_change_percentage_30d_in_currency' }

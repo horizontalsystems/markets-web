@@ -116,7 +116,7 @@ function Coin({ match }) {
           </div>
 
           <div className="col-12 col-lg-3">
-            <CoinSidebar coin={coin.id} links={coin.links} platform={coin.platform} />
+            <CoinSidebar coin={coin.id} links={coin.links} platforms={coin.platforms} />
           </div>
         </div>
       </div>

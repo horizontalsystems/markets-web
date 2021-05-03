@@ -1,16 +1,30 @@
 import React from 'react'
+import copy from 'copy-text-to-clipboard'
+import { useDispatch } from 'react-redux'
+import { watch } from '../../core/reducers/watchlist'
 import { Copy, Github, Globe, Reddit, Telegram, Twitter } from '../Icon'
 import List from '../List/List'
 import ListItem from '../List/ListItem'
 import WatchStar from '../Watchlist/WatchStar'
 
-function CoinSidebar({ coin, links = {}, platform = {} }) {
+function CoinSidebar({ coin, links = {}, platforms }) {
+  const onClickCopy = (text) => {
+    copy(text)
+  }
+
+  const dispatch = useDispatch()
+  const onClickWatch = () => {
+    if (coin) {
+      dispatch(watch(coin))
+    }
+  }
+
   return (
     <>
       <div className="card py-2 px-3 mb-3 bg-lawrence rounded-3 border-0">
         <div className="fw-500">
-          <div className="d-flex text-oz" role="button">
-            <WatchStar size="20" className="me-2" coin={coin} /> Add to Watchlist
+          <div className="d-flex text-oz" role="button" onClick={onClickWatch}>
+            <WatchStar size="20" className="me-2" coin={coin} handleClick={false} /> Add to Watchlist
           </div>
         </div>
       </div>
@@ -47,17 +61,28 @@ function CoinSidebar({ coin, links = {}, platform = {} }) {
         </ListItem>}
       </List>
 
-      {platform.address && <div className="card bg-lawrence rounded-3 border-0 mt-3">
+      {platforms && <div className="card bg-lawrence rounded-3 border-0 mt-3">
         <ul className="list-group list-group-flush rounded-3">
-          <li className="list-group-item bg-lawrence text-oz d-flex justify-content-between">
+          {platforms.ethereum && <ListItem className="text-oz" value={platforms.ethereum}>
             <div className="text-nowrap me-2">
-              <Copy className="me-2" role="button" />
-              {platform.name}
+              <Copy className="me-2" role="button" onClick={() => onClickCopy(platforms.ethereum)} /> Ethereum
             </div>
-            <div className="text-truncate">
-              <small className="font-monospace">{platform.address}</small>
+          </ListItem>}
+          {platforms['binance-smart-chain'] && <ListItem className="text-oz" value={platforms['binance-smart-chain']}>
+            <div className="text-nowrap me-2">
+              <Copy className="me-2" role="button" onClick={() => onClickCopy(platforms['binance-smart-chain'])} /> Binance Smart Chain
             </div>
-          </li>
+          </ListItem>}
+          {platforms.solana && <ListItem className="text-oz" value={platforms.solana}>
+            <div className="text-nowrap me-2">
+              <Copy className="me-2" role="button" onClick={() => onClickCopy(platforms.solana)} /> Solana
+            </div>
+          </ListItem>}
+          {platforms.Avalanche && <ListItem className="text-oz" value={platforms.Avalanche}>
+            <div className="text-nowrap me-2">
+              <Copy className="me-2" role="button" onClick={() => onClickCopy(platforms.Avalanche)} /> Avalanche
+            </div>
+          </ListItem>}
         </ul>
       </div>}
     </>
