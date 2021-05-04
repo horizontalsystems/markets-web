@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { currencyFullValue } from '../../core/helpers'
-import { ArrowRight } from '../Icon'
+import { ArrowDown, ArrowUp } from '../Icon'
 
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
@@ -18,8 +18,7 @@ function CoinMarkets({ className, markets }) {
     <Card className={className}>
       <CardHead title="Markets" action={
         markets.length > 5 && <div className="d-flex align-items-center text-grey" role="button" onClick={() => showFull(!isFull)}>
-          <span>{isFull ? 'Show top 5' : 'Show all'}</span>
-          <ArrowRight className="ps-1" />
+          {isFull ? <ArrowUp /> : <ArrowDown />}
         </div>
       } />
       <Table>

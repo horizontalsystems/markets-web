@@ -1,6 +1,6 @@
 import { createElement } from 'react'
-import { ReactComponent as SortUp } from '../Icon/arrow-up.svg'
-import { ReactComponent as SortDown } from '../Icon/arrow-down.svg'
+import { ReactComponent as SortUp } from '../Icon/sort-up.svg'
+import { ReactComponent as SortDown } from '../Icon/sort-down.svg'
 
 function ListSortHead({ className, field, fieldString, sort, setSort, children }) {
   const child = []

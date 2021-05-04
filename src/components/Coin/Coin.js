@@ -26,19 +26,19 @@ function Coin({ match }) {
 
   return (
     <div className="Coin">
-      <div className="container pb-5">
+      <div className="container-sm pb-5">
         <div className="row row-cols-2 g-3">
           <div className="col-12 col-lg-9">
-            <div className="p-5 bg-steel-10 rounded-3">
-              <div className="d-flex">
+            <div className="p-3 p-md-5 bg-steel-10 rounded-3">
+              <div className="d-flex flex-column flex-md-row">
                 <img
-                  className="object-contain rounded-circle"
+                  className="object-contain rounded-circle d-none d-md-block"
                   src={coin.image}
-                  width="96"
+                  height="96"
                   alt=""
                 />
 
-                <div className="ps-3">
+                <div className="ps-md-3 mt-3 mt-md-0">
                   <div className="fs-3 text-grey-light">{coin.name}</div>
                   <div className="d-flex align-items-center">
                     <span className="fs-1 text-grey fw-bold text-uppercase">{coin.symbol}</span>

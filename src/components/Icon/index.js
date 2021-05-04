@@ -1,3 +1,5 @@
+import { ReactComponent as ArrowUp } from './arrow-up.svg'
+import { ReactComponent as ArrowDown } from './arrow-down.svg'
 import { ReactComponent as ArrowLeft } from './arrow-left.svg'
 import { ReactComponent as ArrowRight } from './arrow-right.svg'
 import { ReactComponent as Clipboard } from './clipboard.svg'
@@ -19,6 +21,8 @@ import { ReactComponent as Reddit } from './reddit.svg'
 import { ReactComponent as Close } from './close.svg'
 
 export {
+  ArrowUp,
+  ArrowDown,
   ArrowLeft,
   ArrowRight,
   Clipboard,
