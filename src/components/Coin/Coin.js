@@ -70,11 +70,14 @@ function Coin({ match }) {
               <div className="row g-3">
                 <div className="col-lg-6">
                   <CoinVolume
+                    symbol={coin.symbol}
+                    coinId={coinId}
                     totalVolume={coin.volumes.totalVolume}
                     totalSupply={coin.volumes.totalSupply}
                     circulatingSupply={coin.volumes.circulatingSupply}
                     marketCap={coin.volumes.marketCap}
                     dilutedValuation={coin.volumes.dilutedValuation}
+                    tvl={coin.volumes.tvl}
                   />
                 </div>
 

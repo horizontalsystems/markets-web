@@ -156,7 +156,7 @@ function normalizeMarkets(tickers) {
     item => {
       return ({
         name: item.market.name,
-        pair: `${truncateMiddle(item.base, 15)}/${item.target}`,
+        pair: `${truncateMiddle(item.base, 15)}/${truncateMiddle(item.target, 15)}`,
         price: item.converted_last.usd,
         volume: item.converted_volume.usd
       })
@@ -172,13 +172,14 @@ function normalizeVolumes(marketData) {
     totalSupply: marketData.total_supply,
     circulatingSupply: marketData.circulating_supply,
     marketCap: marketData.market_cap.usd,
-    dilutedValuation: marketData.fully_diluted_valuation.usd
+    dilutedValuation: marketData.fully_diluted_valuation.usd,
+    tvl: marketData.total_value_locked ? marketData.total_value_locked.usd : null
   }
 }
 
 function normalizePerformance(marketData) {
   const performance = []
-  const performanceCoins = ['usd', 'eth', 'btc', 'bnb']
+  const performanceCoins = ['usd', 'btc', 'eth', 'bnb']
   const performancePeriods = [
     { name: '1w', key: 'price_change_percentage_7d_in_currency' },
     { name: '1m', key: 'price_change_percentage_30d_in_currency' }

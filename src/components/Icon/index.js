@@ -16,6 +16,7 @@ import { ReactComponent as Twitter } from './twitter.svg'
 import { ReactComponent as Github } from './github.svg'
 import { ReactComponent as Telegram } from './telegram.svg'
 import { ReactComponent as Reddit } from './reddit.svg'
+import { ReactComponent as Close } from './close.svg'
 
 export {
   ArrowLeft,
@@ -35,5 +36,6 @@ export {
   Twitter,
   Github,
   Telegram,
-  Reddit
+  Reddit,
+  Close
 }

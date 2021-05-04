@@ -1,8 +1,14 @@
 import React from 'react'
-import List from '../List/List'
+import events from '../../core/EventEmitter'
 import { currencyFullValue } from '../../core/helpers'
+import ModalTvlChart from '../Modal/ModalTvlChart'
+import List from '../List/List'
 
-function CoinVolume({ totalVolume, totalSupply, circulatingSupply, marketCap, dilutedValuation }) {
+function CoinVolume({ symbol, coinId, totalVolume, totalSupply, circulatingSupply, marketCap, dilutedValuation, tvl }) {
+  const onClick = () => {
+    events.showModal(<ModalTvlChart symbol={symbol} coinId={coinId} />)
+  }
+
   return (
     <List>
       <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
@@ -27,6 +33,10 @@ function CoinVolume({ totalVolume, totalSupply, circulatingSupply, marketCap, di
         <div className="text-grey">Diluted MCap</div>
         <div className="text-oz">{currencyFullValue(dilutedValuation)}</div>
       </li>
+      {tvl && <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" onClick={onClick} role="button">
+        <div className="text-grey">Total Value Locked</div>
+        <div className="text-oz">{currencyFullValue(tvl)}</div>
+      </li>}
     </List>
   )
 }

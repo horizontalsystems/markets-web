@@ -4,14 +4,20 @@ import PropTypes from 'prop-types'
 class Tradingview extends React.Component {
   static propTypes = {
     symbol: PropTypes.string,
-    datafeed: PropTypes.object
+    datafeed: PropTypes.object,
+    interval: PropTypes.string
+  }
+
+  static defaultProps = {
+    interval: '30'
   }
 
   componentDidMount() {
+    const { symbol, datafeed, interval } = this.props
     const widget = new window.TradingView.widget({
-      symbol: this.props.symbol,
-      datafeed: this.props.datafeed,
-      interval: '30',
+      symbol,
+      datafeed,
+      interval,
       container_id: 'chart',
       library_path: '/charting_library/',
       charts_storage_url: 'https://saveload.tradingview.com',
@@ -19,7 +25,7 @@ class Tradingview extends React.Component {
       client_id: 'tradingview.com',
       user_id: 'public_user_id',
       autosize: true,
-      theme: "dark",
+      theme: 'dark',
       enabled_features: [],
       disabled_features: [
         'header_symbol_search',

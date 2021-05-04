@@ -84,7 +84,7 @@ function coinMapper({ id, name, rank, image, chain, priceChange24h, priceChange7
       <td className="small pe-0">{rank}</td>
       <td>
         <div className="d-flex">
-          <img src={image} alt={name} className="me-3" width="24" height="24" />
+          {image && <img src={image} alt={name} className="me-3" width="24" height="24" />}
           {createElement(id ? Link : 'span', {
             to: id ? `/coins/${id}` : undefined,
             className: 'text-bran text-decoration-none'

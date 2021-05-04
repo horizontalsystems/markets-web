@@ -67,6 +67,7 @@ $border-radius-lg:   1rem !default;
 $table-cell-padding-y:  1rem;
 $table-cell-padding-x:  1rem;
 
+$modal-backdrop-bg: $dark_80;
 
 // Paired Colors
 
@@ -112,6 +113,10 @@ body.dark {
   --andy:              #{$black_50};
   --nina:              #{$white_50};
   --raina:             #{$steel_10};
+}
+
+body.modal-open {
+  overflow: hidden
 }
 
 // Background colors
