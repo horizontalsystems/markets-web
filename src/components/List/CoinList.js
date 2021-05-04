@@ -1,5 +1,4 @@
 import React, { createElement, useState } from 'react'
-import Select from 'react-select'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 import { currencyFullValue, percentageFormat, priceColor, volume } from '../../core/helpers'
@@ -8,6 +7,7 @@ import Pagination, { paginate, paginateSort } from '../Pagination/Pagination'
 import WatchStar from '../Watchlist/WatchStar'
 import ListSortHead from './ListSortHead'
 import LoaderTable from '../Loader/LoaderTable'
+import Select from '../Select/Select'
 
 function CoinList({ coins, isFetching, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
   const [page, setPage] = useState(1)

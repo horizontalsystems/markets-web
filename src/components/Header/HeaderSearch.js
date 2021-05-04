@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select/async'
+import { components } from 'react-select'
+import { useHistory } from 'react-router-dom'
 import debounce from 'lodash/debounce'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { Search } from '../Icon'
 
 function HeaderSearch() {
   const [coins, setCoins] = useState([])
@@ -64,22 +66,56 @@ function HeaderSearch() {
 
   const history = useHistory()
   const styles = {
+    control: styles => ({
+      ...styles,
+      backgroundColor: '#252933',
+      borderColor: '#6E789933',
+      borderRadius: '8px'
+    }),
     input: () => ({
       width: 220,
-      maxWidth: 220.
+      maxWidth: 220,
+      color: '#F5F5F5'
+    }),
+    indicatorSeparator: () => ({
+      display: 'none'
     }),
     loadingIndicator: () => ({
       display: 'none'
     }),
-    menu: (provided) => ({
-      ...provided,
-      zIndex: 100
+    menu: (styles) => ({
+      ...styles,
+      zIndex: 100,
+      backgroundColor: '#252933',
+      borderRadius: '8px'
+    }),
+    option: (styles) => ({
+      ...styles,
+      borderBottom: '1px dotted #6E78991a',
+      color: '#c8c7cc',
+      cursor: 'pointer',
+      padding: '13px',
+      backgroundColor: '#252933',
+      '&:active': {
+        backgroundColor: 'transparent',
+      }
     })
+  }
+
+  const DropdownIndicator = props => {
+    return (
+      components.DropdownIndicator && (
+        <components.DropdownIndicator {...props}>
+          <Search />
+        </components.DropdownIndicator>
+      )
+    )
   }
 
   return (
     <Select
       value={null}
+      components={{ DropdownIndicator }}
       placeholder="Search"
       defaultOptions
       styles={styles}

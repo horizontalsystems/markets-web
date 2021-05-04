@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCoinInfo, selectCoin } from '../../core/reducers/coinInfo'
-import { currencyFullValue, percentageFormat } from '../../core/helpers'
+import { currencyFullValue, percentageFormat, priceColor } from '../../core/helpers'
 import { Info } from '../Icon'
 
 import Chart from '../Chart/Chart'
@@ -14,6 +14,7 @@ import CoinSidebar from './CoinSidebar'
 import CoinCategories from './CoinCategories'
 import List from '../List/List'
 import ListItem from '../List/ListItem'
+import cn from 'classnames'
 
 function Coin({ match }) {
   const coinId = match.params.id
@@ -54,7 +55,7 @@ function Coin({ match }) {
                 <span className="fs-1 text-oz fw-bold">
                   {currencyFullValue(coin.price)}
                 </span>
-                <span className="fs-3 text-success ms-2">
+                <span className={cn('fs-3 ms-2', priceColor(coin.priceChange24))}>
                   {percentageFormat(coin.priceChange24)}
                 </span>
               </div>
