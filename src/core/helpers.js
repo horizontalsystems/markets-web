@@ -31,7 +31,11 @@ export function currencyFormat(value, options) {
   return numbro(value).formatCurrency(options)
 }
 
-export function currencyFullValue(value, options = { thousandSeparated: true }) {
+export function currencyFullValue(value, options = { thousandSeparated: true }, na = 'N/A') {
+  if (!value) {
+    return na
+  }
+
   return currencyFormat(value, options)
 }
 

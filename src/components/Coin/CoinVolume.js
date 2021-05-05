@@ -1,43 +1,84 @@
 import React from 'react'
-import events from '../../core/EventEmitter'
-import { currencyFullValue } from '../../core/helpers'
-import ModalTvlChart from '../Modal/ModalTvlChart'
-import List from '../List/List'
+import { currencyFullValue, percentageFormat } from '../../core/helpers'
 
-function CoinVolume({ symbol, coinId, totalVolume, totalSupply, circulatingSupply, marketCap, dilutedValuation, tvl }) {
-  const onClick = () => {
-    events.showModal(<ModalTvlChart symbol={symbol} coinId={coinId} />)
+import Card from '../Card/Card'
+import List from '../List/List'
+import events from '../../core/EventEmitter'
+import ModalTvlChart from '../Modal/ModalTvlChart'
+import { Candles } from '../Icon'
+
+function CoinVolume({ volumes, symbol, coinId }) {
+
+  const mCapTvlRatio = (volumes.marketCap && volumes.tvl) ? volumes.marketCap / volumes.tvl : 0
+  const onClickVolume = () => {
+    if (volumes.tvl) {
+      events.showModal(<ModalTvlChart symbol={symbol} coinId={coinId} />)
+    }
   }
 
   return (
-    <List>
-      <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div className="text-grey">Volume 24h</div>
-        <div className="text-oz">{currencyFullValue(totalVolume)}</div>
-      </li>
-      <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div className="text-grey">Market Cap</div>
-        <span className="text-oz">{currencyFullValue(marketCap)}</span>
-      </li>
-      <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div className="text-grey">In Circulation</div>
-        <div className="text-oz">
-          {currencyFullValue(circulatingSupply, { thousandSeparated: true, mantissa: 0 })}
-        </div>
-      </li>
-      <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div className="text-grey">Total Supply</div>
-        <div className="text-oz">{currencyFullValue(totalSupply)}</div>
-      </li>
-      <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
-        <div className="text-grey">Diluted MCap</div>
-        <div className="text-oz">{currencyFullValue(dilutedValuation)}</div>
-      </li>
-      {tvl && <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" onClick={onClick} role="button">
-        <div className="text-grey">Total Value Locked</div>
-        <div className="text-oz">{currencyFullValue(tvl)}</div>
-      </li>}
-    </List>
+    <div className="row g-3">
+      <div className="col-lg-6">
+        <Card className="h-100">
+          <List>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Market Cap</div>
+              <span className="text-oz">{currencyFullValue(volumes.marketCap)}</span>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">In Circulation</div>
+              <div className="text-oz">
+                {currencyFullValue(volumes.circulatingSupply, { thousandSeparated: true, mantissa: 0 })}
+              </div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Total Supply</div>
+              <div className="text-oz">{currencyFullValue(volumes.totalSupply)}</div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Diluted MCap</div>
+              <div className="text-oz">{currencyFullValue(volumes.dilutedValuation)}</div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Launch Date</div>
+              <div className="text-oz">23 April, 2021</div>
+            </li>
+          </List>
+        </Card>
+      </div>
+
+      <div className="col-lg-6">
+        <Card className="h-100">
+          <List>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Trading Volume</div>
+              <div className="text-oz">{currencyFullValue(volumes.totalVolume)}</div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">Volume Rank</div>
+              <span className="text-oz">N/A</span>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" role="button" onClick={onClickVolume}>
+              <div className="text-grey">Total Value Locked</div>
+              <div className="text-oz">
+                {currencyFullValue(volumes.tvl)}
+                {volumes.tvl && <Candles className="ms-1" />}
+              </div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">TVL Rank</div>
+              <div className="text-oz">N/A</div>
+            </li>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+              <div className="text-grey">M.cap / TVL ratio</div>
+              <div className="text-oz">
+                {percentageFormat(mCapTvlRatio, { forceSign: false }, 'N/A')}
+              </div>
+            </li>
+          </List>
+        </Card>
+      </div>
+    </div>
   )
 }
 

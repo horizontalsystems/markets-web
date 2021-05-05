@@ -1,8 +1,8 @@
+import cn from 'classnames'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCoinInfo, selectCoin } from '../../core/reducers/coinInfo'
 import { currencyFullValue, percentageFormat, priceColor } from '../../core/helpers'
-import { Info } from '../Icon'
 
 import Chart from '../Chart/Chart'
 import CoinMarkets from './CoinMarkets'
@@ -12,9 +12,7 @@ import CoinInfo from './CoinInfo'
 import CoinVolume from './CoinVolume'
 import CoinSidebar from './CoinSidebar'
 import CoinCategories from './CoinCategories'
-import List from '../List/List'
-import ListItem from '../List/ListItem'
-import cn from 'classnames'
+import CoinSecurity from './CoinSecurity'
 
 function Coin({ match }) {
   const coinId = match.params.id
@@ -68,54 +66,19 @@ function Coin({ match }) {
                 <CoinPerformance performance={coin.performance} priceRanges={coin.priceRanges} />
               </div>
 
-              <div className="row g-3">
-                <div className="col-lg-6">
-                  <CoinVolume
-                    symbol={coin.symbol}
-                    coinId={coinId}
-                    totalVolume={coin.volumes.totalVolume}
-                    totalSupply={coin.volumes.totalSupply}
-                    circulatingSupply={coin.volumes.circulatingSupply}
-                    marketCap={coin.volumes.marketCap}
-                    dilutedValuation={coin.volumes.dilutedValuation}
-                    tvl={coin.volumes.tvl}
-                  />
-                </div>
-
-                <div className="col-lg-6">
-                  <List>
-                    <ListItem className="py-3">
-                      <div className="text-grey">Privacy</div>
-                      <div className="text-oz">
-                        <span className="badge bg-remus text-oz">High</span>
-                        <Info className="ms-2" role="bottom" />
-                      </div>
-                    </ListItem>
-                    <ListItem className="py-3">
-                      <div className="text-grey">Issuance</div>
-                      <small className="text-oz">N/A</small>
-                    </ListItem>
-                    <ListItem className="py-3">
-                      <div className="text-grey">Confiscation-resistance</div>
-                      <small className="text-oz">N/A</small>
-                    </ListItem>
-                    <ListItem className="py-3">
-                      <div className="text-grey">Censorship-resistance</div>
-                      <small className="text-oz">N/A</small>
-                    </ListItem>
-                    <ListItem className="py-3">
-                      <div className="text-grey">Audited</div>
-                      <small className="text-oz">N/A</small>
-                    </ListItem>
-                  </List>
-                </div>
+              <div className="mb-3">
+                <CoinVolume
+                  volumes={coin.volumes}
+                  symbol={coin.symbol}
+                  coinId={coinId}
+                />
               </div>
 
               <CoinMarkets className="my-3" markets={coin.markets} />
+              <CoinSecurity />
 
-              <div className="divider mt-5" />
-              <CoinInfo description={coin.description} guide={coin.guide} whitepaper={coin.whitepaper} />
               <CoinStats funds={coin.funds} holders={[]} />
+              <CoinInfo description={coin.description} guide={coin.guide} whitepaper={coin.whitepaper} />
             </div>
           </div>
 

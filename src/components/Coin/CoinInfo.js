@@ -5,6 +5,7 @@ import { ArrowRight, Guide } from '../Icon'
 function CoinInfo({ description, guide, whitepaper }) {
   return (
     <>
+      <div className="divider mt-5" />
       <h3 className="text-oz pb-3 pt-4">
         About
       </h3>

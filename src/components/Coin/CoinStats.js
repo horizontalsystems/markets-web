@@ -5,13 +5,13 @@ import Table from '../Table/Table'
 import { Copy } from '../Icon'
 
 function CoinStats({ funds = [], holders = [] }) {
-  if (!funds && !funds.length && !holders && !holders.length) {
+  if (!funds.length && !holders.length) {
     return null
   }
 
   return (
-    <div className="row g-3 mt-3">
-      {funds.length > 0 && <div className="col-lg-6">
+    <div className="mt-3">
+      {funds.length > 0 && <div className="mb-3">
         <Card className="h-100">
           <CardHead title="Funds Invested" />
           <Table>
@@ -33,7 +33,8 @@ function CoinStats({ funds = [], holders = [] }) {
           </Table>
         </Card>
       </div>}
-      {holders.length > 0 && <div className="col-lg-6">
+
+      {holders.length > 0 && <div className="mb-3">
         <Card className="h-100">
           <CardHead title="Major Holders" />
           <Table>

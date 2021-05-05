@@ -40,13 +40,13 @@ function OverviewTvlChange({ title, headIcon: Icon, tokens, seeMorePath }) {
   )
 }
 
-function coinMapper({ id, symbol, logo, tvl, priceChange24h }, index) {
+function coinMapper({ id, symbol, image, tvl, priceChange24h }, index) {
   return (
     <tr key={index}>
       <td className="small pe-0">{index + 1}</td>
       <td>
         <div className="d-flex">
-          {logo && <img src={logo} alt={symbol} className="me-3" width="24" height="24" />}
+          {image && <img src={image} alt={symbol} className="me-3" width="24" height="24" />}
           {createElement(id ? Link : 'span', {
             to: id ? `/coins/${id}` : undefined,
             className: 'text-bran text-decoration-none text-uppercase'
