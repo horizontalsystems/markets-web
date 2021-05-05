@@ -1,0 +1,17 @@
+@import "../../styles/bootstrap";
+
+.pagination {
+  .page-link {
+    @extend .bg-lawrence;
+    @extend .text-grey;
+    border: none;
+  }
+
+  .page-item.active .page-link {
+    color: var(--jacob) !important;
+  }
+
+  .page-item.disabled .page-link svg {
+    fill: #80808580 !important;
+  }
+}

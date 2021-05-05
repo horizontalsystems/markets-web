@@ -1,5 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
+import { ArrowLeft, ArrowRight } from '../Icon'
+import './Pagination.scss'
 
 function Pagination({ totalCount, perPage, page, onClick }) {
   if (totalCount <= perPage) {
@@ -25,11 +27,11 @@ function Pagination({ totalCount, perPage, page, onClick }) {
   return (
     <ul className="pagination">
       <li role="button" className={cn('page-item', { disabled: page === 1 })} onClick={() => onChangePage(page - 1)}>
-        <span className="page-link">Prev</span>
+        <span className="page-link"><ArrowLeft /></span>
       </li>
       {pages}
       <li role="button" className={cn('page-item', { disabled: page === pages.length })} onClick={() => onChangePage(page + 1)}>
-        <span className="page-link">Next</span>
+        <span className="page-link"><ArrowRight /></span>
       </li>
     </ul>
   )
