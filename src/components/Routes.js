@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import App from './App/App'
 import Modal from './Modal/Modal'
+import Portfolio from './Portfolio/Portfolio'
+import App from './App/App'
 
 function Routes() {
   return (
@@ -10,6 +11,7 @@ function Routes() {
       <Modal />
 
       <Switch>
+        <Route path="/portfolio" render={Portfolio} />
         <Route path="/" render={App} />
       </Switch>
     </BrowserRouter>
