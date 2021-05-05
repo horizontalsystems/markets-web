@@ -6,14 +6,19 @@ import List from '../List/List'
 import events from '../../core/EventEmitter'
 import ModalTvlChart from '../Modal/ModalTvlChart'
 import { Candles } from '../Icon'
+import ModalVolumeChart from '../Modal/ModalVolumeChart'
 
 function CoinVolume({ volumes, symbol, coinId }) {
 
   const mCapTvlRatio = (volumes.marketCap && volumes.tvl) ? volumes.marketCap / volumes.tvl : 0
-  const onClickVolume = () => {
+  const onClickTvl = () => {
     if (volumes.tvl) {
-      events.showModal(<ModalTvlChart symbol={symbol} coinId={coinId} />)
+      events.showModal(<ModalTvlChart coinId={coinId} />, "TVL Chart")
     }
+  }
+
+  const onClickVolume = () => {
+    events.showModal(<ModalVolumeChart coinId={coinId} />, "Chart (24h)")
   }
 
   return (
@@ -50,15 +55,18 @@ function CoinVolume({ volumes, symbol, coinId }) {
       <div className="col-lg-6">
         <Card className="h-100">
           <List>
-            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" role="button" onClick={onClickVolume}>
               <div className="text-grey">Trading Volume</div>
-              <div className="text-oz">{currencyFullValue(volumes.totalVolume)}</div>
+              <div className="text-oz">
+                {currencyFullValue(volumes.totalVolume)}
+                {volumes.totalVolume && <Candles className="ms-1" />}
+              </div>
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">Volume Rank</div>
               <span className="text-oz">N/A</span>
             </li>
-            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" role="button" onClick={onClickVolume}>
+            <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" role="button" onClick={onClickTvl}>
               <div className="text-grey">Total Value Locked</div>
               <div className="text-oz">
                 {currencyFullValue(volumes.tvl)}

@@ -27,8 +27,8 @@ class Modal extends React.Component {
 
   componentDidMount() {
     events.on('hide-modal', this.hideModal)
-    events.on('open-modal', modal => {
-      this.setState({ modal })
+    events.on('open-modal', (modal, title) => {
+      this.setState({ modal, title })
       window.addEventListener('keydown', this.attacheShortcut)
       document.body.classList.add('modal-open')
     })
@@ -40,7 +40,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { modal } = this.state
+    const { title, modal } = this.state
     if (!modal) return null
 
     const styles = {
@@ -53,7 +53,7 @@ class Modal extends React.Component {
         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div className="modal-content border-0">
             <div className="modal-header bg-lawrence">
-              <h5 className="modal-title text-oz">TVL chart</h5>
+              <h5 className="modal-title text-oz">{title}</h5>
               <Close role="button" onClick={this.hideModal} />
             </div>
             {modal}

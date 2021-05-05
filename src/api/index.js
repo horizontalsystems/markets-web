@@ -23,6 +23,10 @@ export function getCoinTvlChart(coin, period = '7d') {
   return axios.get(`${marketsBaseUrl}/markets/defi/${coin}/${period}`)
 }
 
+export function getCoinVolumeChart(coin) {
+  return axios.get(`${coingeckoBaseUrl}/${coin}/market_chart?vs_currency=USD&days=1`)
+}
+
 export function getDefiMarkets() {
   return axios.get(`${coingeckoBaseUrl}/markets?vs_currency=USD&order=market_cap_desc&sparkline=false&price_change_percentage=24h,7d,14d,30d,200d,1y&category=decentralized_finance_defi`)
 }
