@@ -40,9 +40,6 @@ function Header() {
             <li className="nav-item pe-md-2 pe-lg-4">
               <a className="nav-link nav-link-header" href="/">BLOG</a>
             </li>
-            <li className="nav-item pe-md-2 pe-lg-4">
-              <a className="nav-link nav-link-header" href="/">ACADEMY</a>
-            </li>
           </ul>
 
           <ul className="navbar-nav ms-auto">
