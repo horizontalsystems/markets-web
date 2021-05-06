@@ -42,7 +42,9 @@ function Header({ activeTab }) {
               </Link>
             </li>
             <li className="nav-item pe-md-2 pe-lg-4">
-              <a className="nav-link nav-link-header" href="/">BLOG</a>
+              <a className="nav-link nav-link-header" href="https://blocksdecoded.com/" target="_blank" rel="noreferrer">
+                BLOG
+              </a>
             </li>
           </ul>
 
