@@ -3,7 +3,7 @@ import React from 'react'
 import { ReactComponent as HsLogo } from './HsLogo.svg'
 import './Footer.scss'
 
-function Footer() {
+function Footer({ showForm }) {
   return (
     <footer className="Footer bg-dark py-5">
       <div className="container">
@@ -25,7 +25,7 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="col-md-5 text-muted small">
+          {showForm && <div className="col-md-5 text-muted small">
             <div className="row">
               <div className="d-flex py-1">
                 <div className="w-100 pe-3">
@@ -38,7 +38,7 @@ function Footer() {
             </div>
             <div className="row">
               <div className="d-flex py-1 pt-2">
-                <input className="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked />
+                <input className="form-check-input" type="checkbox" value="1" id="flexCheckChecked" defaultChecked />
                 <label className="form-check-label ps-2" htmlFor="flexCheckChecked">
                   By signing up, you agree to Horizontal Systems Privacy Policy
                 </label>
@@ -49,7 +49,7 @@ function Footer() {
                 Subscribe to our newsletter to get new products, guides and cheat sheets when they are published.
               </div>
             </div>
-          </div>
+          </div>}
         </div>
 
         <hr className="divider by-3" />
