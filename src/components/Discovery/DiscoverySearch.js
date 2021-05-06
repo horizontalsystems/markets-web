@@ -1,8 +1,8 @@
 import React from 'react'
-import Select from 'react-select'
 import cn from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearFilters, filtersOptions, selectFilteredCoins, setFilters } from '../../core/reducers/discovery'
+import Select from '../Select/Select'
 
 function DiscoverySearch() {
   const { filters, loading } = useSelector(({ discovery }) => ({

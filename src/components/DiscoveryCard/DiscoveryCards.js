@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Slider from 'react-slick'
 import coinsStore from '../../core/coins-store'
 
@@ -8,6 +8,16 @@ import DiscoveryCard from '../DiscoveryCard/DiscoveryCard'
 import './DiscoveryCards.scss'
 
 function DiscoveryCards({ current }) {
+  const slider = useRef()
+
+  useEffect(() => {
+    const index = coinsStore.categories.findIndex(item =>
+      item.id === current
+    )
+    if (slider && index >= 0) {
+      slider.current.slickGoTo(index)
+    }
+  }, [current])
 
   const settings = {
     dots: false,
@@ -40,9 +50,9 @@ function DiscoveryCards({ current }) {
 
   return (
     <div className="bg-steel-10 rounded-3">
-      <Slider {...settings} className="mt-3 m-4 p-3">
-        {coinsStore.categories.map(({ id, name, description }) =>
-          <DiscoveryCard id={id} key={id} title={name} description={description} active={current === id} />
+      <Slider className="mt-3 m-4 p-3" {...settings} ref={slider}>
+        {coinsStore.categories.map(({ id, name, description }, index) =>
+          <DiscoveryCard id={id} key={index} title={name} description={description} active={id === current} />
         )}
       </Slider>
     </div>
