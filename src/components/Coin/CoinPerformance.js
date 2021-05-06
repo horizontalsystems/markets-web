@@ -6,16 +6,16 @@ import Card from '../Card/Card'
 import CardHead from '../Card/CardHead'
 import Table from '../Table/Table'
 
-function CoinPerformance({ performance, priceRanges }) {
+function CoinPerformance({ isFetching, performance, priceRanges }) {
   return (
     <div className="row g-3">
       <div className="col-lg-6">
         <Card className="h-100">
           <CardHead title="Price Range" />
           <div className="d-flex flex-column justify-content-between h-100 pt-3">
-            {priceRanges.map(item => (
+            {isFetching ? <PerformanceSpinner /> : priceRanges.map(item => (
               <PerformanceChange
-                className="mt-1"
+                className="mt-md-4 mb-2"
                 key={item.type}
                 range={item}
                 type={item.type}
@@ -28,32 +28,33 @@ function CoinPerformance({ performance, priceRanges }) {
       <div className="col-lg-6">
         <Card>
           <CardHead title="Performance" />
-          <Table>
-            <thead>
-            <tr className="small text-grey">
-              <td className="pb-2 pt-2 pe-0">#</td>
-              <td className="pb-2 pt-2">Name</td>
-              <td className="text-end pb-2 pt-2">1W</td>
-              <td className="text-end pb-2 pt-2">1M</td>
-            </tr>
-            </thead>
-            <tbody>
-            {performance.map((data, index) => (
-              <tr key={index}>
-                <td className="small pe-0">{index + 1}</td>
-                <td className="text-bran text-uppercase">
-                  {data.code}
-                </td>
-                <td className={cn('text-end', priceColor(data['1w']))}>
-                  {percentageFormat(data['1w'], null, 0)}
-                </td>
-                <td className={cn('text-end', priceColor(data['1m']))}>
-                  {percentageFormat(data['1m'], null, 0)}
-                </td>
+          {isFetching ? <div className="pt-3"><PerformanceSpinner /></div> :
+            <Table>
+              <thead>
+              <tr className="small text-grey">
+                <td className="pb-2 pt-2 pe-0">#</td>
+                <td className="pb-2 pt-2">Name</td>
+                <td className="text-end pb-2 pt-2">1W</td>
+                <td className="text-end pb-2 pt-2">1M</td>
               </tr>
-            ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+              {performance.map((data, index) => (
+                <tr key={index}>
+                  <td className="small pe-0">{index + 1}</td>
+                  <td className="text-bran text-uppercase">
+                    {data.code}
+                  </td>
+                  <td className={cn('text-end', priceColor(data['1w']))}>
+                    {percentageFormat(data['1w'], null, 0)}
+                  </td>
+                  <td className={cn('text-end', priceColor(data['1m']))}>
+                    {percentageFormat(data['1m'], null, 0)}
+                  </td>
+                </tr>
+              ))}
+              </tbody>
+            </Table>}
         </Card>
       </div>
     </div>
@@ -80,6 +81,14 @@ function PerformanceChange({ className, range, type }) {
           {currencyFullValue(range.max, { thousandSeparated: true, mantissa: 4, optionalMantissa: true })}
         </small>
       </div>
+    </div>
+  )
+}
+
+function PerformanceSpinner() {
+  return (
+    <div className="text-center m-5">
+      <div className="spinner-border text-white" role="status" />
     </div>
   )
 }

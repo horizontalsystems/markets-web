@@ -3,6 +3,10 @@ import Card from '../Card/Card'
 import { ArrowRight, Guide } from '../Icon'
 
 function CoinInfo({ description, guide, whitepaper }) {
+  if (!description) {
+    return null
+  }
+
   return (
     <>
       <div className="divider mt-5" />

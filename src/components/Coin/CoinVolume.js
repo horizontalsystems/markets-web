@@ -8,7 +8,7 @@ import ModalTvlChart from '../Modal/ModalTvlChart'
 import { Candles } from '../Icon'
 import ModalVolumeChart from '../Modal/ModalVolumeChart'
 
-function CoinVolume({ volumes, symbol, coinId }) {
+function CoinVolume({ volumes, coinId, launchDate }) {
 
   const mCapTvlRatio = (volumes.marketCap && volumes.tvl) ? volumes.marketCap / volumes.tvl : 0
   const onClickTvl = () => {
@@ -46,7 +46,7 @@ function CoinVolume({ volumes, symbol, coinId }) {
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">Launch Date</div>
-              <div className="text-oz">23 April, 2021</div>
+              <div className="text-oz">{launchDate || 'N/A' }</div>
             </li>
           </List>
         </Card>

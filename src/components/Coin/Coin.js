@@ -13,6 +13,8 @@ import CoinVolume from './CoinVolume'
 import CoinSidebar from './CoinSidebar'
 import CoinCategories from './CoinCategories'
 import CoinSecurity from './CoinSecurity'
+import LoaderCoinPrice from '../Loader/LoaderCoinPrice'
+import LoaderCoinHeader from '../Loader/LoaderCoinHeader'
 
 function Coin({ match }) {
   const coinId = match.params.id
@@ -30,32 +32,38 @@ function Coin({ match }) {
           <div className="col-12 col-lg-9">
             <div className="p-3 p-md-5 bg-steel-10 rounded-3">
               <div className="d-flex flex-column flex-md-row">
-                <img
-                  className="object-contain rounded-circle d-none d-md-block"
-                  src={coin.image}
-                  height="96"
-                  alt=""
-                />
+                {coin.fetching ? <LoaderCoinHeader /> :
+                  <>
+                    <img
+                      className="object-contain rounded-circle d-none d-md-block"
+                      src={coin.image}
+                      height="86"
+                      alt=""
+                    />
 
-                <div className="ps-md-3 mt-3 mt-md-0">
-                  <div className="fs-3 text-grey-light">{coin.name}</div>
-                  <div className="d-flex align-items-center">
-                    <span className="fs-1 text-grey fw-bold text-uppercase">{coin.symbol}</span>
-                    <span className="ms-3 text-bran bg-lawrence rounded-2 px-3 py-1">Rank: {coin.rank}</span>
-                  </div>
-                </div>
+                    <div className="ps-md-3 mt-3 mt-md-0">
+                      <div className="fs-4 text-grey-light">{coin.name}</div>
+                      <div className="d-flex align-items-center">
+                        <span className="fs-2 text-grey fw-bold text-uppercase">{coin.symbol}</span>
+                        <span className="ms-3 text-bran bg-lawrence rounded-2 px-3 py-1">Rank: {coin.rank}</span>
+                      </div>
+                    </div>
+                  </>}
               </div>
 
               <CoinCategories categories={coin.categories} />
 
               <div className="divider my-3" />
               <div className="d-flex align-items-center">
-                <span className="fs-1 text-oz fw-bold">
-                  {currencyFullValue(coin.price)}
-                </span>
-                <span className={cn('fs-3 ms-2', priceColor(coin.priceChange24))}>
-                  {percentageFormat(coin.priceChange24)}
-                </span>
+                {coin.fetching ? <LoaderCoinPrice /> :
+                  <>
+                    <span className="fs-1 text-oz fw-bold">
+                      {currencyFullValue(coin.price)}
+                    </span>
+                    <span className={cn('fs-3 ms-2', priceColor(coin.priceChange24))}>
+                      {percentageFormat(coin.priceChange24)}
+                    </span>
+                  </>}
               </div>
 
               <div className="my-3">
@@ -63,7 +71,7 @@ function Coin({ match }) {
               </div>
 
               <div className="mb-3">
-                <CoinPerformance performance={coin.performance} priceRanges={coin.priceRanges} />
+                <CoinPerformance performance={coin.performance} priceRanges={coin.priceRanges} isFetching={coin.fetching} />
               </div>
 
               <div className="mb-3">
@@ -71,6 +79,7 @@ function Coin({ match }) {
                   volumes={coin.volumes}
                   symbol={coin.symbol}
                   coinId={coinId}
+                  launchDate={coin.launchDate}
                 />
               </div>
 

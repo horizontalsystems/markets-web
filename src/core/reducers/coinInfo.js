@@ -63,6 +63,7 @@ export const selectCoin = createSelector(
 
     return {
       ...coin,
+      fetching: true,
       markets: [],
       performance: [],
       priceRanges: [],
@@ -90,7 +91,8 @@ function normalize(coin, storedCoin) {
     markets: normalizeMarkets(coin.tickers),
     performance: normalizePerformance(coin.market_data),
     priceRanges: normalizePriceRange(coin.market_data),
-    volumes: normalizeVolumes(coin.market_data)
+    volumes: normalizeVolumes(coin.market_data),
+    launchDate: coin.genesis_date
   }
 
   return mergeStoredData(mergedCoin, storedCoin)
