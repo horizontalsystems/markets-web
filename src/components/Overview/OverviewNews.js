@@ -19,8 +19,8 @@ function OverviewNews() {
 
   return (
     <>
-      <h3 className="text-oz pb-3 pt-4">
-        News
+      <h3 className="text-oz pb-2 pt-4 my-2 fw-normal fs-4">
+        Top News
       </h3>
 
       <div className="row g-3">

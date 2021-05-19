@@ -1,6 +1,10 @@
 import React from 'react'
 import cn from 'classnames'
 import { currencyFullValue, percentageFormat, priceColor } from '../../core/helpers'
+import { ReactComponent as BTC } from '../Icon/coins/btc.svg'
+import { ReactComponent as ETH } from '../Icon/coins/eth.svg'
+import { ReactComponent as BNB } from '../Icon/coins/bnb.svg'
+import { ReactComponent as USD } from '../Icon/coins/usd.svg'
 
 import Card from '../Card/Card'
 import CardHead from '../Card/CardHead'
@@ -32,8 +36,7 @@ function CoinPerformance({ isFetching, performance, priceRanges }) {
             <Table>
               <thead>
               <tr className="small text-grey">
-                <td className="pb-2 pt-2 pe-0">#</td>
-                <td className="pb-2 pt-2">Name</td>
+                <td className="pb-2 pt-2">VS</td>
                 <td className="text-end pb-2 pt-2">1W</td>
                 <td className="text-end pb-2 pt-2">1M</td>
               </tr>
@@ -41,9 +44,8 @@ function CoinPerformance({ isFetching, performance, priceRanges }) {
               <tbody>
               {performance.map((data, index) => (
                 <tr key={index}>
-                  <td className="small pe-0">{index + 1}</td>
-                  <td className="text-bran text-uppercase">
-                    {data.code}
+                  <td className="text-bran text-uppercase d-flex align-items-center">
+                    <CoinIcon code={data.code} />{data.code}
                   </td>
                   <td className={cn('text-end', priceColor(data['1w']))}>
                     {percentageFormat(data['1w'], null, 0)}
@@ -61,10 +63,25 @@ function CoinPerformance({ isFetching, performance, priceRanges }) {
   )
 }
 
+function CoinIcon({ code }) {
+  switch (code) {
+    case 'btc':
+      return <BTC className="me-3" />
+    case 'eth':
+      return <ETH className="me-3" />
+    case 'bnb':
+      return <BNB className="me-3" />
+    case 'usd':
+      return <USD className="me-3" />
+    default:
+      return ''
+  }
+}
+
 function PerformanceChange({ className, range, type }) {
   return (
     <div className={className}>
-      <div className="progress" style={{ height: '4px' }}>
+      <div className="progress bg-jeremy" style={{ height: '4px' }}>
         <div style={{ width: `${range.value}%` }}
              className="progress-bar bg-warning"
              role="progressbar"

@@ -72,14 +72,14 @@ function DiscoverySearch() {
           />
         </div>
         <div className="col-lg-3 col-sm-12 col-md-6 d-flex align-items-end justify-content-end">
-          <button className="btn bg-lawrence text-jacob rounded-3" disabled>
+          <button className="btn bg-lawrence text-jacob rounded-4 px-4" disabled>
             <span className="pe-2">Results:</span>
             <span className={cn('spinner-grow spinner-grow-sm', { 'd-none': !loading })} role="status" />
             <span className={cn('text-grey', { 'd-none': loading })}>{filteredCoins.length}</span>
           </button>
           <button
             type="button"
-            className="btn bg-lawrence text-jacob rounded-3 ms-3"
+            className="btn bg-lawrence text-jacob rounded-4 px-4 ms-3"
             onClick={() => dispatch(clearFilters())}
           >
             Clear

@@ -21,13 +21,13 @@ function CoinSidebar({ coin, links = {}, platforms }) {
 
   return (
     <>
-      <div className="card py-2 px-3 mb-3 bg-lawrence rounded-3 border-0">
-        <div className="fw-500">
-          <div className="d-flex text-oz" role="button" onClick={onClickWatch}>
+      <List className="mb-4">
+        <ListItem className="border-0 rounded">
+          <div className="d-flex align-items-center text-oz" role="button" onClick={onClickWatch}>
             <WatchStar size="20" className="me-2" coin={coin} handleClick={false} /> Add to Watchlist
           </div>
-        </div>
-      </div>
+        </ListItem>
+      </List>
 
       <List>
         {links.website && <ListItem>
@@ -61,8 +61,8 @@ function CoinSidebar({ coin, links = {}, platforms }) {
         </ListItem>}
       </List>
 
-      {platforms && <div className="card bg-lawrence rounded-3 border-0 mt-3">
-        <ul className="list-group list-group-flush rounded-3">
+      {platforms && <div className="card bg-lawrence rounded-2 border-0 mt-4">
+        <ul className="list-group list-group-flush rounded-2">
           {platforms.ethereum && <ListItem className="text-oz" value={platforms.ethereum}>
             <div className="text-nowrap me-2">
               <Copy className="me-2" role="button" onClick={() => onClickCopy(platforms.ethereum)} /> Ethereum

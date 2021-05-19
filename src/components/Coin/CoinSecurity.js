@@ -23,19 +23,19 @@ function CoinSecurity({ items }) {
         </ListItem>
         <ListItem className="py-3">
           <div className="text-grey">Issuance</div>
-          <small className="text-oz">N/A</small>
+          <small className="text-grey-50">N/A</small>
         </ListItem>
         <ListItem className="py-3">
           <div className="text-grey">Confiscation-resistance</div>
-          <small className="text-oz">N/A</small>
+          <small className="text-grey-50">N/A</small>
         </ListItem>
         <ListItem className="py-3">
           <div className="text-grey">Censorship-resistance</div>
-          <small className="text-oz">N/A</small>
+          <small className="text-grey-50">N/A</small>
         </ListItem>
         <ListItem className="py-3">
           <div className="text-grey">Audited</div>
-          <small className="text-oz">N/A</small>
+          <small className="text-grey-50">N/A</small>
         </ListItem>
       </List>
     </Card>

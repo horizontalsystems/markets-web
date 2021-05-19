@@ -22,7 +22,7 @@ function CoinList({ coins, isFetching, initialSort = { field: 'marketCap', value
 
   return (
     <div className="container">
-      <div className="card border-0 shadow-sm bg-lawrence p-3 pt-0 h-100 w-100 mt-4">
+      <div className="card border-0 rounded-3 shadow-sm bg-lawrence p-3 pt-0 h-100 w-100 mt-4">
         <div className="row">
           <div className="col-md-3">
             <Select

@@ -19,7 +19,8 @@ import { ReactComponent as Github } from './github.svg'
 import { ReactComponent as Telegram } from './telegram.svg'
 import { ReactComponent as Reddit } from './reddit.svg'
 import { ReactComponent as Close } from './close.svg'
-import { ReactComponent as Candles } from './Candles.svg'
+import { ReactComponent as Lock } from './lock.svg'
+import { ReactComponent as Candles } from './candles.svg'
 
 export {
   ArrowUp,
@@ -43,5 +44,6 @@ export {
   Telegram,
   Reddit,
   Close,
+  Lock,
   Candles
 }

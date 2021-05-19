@@ -24,8 +24,8 @@ export default function DiscoveryNav({ active }) {
         }
 
         return (
-          <li key={index} className="nav-item pe-2">
-            <Link to={tab.path} className={cn('nav-link rounded-3', className)}>
+          <li key={index} className="nav-item pe-2 fw-500">
+            <Link to={tab.path} className={cn('nav-link rounded-4 px-4 fw-500', className)}>
               {tab.name}
             </Link>
           </li>

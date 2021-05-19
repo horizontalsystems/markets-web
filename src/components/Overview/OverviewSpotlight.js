@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectTopGainers5, selectTopLosers5 } from '../../core/reducers/markets'
 import { selectDefiCoins5 } from '../../core/reducers/defi'
-import { Histogram, OutlinedDown, OutlinedUp } from '../Icon'
+import { Lock, OutlinedDown, OutlinedUp } from '../Icon'
 
 import OverviewTopCoins from './OverviewTopCoins'
 import OverviewTvlChange from './OverviewTvlChange'
@@ -21,7 +21,7 @@ function OverviewSpotlight() {
         <OverviewTopCoins tokens={topLosers} title="Top losers" headIcon={OutlinedDown} seeMorePath="/top-losers" />
       </div>
       <div className="col-lg-4">
-        <OverviewTvlChange tokens={tvlGainers} title="TVL change" headIcon={Histogram} seeMorePath="/defi-tvl" />
+        <OverviewTvlChange tokens={tvlGainers} title="TVL change" headIcon={Lock} seeMorePath="/defi-tvl" />
       </div>
     </div>
   )

@@ -10,11 +10,11 @@ function CoinInfo({ description, guide, whitepaper }) {
   return (
     <>
       <div className="divider mt-5" />
-      <h3 className="text-oz pb-3 pt-4">
+      <h3 className="text-oz pb-3 pt-4 fs-5">
         About
       </h3>
       <p
-        className="text-oz pt-2 pb-4"
+        className="text-bran pt-2 pb-4"
         dangerouslySetInnerHTML={{ __html: description }}
       />
 

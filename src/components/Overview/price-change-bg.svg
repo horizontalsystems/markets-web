@@ -1,5 +1,5 @@
-<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="96" cy="96" r="96" fill="url(#paint0_linear)"/>
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="96" cy="96" r="96" fill="url(#paint0_linear)" fill-opacity="0.5"/>
     <defs>
         <linearGradient id="paint0_linear" x1="192" y1="-5.79126e-06" x2="-2.32258" y2="195.097" gradientUnits="userSpaceOnUse">
             <stop offset="0.21875"/>

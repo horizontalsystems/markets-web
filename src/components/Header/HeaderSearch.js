@@ -68,7 +68,7 @@ function HeaderSearch() {
   const styles = {
     control: styles => ({
       ...styles,
-      backgroundColor: '#252933',
+      backgroundColor: '#13151a',
       borderColor: '#6E789933',
       borderRadius: '8px'
     }),

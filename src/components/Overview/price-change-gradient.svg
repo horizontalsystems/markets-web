@@ -1,6 +1,7 @@
 <svg width="576" height="192" viewBox="0 0 576 192" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0)">
-        <rect x="-0.396484" y="-192" width="576" height="576" fill="url(#paint0_linear)" fill-opacity="1"/>
+        <rect width="576" height="192" fill="#252933"/>
+        <rect x="-0.396484" y="-192" width="576" height="576" fill="url(#paint0_linear)" fill-opacity="0.3"/>
         <g filter="url(#filter0_f)">
             <ellipse cx="0.00012207" cy="280.615" rx="258.462" ry="258.462" fill="#05C46B"/>
         </g>

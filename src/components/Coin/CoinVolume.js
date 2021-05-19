@@ -46,7 +46,7 @@ function CoinVolume({ volumes, coinId, launchDate }) {
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">Launch Date</div>
-              <div className="text-oz">{launchDate || 'N/A' }</div>
+              <div className="text-oz">{launchDate || <span className="text-steel-10">N/A</span> }</div>
             </li>
           </List>
         </Card>
@@ -64,7 +64,7 @@ function CoinVolume({ volumes, coinId, launchDate }) {
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">Volume Rank</div>
-              <span className="text-oz">N/A</span>
+              <span className="text-grey-50">N/A</span>
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3" role="button" onClick={onClickTvl}>
               <div className="text-grey">Total Value Locked</div>
@@ -75,12 +75,12 @@ function CoinVolume({ volumes, coinId, launchDate }) {
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">TVL Rank</div>
-              <div className="text-oz">N/A</div>
+              <div className="text-grey-50">N/A</div>
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">M.cap / TVL ratio</div>
               <div className="text-oz">
-                {percentageFormat(mCapTvlRatio, { forceSign: false }, 'N/A')}
+                {percentageFormat(mCapTvlRatio, { forceSign: false }, <span className="text-grey-50">N/A</span>)}
               </div>
             </li>
           </List>

@@ -25,8 +25,10 @@ function CoinStats({ funds = [], holders = [] }) {
             {funds.map(fund =>
               <tr key={fund.name}>
                 <td>{fund.name}</td>
-                <td className="text-end text-warning">
-                  <a href={fund.url} target="_blank" rel="noreferrer">{fund.url}</a>
+                <td className="text-end">
+                  <a href={fund.url} target="_blank" rel="noreferrer" className="text-jacob">
+                    {fund.url}
+                  </a>
                 </td>
               </tr>)}
             </tbody>

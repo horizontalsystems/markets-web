@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 function ListItem({ className, children, value }) {
   return (
-    <li className={cn('list-group-item bg-lawrence d-flex justify-content-between', className)}>
+    <li className={cn('list-group-item bg-lawrence d-flex justify-content-between align-items-center mh-48', className)}>
       {children}
       {value && (
         <div className="text-truncate">

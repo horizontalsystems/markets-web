@@ -58,7 +58,7 @@ $navbar-brand-padding-y: 0px;
 $border-color:  $steel-20;
 $list-group-border-color: $border-color;
 
-$border-radius:     .5rem !default;
+$border-radius:     .75rem !default;
 $border-radius-sm:  .2rem !default;
 $border-radius-lg:   1rem !default;
 
@@ -169,6 +169,14 @@ body.modal-open {
 
 .text-grey-light {
   color: $light_grey !important;
+}
+
+.text-grey-50 {
+  color: $grey_50 !important;
+}
+
+.text-steel-10 {
+  color: $steel_10 !important;
 }
 
 // SVG

@@ -1,8 +1,7 @@
 import React from 'react'
-import numbro from 'numbro'
 import cn from 'classnames'
 import Gradient from 'react-avatar-editor'
-import { percentageFormat, priceColor } from '../../core/helpers'
+import { currencyFormat, percentageFormat, priceColor } from '../../core/helpers'
 
 import PriceBackground from './price-change-bg.svg'
 import PriceGradient from './price-change-gradient.svg'
@@ -21,7 +20,7 @@ function OverviewMarketCap({ marketCap, marketCapDiff24h }) {
               <div>
                 <div className="display-5 text-oz fw-md-600 fw-sm-500 text-uppercase">
                   {marketCap
-                    ? numbro(marketCap).format({ average: true, totalLength: 3 })
+                    ? currencyFormat(marketCap, { average: true, totalLength: 3 })
                     : <LoaderValue width="120" height="35" />}
                 </div>
                 <div className={cn('fs-4', priceColor(marketCapDiff24h))}>

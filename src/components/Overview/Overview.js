@@ -28,7 +28,7 @@ function Overview() {
         <div className="container">
           <OverviewGlobalMarkets />
 
-          <h3 className="text-oz pb-3 pt-4">
+          <h3 className="text-oz pb-2 pt-4 my-2 fw-normal fs-4">
             Spotlight
           </h3>
 

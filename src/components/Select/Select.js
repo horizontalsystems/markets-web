@@ -1,4 +1,6 @@
-import ReactSelect from 'react-select'
+import ReactSelect, { components } from 'react-select'
+import { ArrowDown } from '../Icon'
+import React from 'react'
 
 function Select({ className, placeholder, value, onChange, isSearchable, options }) {
   const styles = {
@@ -12,6 +14,9 @@ function Select({ className, placeholder, value, onChange, isSearchable, options
       width: 220,
       maxWidth: 220,
       color: '#F5F5F5'
+    }),
+    indicatorSeparator: () => ({
+      display: 'none'
     }),
     menu: (styles) => ({
       ...styles,
@@ -36,8 +41,19 @@ function Select({ className, placeholder, value, onChange, isSearchable, options
     })
   }
 
+  const DropdownIndicator = props => {
+    return (
+      components.DropdownIndicator && (
+        <components.DropdownIndicator {...props}>
+          <ArrowDown />
+        </components.DropdownIndicator>
+      )
+    )
+  }
+
   return (
     <ReactSelect
+      components={{ DropdownIndicator }}
       styles={styles}
       className={className}
       placeholder={placeholder}

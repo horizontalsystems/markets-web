@@ -1,8 +1,9 @@
 import React from 'react'
+import cn from 'classnames'
 
-function List({ children }) {
+function List({ children, className }) {
   return (
-    <ul className="list-group list-group-flush bg-steel-10 rounded-3">
+    <ul className={cn('list-group list-group-flush bg-steel-10 rounded', className)}>
       {children}
     </ul>
   )

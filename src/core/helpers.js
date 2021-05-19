@@ -1,3 +1,4 @@
+import { createElement } from 'react'
 import numbro from 'numbro'
 
 export function formatNumber(value, options = { thousandSeparated: true, mantissa: 2 }) {
@@ -10,7 +11,7 @@ export function formatNumber(value, options = { thousandSeparated: true, mantiss
 
 export function percentageFormat(value, options, na = '') {
   if (!value) {
-    return na
+    return createElement('span', { className: 'text-grey-50' }, na)
   }
 
   const number = numbro(value).format({
@@ -33,7 +34,7 @@ export function currencyFormat(value, options) {
 
 export function currencyFullValue(value, options = { thousandSeparated: true }, na = 'N/A') {
   if (!value) {
-    return na
+    return createElement('span', { className: 'text-grey-50' }, na)
   }
 
   return currencyFormat(value, options)
