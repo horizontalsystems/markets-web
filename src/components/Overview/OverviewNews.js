@@ -24,15 +24,9 @@ function OverviewNews() {
       </h3>
 
       <div className="row g-3">
-        <div className="col-lg-4">
-          <News title="CoinTelegraph" news={newsCointelegraph} />
-        </div>
-        <div className="col-lg-4">
-          <News title="TheBlock" news={newsTheblock} />
-        </div>
-        <div className="col-lg-4">
-          <News title="Decrypt" news={newsDecrypt} />
-        </div>
+        <News className="col-lg-4" title="CoinTelegraph" news={newsCointelegraph} />
+        <News className="col-lg-4" title="TheBlock" news={newsTheblock} />
+        <News className="col-lg-4" title="Decrypt" news={newsDecrypt} />
       </div>
     </>
   )
