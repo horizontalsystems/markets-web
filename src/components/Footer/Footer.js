@@ -1,6 +1,7 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import { ReactComponent as HsLogo } from './HsLogo.svg'
+
 import './Footer.scss'
 
 function Footer({ showForm }) {
@@ -8,19 +9,41 @@ function Footer({ showForm }) {
     <footer className="Footer bg-dark py-5">
       <div className="container">
         <div className="row">
-          <div className="col-md-7">
+          <div className="col-sm-1 col-4">
             <ul className="list-unstyled">
               <li className="py-2">
-                <a className="text-muted text-decoration-none" href="/">Home</a>
+                <Link to="/" className="text-muted text-decoration-none">
+                  Market
+                </Link>
               </li>
               <li className="py-2">
-                <a className="text-muted text-decoration-none" href="/">About</a>
+                <Link to="/portfolio" className="text-muted text-decoration-none">
+                  Portfolio
+                </Link>
               </li>
               <li className="py-2">
-                <a className="text-muted text-decoration-none" href="/">Contact</a>
+                <a className="text-muted text-decoration-none" href="https://blocksdecoded.com/">
+                  Blog
+                </a>
               </li>
               <li className="py-2">
-                <a className="text-muted text-decoration-none" href="/">Unstopabble Wallet</a>
+                <a className="text-muted text-decoration-none" href="https://litrex.academy/" target="_blank" rel="noreferrer">
+                  Academy
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="col-sm-2 col-4">
+            <ul className="list-unstyled">
+              <li className="py-2">
+                <a className="text-muted text-decoration-none" href="https://unstoppable.money/" target="_blank" rel="noreferrer">
+                  Unstoppable Wallet
+                </a>
+              </li>
+              <li className="py-2">
+                <a className="text-muted text-decoration-none" href="https://horizontalsystems.io/" target="_blank" rel="noreferrer">
+                  About
+                </a>
               </li>
             </ul>
           </div>
@@ -59,7 +82,7 @@ function Footer({ showForm }) {
             <HsLogo />
           </div>
           <div className="col-6 text-end text-light">
-            @ 2019 HorizontalSystems
+            @ 2021 HorizontalSystems
           </div>
         </div>
       </div>

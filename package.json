@@ -36,7 +36,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "deploy": "scp -r ./build/* ubuntu@64.227.26.93:/home/ubuntu/markets-web"
   },
   "eslintConfig": {
     "extends": [
