@@ -4,6 +4,7 @@ import { fetchWatchlist, selectWatchlist } from '../../core/reducers/watchlist'
 
 import HeaderTabs from '../Header/HeaderTab'
 import CoinList from '../List/CoinList'
+import { Star } from '../Icon'
 
 function Watchlist() {
   const dispatch = useDispatch()
@@ -21,7 +22,16 @@ function Watchlist() {
       <HeaderTabs active="/watchlist" />
 
       <div className="pt-3 py-5">
-        <CoinList coins={coins} isFetching={isFetching} />
+        <CoinList coins={coins} isFetching={isFetching} emptyMsg={
+          <div className="mt-5">
+            <div className="pb-4">
+              <Star width="48" height="48" />
+            </div>
+
+            You don’t have any favorite assets. <br/>
+            You can add the favourites by click to star icon in the asset page
+          </div>
+        } />
       </div>
     </div>
   )

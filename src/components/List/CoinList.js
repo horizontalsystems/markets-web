@@ -9,16 +9,27 @@ import ListSortHead from './ListSortHead'
 import LoaderTable from '../Loader/LoaderTable'
 import Select from '../Select/Select'
 
-function CoinList({ coins, isFetching, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
+function CoinList({ coins, isFetching, emptyMsg, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
+
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(initialSort)
-  const [sortPage, setSortPage] = useState({ field: initialSort.field.field, desc: true })
+  const [sortPage, setSortPage] = useState({ field: initialSort.field, desc: true })
 
   const sortedCoins = sortCoins(sort, [...coins])
 
   const perPage = 50
   const paginatedCoins = paginate(sortedCoins, page, perPage);
   const paginatedCoinsSort = paginateSort(paginatedCoins, sortPage)
+
+  if (!isFetching && !coins.length) {
+    return (
+      <div className="container">
+        <div className="p-5 m-5 text-grey text-center">
+          {emptyMsg || <span className="fs-2">No results</span>}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="container">
