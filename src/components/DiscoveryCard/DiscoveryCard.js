@@ -40,7 +40,7 @@ function DiscoveryCard({ active, id, title, description }) {
   }
 
   return (
-    <Link to={`/discovery/${id}`} className={cn('DiscoveryCard card rounded-3 p-3 m-2', cardClasses)}>
+    <Link to={active ? '/discovery' : `/discovery/${id}`} className={cn('DiscoveryCard card rounded-3 p-3 m-2', cardClasses)}>
       <div className="d-flex align-items-center">
         <img src={getCardIcon(id)} alt="" className={cn({ 'svg-dark': active })} />
         <div className="ps-3 fw-500">{title}</div>

@@ -24,7 +24,7 @@ function DiscoveryCards({ current }) {
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: false,
-    infinite: true,
+    infinite: false,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
     responsive: [{
