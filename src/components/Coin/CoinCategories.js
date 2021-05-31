@@ -8,7 +8,7 @@ function CoinCategories({ categories }) {
 
   const list = []
   categories.forEach((category, i) => {
-    list.push(<Link key={i} to="/" className="text-jacob text-capitalize text-decoration-none px-2">{category}</Link>)
+    list.push(<Link key={i} to={`/discovery/${category}`} className="text-jacob text-capitalize text-decoration-none px-2">{category}</Link>)
     if (i !== categories.length - 1) {
       list.push(<span key={`${i}-sep`}> | </span>)
     }

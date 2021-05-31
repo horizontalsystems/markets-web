@@ -46,7 +46,7 @@ function CoinVolume({ volumes, coinId, launchDate }) {
             </li>
             <li className="list-group-item bg-lawrence d-flex justify-content-between py-3">
               <div className="text-grey">Launch Date</div>
-              <div className="text-oz">{launchDate || <span className="text-steel-10">N/A</span> }</div>
+              <div className="text-oz">{launchDate || <span className="text-grey-50">N/A</span> }</div>
             </li>
           </List>
         </Card>
