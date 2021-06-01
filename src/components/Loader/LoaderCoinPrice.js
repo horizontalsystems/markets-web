@@ -6,8 +6,8 @@ function LoaderCoinPrice() {
     <ContentLoader
       width="200"
       height="60"
-      backgroundColor={'#333333'}
-      foregroundColor={'#bdbdbd'}
+      backgroundColor="#6E789933"
+      foregroundColor="#BDBDBD80"
     >
       <rect x="0" y="8" rx="3" ry="3" width="70" height="40" />
       <rect x="80" y="8" rx="3" ry="3" width="40" height="40" />
