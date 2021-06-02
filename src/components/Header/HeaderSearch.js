@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select/async'
-import { components } from 'react-select'
-import { useHistory } from 'react-router-dom'
 import debounce from 'lodash/debounce'
 import axios from 'axios'
+import { components } from 'react-select'
+import { useHistory } from 'react-router-dom'
 import { Search } from '../Icon'
 
 function HeaderSearch() {
@@ -112,10 +112,18 @@ function HeaderSearch() {
     )
   }
 
+  const NoOptionsMessage = props => {
+    return (
+      <components.NoOptionsMessage {...props}>
+        No results
+      </components.NoOptionsMessage>
+    );
+  }
+
   return (
     <Select
       value={null}
-      components={{ DropdownIndicator }}
+      components={{ DropdownIndicator, NoOptionsMessage }}
       placeholder="Search"
       defaultOptions
       styles={styles}
