@@ -10,58 +10,66 @@ function HeaderSearch() {
   const [coins, setCoins] = useState([])
 
   useEffect(() => {
-    fetchCoins().then(r => {
-      const map = r.data.map(item =>
+    fetchCoins().then(({ data }) => {
+      const map = data.map(item =>
         ({
           id: item.id,
           name: item.name.toLowerCase(),
-          label: `${item.name}(${item.symbol})`,
-          symbol: item.symbol
+          label: `${item.name} (${item.symbol})`,
+          symbol: item.symbol,
+          priority: platformPriority(item)
         })
       ).filter(({ id }) =>
         !id.includes('long') &&
         !id.includes('short')
       ).sort((a, b) =>
-        a.id.localeCompare(b)
+        a.priority - b.priority
       )
 
       return setCoins(map)
     })
   }, [])
 
-  const filterColors = (value) => {
-    const res = []
-    const searchString = value.toLowerCase()
+  const filterCoins = value => {
+    const searchStr = value.toLowerCase()
+
+    const equalCodes = []
+    const equalNames = []
+    const matchCodes = []
+    const matchNames = []
+
+    let equalRes = []
+    let matchRes = []
 
     for (let i = 0; i < coins.length; i++) {
-      if (res.length >= 10) {
+      equalRes = [...equalCodes, ...equalNames]
+      matchRes = [...matchCodes, ...matchNames]
+
+      if (equalRes.length >= 10) {
+        break
+      }
+      if (matchRes.length >= 10) {
         break
       }
 
-      const coin = coins[i];
-      if (coin.name === searchString || coin.symbol === searchString) {
-        res.push(coin)
+      const coin = coins[i]
+
+      if (coin.symbol === searchStr) {
+        equalCodes.push(coin)
+      } else if (coin.name === searchStr) {
+        equalNames.push(coin)
+      } else if (coin.symbol.match(searchStr)) {
+        matchCodes.push(coin)
+      } else if (coin.name.match(searchStr)) {
+        matchNames.push(coin)
       }
     }
 
-    for (let i = 0; i < coins.length; i++) {
-      if (res.length >= 10) {
-        break
-      }
-
-      const coin = coins[i];
-      if (res.indexOf(coin) < 0) {
-        if (coin.name.includes(searchString) || coin.symbol.includes(searchString)) {
-          res.push(coin)
-        }
-      }
-    }
-
-    return res
+    return [...equalRes, ...matchRes]
   }
 
   const loadOptions = (inputValue, callback) => {
-    callback(filterColors(inputValue))
+    callback(filterCoins(inputValue))
   }
 
   const history = useHistory()
@@ -135,6 +143,20 @@ function HeaderSearch() {
 
 function fetchCoins() {
   return axios.get('https://api.coingecko.com/api/v3/coins/list?include_platform=true')
+}
+
+function platformPriority({ platforms = {} }) {
+  const { ethereum, 'binance-smart-chain': binance } = platforms
+
+  if (ethereum && ethereum.length) {
+    return 1
+  }
+
+  if (binance && binance.length) {
+    return 2
+  }
+
+  return 0
 }
 
 export default HeaderSearch
