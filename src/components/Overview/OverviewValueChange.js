@@ -17,10 +17,10 @@ function OverviewValueChange({ title, value, change, points, seeMoreLink }) {
         <div className="card-body pt-0">
           <div className="row">
             <div className="col-6">
-              <div className="card-text fw-md-600 fw-sm-500 text-oz text-uppercase">
+              <div className="card-text fw-md-600 fw-sm-500 text-oz text-uppercase text-nowrap">
                 {value ? value : <LoaderValue width="100" height="11" />}
               </div>
-              <div className={cn('card-text', priceColor(change))}>
+              <div className={cn('card-text text-nowrap', priceColor(change))}>
                 {change ? percentageFormat(change) : <LoaderValue width="60" height="11" />}
               </div>
             </div>
