@@ -11,7 +11,7 @@ import Select from '../Select/Select'
 function DefiList({ coins, selectOptions }) {
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(null)
-  const [sortPage, setSortPage] = useState({ field: 'priceChange24h', desc: true })
+  const [sortPage, setSortPage] = useState({ field: 'tvl', desc: true })
 
   const sortedCoins = filterCoins(sort, [...coins])
 
@@ -42,7 +42,7 @@ function DefiList({ coins, selectOptions }) {
             <thead>
             <tr className="small text-grey">
               <td className="p-0 m-0" />
-              <ListSortHead className="pb-2 pt-2 pe-0" field="rank" sort={sortPage} setSort={setSortPage}>
+              <ListSortHead className="pb-2 pt-2 pe-0" field="rankTvl" sort={sortPage} setSort={setSortPage}>
                 #
               </ListSortHead>
               <ListSortHead className="pb-2 pt-2" field="name" sort={sortPage} setSort={setSortPage} fieldString>
@@ -75,13 +75,13 @@ function DefiList({ coins, selectOptions }) {
   )
 }
 
-function coinMapper({ id, name, rank, image, chain, priceChange24h, priceChange7d, tvl }, index) {
+function coinMapper({ id, name, rankTvl, image, chain, priceChange24h, priceChange7d, tvl }, index) {
   return (
     <tr key={index}>
       <td className="small pe-0">
         <WatchStar size="16" coin={id} />
       </td>
-      <td className="small pe-0">{rank}</td>
+      <td className="small pe-0">{rankTvl}</td>
       <td>
         <div className="d-flex">
           {image && <img src={image} alt={name} className="me-3" width="24" height="24" />}

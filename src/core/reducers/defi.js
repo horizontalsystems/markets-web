@@ -116,14 +116,17 @@ function normalizeCoins(markets) {
   const chains = {}
   const multiChain = 'Multi-Chain'
 
-  for (let i = 0; i < markets.length; i++) {
-    const item = markets[i];
+  const marketsSorted = markets.sort((a, b) => b.tvl - a.tvl)
+
+  for (let i = 0; i < marketsSorted.length; i++) {
+    const item = marketsSorted[i];
     const coin = {
       id: item.coingecko_id,
       name: item.name,
       image: item.image_url,
       symbol: normalizeSymbol(item),
       rank: item.id,
+      rankTvl: i + 1,
       priceChange1h: item.change_1h,
       priceChange24h: item.tvl_diff_24h,
       priceChange7d: item.tvl_diff_7d,

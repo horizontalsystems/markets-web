@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMarketsGlobal } from '../../core/reducers/marketsGlobal'
-import { fetchDefiCoins, selectDefiCoins, selectDefiTvlDominance } from '../../core/reducers/defi'
+import { fetchDefiCoins, selectDefiTvlDominance } from '../../core/reducers/defi'
 import { currencyFormat, percentageFormat, priceColor } from '../../core/helpers'
 
 import HeaderTabs from '../Header/HeaderTab'
@@ -19,7 +19,7 @@ function DefiTvl() {
   } = useSelector(state => state.marketsGlobal)
 
   const dispatch = useDispatch()
-  const coins = useSelector(state => selectDefiCoins(state))
+  const coins = useSelector(state => state.defi.coins)
   const chains = useSelector(state => state.defi.chains)
   const defiDominance = useSelector(state => selectDefiTvlDominance(state.defi.coins, totalValueLocked))
   const selectOptions = chains.map(item => ({
