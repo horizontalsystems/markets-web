@@ -66,7 +66,7 @@ function Coin({ match }) {
             </div>
 
             <div className="my-3">
-              <Chart coin={coin.symbol} coinId={coinId} />
+              <Chart key={coinId} coin={coin.symbol} coinId={coinId} />
             </div>
 
             <div className="mb-3">
