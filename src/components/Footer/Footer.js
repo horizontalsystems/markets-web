@@ -22,11 +22,6 @@ function Footer({ showForm }) {
                 </Link>
               </li>
               <li className="py-2">
-                <a className="text-muted text-decoration-none" href="https://blocksdecoded.com/">
-                  Blog
-                </a>
-              </li>
-              <li className="py-2">
                 <a className="text-muted text-decoration-none" href="https://litrex.academy/" target="_blank" rel="noreferrer">
                   Academy
                 </a>
@@ -81,7 +76,7 @@ function Footer({ showForm }) {
           <div className="col-6">
             <HsLogo />
           </div>
-          <div className="col-6 text-end text-light">
+          <div className="col-6 text-end text-grey">
             @ 2021 HorizontalSystems
           </div>
         </div>

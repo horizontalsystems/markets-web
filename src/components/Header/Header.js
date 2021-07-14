@@ -43,7 +43,7 @@ function Header({ activeTab }) {
             </li>
             <li className="nav-item pe-md-2 pe-lg-4">
               <a className="nav-link nav-link-header" href="https://litrex.academy/" target="_blank" rel="noreferrer">
-                BLOG
+                Academy
               </a>
             </li>
           </ul>
