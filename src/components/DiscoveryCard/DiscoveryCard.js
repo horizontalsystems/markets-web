@@ -30,6 +30,9 @@ import CrossChain from './icons/link.svg'
 import Computing from './icons/computing.svg'
 import FanTokens from './icons/fan.svg'
 import InvestmentTools from './icons/investment.svg'
+import Storage from './icons/storage.svg'
+import Identity from './icons/identity.svg'
+import YieldTokens from './icons/yield_tokens.svg'
 
 function DiscoveryCard({ active, id, title, description }) {
   const cardClasses = {
@@ -109,6 +112,12 @@ function getCardIcon(id) {
       return FanTokens
     case 'investment_tools':
       return InvestmentTools
+    case 'storage':
+      return Storage
+    case 'identity':
+      return Identity
+    case 'yield_tokens':
+      return YieldTokens
     default:
       return Blockchains
   }
