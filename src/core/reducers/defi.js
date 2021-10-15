@@ -136,8 +136,8 @@ function normalizeCoins(markets) {
 
     const chain = item.chains.length > 1 ? multiChain : item.chains[0]
     if (chain) {
-      coin.chain = chain
-      chains[chain] = true
+      coin.chain = chain.toLowerCase()
+      chains[coin.chain] = true
     }
 
     coins.push(coin)
