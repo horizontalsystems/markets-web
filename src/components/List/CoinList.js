@@ -42,6 +42,7 @@ function CoinList({ coins, isFetching, emptyMsg, initialSort = { field: 'marketC
               value={sort}
               onChange={value => {
                 setSort(value)
+                setSortPage(value.field)
                 setPage(1)
               }}
               isSearchable={false}
