@@ -11,7 +11,7 @@ import Select from '../Select/Select'
 function DefiList({ coins, selectOptions }) {
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(null)
-  const [sortPage, setSortPage] = useState({ field: 'tvl', desc: true })
+  const [sortPage, setSortPage] = useState({ field: 'priceChange24h', desc: true })
 
   const sortedCoins = filterCoins(sort, [...coins])
 

@@ -9,11 +9,11 @@ import ListSortHead from './ListSortHead'
 import LoaderTable from '../Loader/LoaderTable'
 import Select from '../Select/Select'
 
-function CoinList({ coins, isFetching, emptyMsg, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap' } }) {
+function CoinList({ coins, isFetching, emptyMsg, initialSort = { field: 'marketCap', value: 'h_cap', label: 'Highest Cap', desc: true } }) {
 
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState(initialSort)
-  const [sortPage, setSortPage] = useState({ field: initialSort.field, desc: true })
+  const [sortPage, setSortPage] = useState({ field: initialSort.field, desc: initialSort.desc })
 
   const sortedCoins = sortCoins(sort, [...coins])
 
@@ -42,7 +42,7 @@ function CoinList({ coins, isFetching, emptyMsg, initialSort = { field: 'marketC
               value={sort}
               onChange={value => {
                 setSort(value)
-                setSortPage(value.field)
+                setSortPage({})
                 setPage(1)
               }}
               isSearchable={false}

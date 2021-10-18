@@ -74,7 +74,7 @@ function Volume() {
           </div>
         </div>
 
-        <CoinList coins={coins} isFetching={!coins.length} initialSort={{ field: 'totalVolume', value: 'h_volume', label: 'Highest Volume' }}  />
+        <CoinList coins={coins} isFetching={!coins.length} initialSort={{ field: 'totalVolume', value: 'h_volume', label: 'Highest Volume', desc: true }}  />
       </div>
     </div>
   )

@@ -24,7 +24,7 @@ function TopGainers() {
           </h3>
         </div>
 
-        <CoinList coins={coins} isFetching={!coins.length} initialSort={{ field: 'priceChange24h', value: 't_gainers', label: 'Top Gainers' }} />
+        <CoinList coins={coins} isFetching={!coins.length} initialSort={{ field: 'priceChange24h', value: 't_gainers', label: 'Top Gainers', desc: true }} />
       </div>
     </div>
   )
