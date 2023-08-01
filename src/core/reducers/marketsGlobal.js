@@ -65,26 +65,26 @@ function normalize(data) {
 
   for (let i = 0; i < sorted.length; i++) {
     const item = sorted[i]
-    const time = parseInt(item.timestamp)
+    const time = parseInt(item.date)
 
-    points.volume.push({ time, value: item.volume24h })
-    points.dominance.push({ time, value: item.dominance_btc })
+    points.volume.push({ time, value: item.volume })
+    points.dominance.push({ time, value: item.btc_dominance })
     points.marketCap.push({ time, value: item.market_cap })
-    points.defiMarket.push({ time, value: item.market_cap_defi })
+    points.defiMarket.push({ time, value: item.defi_market_cap })
     points.tvl.push({ time, value: item.tvl })
   }
 
   return {
     points,
     marketCap: latest.market_cap,
-    marketCapDefi: latest.market_cap_defi,
-    volume24h: latest.volume24h,
-    dominanceBTC: latest.dominance_btc,
+    marketCapDefi: latest.defi_market_cap,
+    volume24h: latest.volume,
+    dominanceBTC: latest.btc_dominance,
     totalValueLocked: latest.tvl,
     marketCapDiff24h: change(latest.market_cap, data24.market_cap),
-    marketCapDefiDiff24h: change(latest.market_cap_defi, data24.market_cap_defi),
-    dominanceBTCDiff24h: change(latest.dominance_btc, data24.dominance_btc),
-    volume24hDiff: change(latest.volume24h, data24.volume24h),
+    marketCapDefiDiff24h: change(latest.defi_market_cap, data24.defi_market_cap),
+    dominanceBTCDiff24h: change(latest.btc_dominance, data24.btc_dominance),
+    volume24hDiff: change(latest.volume, data24.volume),
     totalValueLockedDiff24h: change(latest.tvl, data24.tvl)
   }
 }

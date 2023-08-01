@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const coingeckoBaseUrl = 'https://api.coingecko.com/api/v3/coins'
-const marketsBaseUrl = 'https://markets.horizontalsystems.xyz/api/v1'
+const blocksdecodedUrl = 'https://api.blocksdecoded.com/v1'
 
 export function getMarketsGlobal() {
-  return axios.get(`${marketsBaseUrl}/markets/global/24h`)
+  return axios.get(`${blocksdecodedUrl}/global-markets`)
 }
 
 export function getMarkets(count = 250) {
@@ -16,11 +16,11 @@ export function getMarketsByIds(ids) {
 }
 
 export function getDefiCoins() {
-  return axios.get(`${marketsBaseUrl}/markets/defi?diff_period=24h,7d,30d`)
+  return axios.get(`${blocksdecodedUrl}/defi-protocols`)
 }
 
-export function getCoinTvlChart(coin, period = '7d') {
-  return axios.get(`${marketsBaseUrl}/markets/defi/${coin}/${period}`)
+export function getCoinTvlChart(coin, period = '1w') {
+  return axios.get(`${blocksdecodedUrl}/defi-protocols/${coin}/tvls?interval=${period}`)
 }
 
 export function getCoinVolumeChart(coin) {

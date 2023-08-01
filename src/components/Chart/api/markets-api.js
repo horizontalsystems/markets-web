@@ -13,8 +13,8 @@ const marketsApi = {
     return getCoinTvlChart(coinId)
       .then(({ data }) => {
         if (data.length) {
-          const bars = data.map(({ timestamp, tvl: open }) => ({
-            time: timestamp * 1000,
+          const bars = data.map(({ date, tvl: open }) => ({
+            time: date * 1000,
             low: open,
             high: open,
             open: open,

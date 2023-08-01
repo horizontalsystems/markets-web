@@ -121,15 +121,15 @@ function normalizeCoins(markets) {
   for (let i = 0; i < marketsSorted.length; i++) {
     const item = marketsSorted[i];
     const coin = {
-      id: item.coingecko_id,
+      id: item.uid,
       name: item.name,
-      image: item.image_url,
+      image: item.logo,
       symbol: normalizeSymbol(item),
       rank: item.id,
-      rankTvl: i + 1,
+      rankTvl: item.tvl_rank,
       priceChange1h: item.change_1h,
-      priceChange24h: item.tvl_diff_24h,
-      priceChange7d: item.tvl_diff_7d,
+      priceChange24h: item.tvl_change_1d,
+      priceChange7d: item.tvl_change_7d,
       tvl: item.tvl,
       chains: item.chains
     }
@@ -154,5 +154,5 @@ function normalizeSymbol(item) {
     return item.name
   }
 
-  return item.code || item.name || item.coingecko_id
+  return item.code || item.name || item.uid
 }

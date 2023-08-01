@@ -5,7 +5,7 @@ import ChartLight from '../Chart/ChartLight'
 
 class ModalTvlChart extends React.Component {
   state = {
-    interval: '7d'
+    interval: '1w'
   }
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class ModalTvlChart extends React.Component {
         const points = []
         for (let i = 0; i < data.length; i++) {
           const item = data[i];
-          const time = parseInt(item.timestamp)
+          const time = parseInt(item.date)
           points.push({ time, value: item.tvl })
         }
 
@@ -63,13 +63,13 @@ class ModalTvlChart extends React.Component {
           )}
         </div>
         <div className="modal-footer bg-lawrence justify-content-start">
-          <button className={cn('btn text-oz me-2', { 'btn-dark': active('24h') })} onClick={() => changeInterval('24h')}>
+          <button className={cn('btn text-oz me-2', { 'btn-dark': active('1d') })} onClick={() => changeInterval('1d')}>
             24H
           </button>
-          <button className={cn('btn text-oz me-2', { 'btn-dark': active('7d') })} onClick={() => changeInterval('7d')}>
+          <button className={cn('btn text-oz me-2', { 'btn-dark': active('1w') })} onClick={() => changeInterval('1w')}>
             7D
           </button>
-          <button className={cn('btn text-oz me-2', { 'btn-dark': active('14d') })} onClick={() => changeInterval('14d')}>
+          <button className={cn('btn text-oz me-2', { 'btn-dark': active('2w') })} onClick={() => changeInterval('2w')}>
             14D
           </button>
           <button className={cn('btn text-oz me-2', { 'btn-dark': active('1m') })} onClick={() => changeInterval('1m')}>
